@@ -6,22 +6,38 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('estadistica_suenos', function (Blueprint $table) {
-            $table->id();
+        Schema::create('estadisticas_sueno', function (Blueprint $table) {
+            $table->id('id_estadistica');
+            $table->unsignedBigInteger('id_usuario');
+            $table->enum('periodo', ['diario', 'semanal', 'mensual', 'anual']);
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
+            $table->double('promedio_horas');
+            $table->double('calidad_promedio');
+            $table->integer('dias_registrados');
             $table->timestamps();
+
+            // Foreign key
+            $table->foreign('id_usuario')
+                  ->references('id_usuario')
+                  ->on('usuario')
+                  ->onDelete('cascade');
+
+            // Índices para búsquedas
+            $table->index('periodo');
+            $table->index('fecha_inicio');
+            $table->index('fecha_fin');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('estadistica_suenos');
+        Schema::table('estadisticas_sueno', function (Blueprint $table) {
+            $table->dropForeign(['id_usuario']);
+        });
+        
+        Schema::dropIfExists('estadisticas_sueno');
     }
 };
