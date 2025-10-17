@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+        Schema::create('usuario', function (Blueprint $table) {
+            $table->id('id_usuario'); // Equivale a auto_increment primary key
+            $table->string('nombre', 100);
+            $table->string('correo', 150)->unique();
+            $table->string('contraseña', 255);
+            $table->enum('tipo_usuario', ['free', 'premium', 'admin']);
+            $table->date('fecha_registro');
+            $table->timestamps(); // Opcional: para created_at y updated_at
         });
 
+        // Mantener las tablas adicionales de Laravel si las necesitas
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
@@ -36,13 +37,12 @@ return new class extends Migration
             $table->integer('last_activity')->index();
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('usuario');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }
