@@ -6,22 +6,30 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('suscripcions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('suscripciones')) {
+            Schema::create('suscripciones', function (Blueprint $table) {
+                $table->id('id_suscripcion');
+                $table->unsignedBigInteger('id_usuario');
+                $table->enum('tipo_plan', ['mensual', 'anual', 'vitalicio']);
+                $table->date('fecha_inicio');
+                $table->date('fecha_fin');
+                $table->boolean('activa')->default(true);
+                $table->timestamps();
+
+                $table->foreign('id_usuario')
+                      ->references('id_usuario')
+                      ->on('usuario')
+                      ->onDelete('cascade');
+
+                $table->index('activa');
+            });
+        }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('suscripcions');
+        Schema::dropIfExists('suscripciones');
     }
 };
