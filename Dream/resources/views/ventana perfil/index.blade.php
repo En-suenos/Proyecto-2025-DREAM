@@ -39,7 +39,7 @@
                         </form>
 
                         <div class="text-center mt-3">
-                            <a href="{{ route('ventana-principal') }}" class="text-decoration-none">
+                            <a href="{{ route('usuario con cuenta.index') }}" class="text-decoration-none">
                                 ← Volver al inicio
                             </a>
                         </div>

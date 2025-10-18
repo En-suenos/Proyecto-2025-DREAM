@@ -11,6 +11,6 @@ class PerfilController extends Controller
     // conectar con la vista
     public function index()
     {
-        return view('perfil.index', compact('perfil'));
+        return view('ventana perfil.index');
     }
 }

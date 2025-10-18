@@ -40,9 +40,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarVista('perfil')">Mi perfil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarVista('playlists')">PlayLists</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarVista('asistente')">Asistente</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('perfil.index')}}">Mi perfil</a></li> <!-- Enlace a la vista de perfil, se conecta con rutas -->
+                    <li class="nav-item"><a class="nav-link" href="{{route('playlists.index')}}">PlayLists</a></li> <!-- Enlace a la vista de PlayLists, se conecta con rutas -->
+                    <li class="nav-item"><a class="nav-link" href="{{route('asistente ia.index')}}">Asistente</a></li> <!-- Enlace a la vista de Asistente IA, se conecta con routas-->
                     <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarVista('opciones')">Opciones</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="iniciarSueno()">Iniciar sueño</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarLogin()">Iniciar sesión</a></li>
@@ -78,7 +78,9 @@
                     </tbody>
                 </table>
             </div>
-            <button onclick="regresar('principal')">Regresa a la ventana principal</button>
+            <a href="{{route('ventana principal.index')}}" class="btn btn-secondary mt-3">
+                Regresa a la ventana principal
+            </a> <!-- Botón para regresar a la ventana principal -->
         </div>
 
         <!-- Otras vistas permanecen iguales... -->

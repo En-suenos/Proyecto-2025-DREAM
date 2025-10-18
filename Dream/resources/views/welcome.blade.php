@@ -6,8 +6,5 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>
-        <a href="{{route('usuario.index')}}">Usuarios</a>
-    </h1>
 </body>
 </html>

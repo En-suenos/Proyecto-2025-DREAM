@@ -56,9 +56,10 @@
                         <i class="fas fa-moon me-2"></i>Iniciar sueño - Inicio el modo sueño
                     </button>
                     
-                    <a href="{{ route('inicio-sesion') }}" class="btn btn-success w-100">
+                    <a href="{{ route('inicio sesion.index') }}" class="btn btn-success w-100"> <!-- Enlace a la vista de inicio de sesión -->
                         <i class="fas fa-sign-in-alt me-2"></i>Iniciar sesión - Para iniciar sesión
-                    </a>
+                    </a> 
+                     
                 </div>
             </div>
         </div>

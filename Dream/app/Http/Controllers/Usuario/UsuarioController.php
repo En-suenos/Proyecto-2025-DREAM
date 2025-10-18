@@ -13,4 +13,5 @@ class UsuarioController extends Controller
     {
         return view('usuario.index', compact('usuario'));
     }
+
 }

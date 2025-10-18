@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class RegistroSueno extends Model
 {
     //
+    protected $guarded = [];
 }

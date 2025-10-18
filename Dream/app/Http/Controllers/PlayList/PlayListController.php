@@ -8,9 +8,9 @@ use App\Models\PlayList;
 
 class PlayListController extends Controller
 {
-    //  conectar con la vista
-    public function index()
+    //  se conecta con la vista ventana playlista
+    public function index(Request $request)
     {
-        return view('playlist.index', compact('playlist'));
+        return view('ventana playlista.index');
     }
 }

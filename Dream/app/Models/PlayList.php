@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class PlayList extends Model
 {
     //
+    protected $guarded = [];
 }
