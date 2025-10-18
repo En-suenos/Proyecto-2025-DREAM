@@ -9,11 +9,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre', 50)->nullable();
-            $table->string('email', 100)->nullable();
-            $table->string('contraseña', 255)->nullable();
-            $table->timestamps();
+            $table->id('id_usuario'); // Equivale a auto_increment primary key
+            $table->string('nombre', 100);
+            $table->string('correo', 150)->unique();
+            $table->string('contraseña', 255);
+            $table->enum('tipo_usuario', ['free', 'premium', 'admin']);
+            $table->date('fecha_registro');
+            $table->timestamps(); // Opcional: para created_at y updated_at
         });
     }
 

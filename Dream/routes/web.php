@@ -20,24 +20,24 @@ Route::get('/', function () {
 */
 
 Route::get('/', function () {
-    $usuario1 = new Usuario();
+    /*$usuario1 = new Usuario();
     $usuario1->nombre = 'Rosy';
-    $usuario1->email = 'rosy@gmail.com';
-    $usuario1->contrasena = '12345';
-    $usuario1->tipoUsuario = 'normal';
-    $usuario1->fechaRegistro = '2023-10-01';
+    $usuario1->correo = 'rosy@gmail.com';
+    $usuario1->contraseña = '12345';
+    $usuario1->tipo_usuario = 'free';
+    $usuario1->fecha_registro = '2023-10-01';
     $usuario1->save();
 
-    return $usuario1;
+    return $usuario1;*/
     //return view('ventana principal.index', compact('usuario'));
-    //return view('usuarios con cuenta.index ');
+    return view('usuarios con cuenta.index ');
 });
 /*
 Route::get('/usuario', function () {
     return View('usuario.index', compact('usuario'));
 }); 
 */
-/*
+
 //Se comunican con Controllers---------------------------------------------------------------------------------------
 //Ruta para la ventana principal
 Route::get('/ventana principal/index', [VentanaPrincipalController::class, 'index'])->name('ventana principal.index');
@@ -57,4 +57,3 @@ Route::get('/playlists/index', [PlaylistController::class, 'index'])->name('play
 
 //Ruta para Asistente IA
 Route::get('/asistente ia/index', [AsistenteIAController::class, 'index'])->name('asistente ia.index');
-*/
