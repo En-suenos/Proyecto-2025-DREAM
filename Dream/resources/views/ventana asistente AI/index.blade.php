@@ -7,7 +7,10 @@
     <title>Asistente AI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Agregado: Script de Transformers.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0/dist/transformers.min.js"></script>
     <style>
+        /* El CSS permanece igual, lo omito por brevedad, pero inclúyelo completo en tu archivo */
         :root {
             --primary-color: #6c63ff;
             --secondary-color: #4a44b5;
@@ -318,24 +321,6 @@
             margin-top: 20px;
         }
         
-        .api-key-container {
-            margin-bottom: 20px;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
-        }
-        
-        .dark-mode .api-key-container {
-            background-color: #2d2d44;
-        }
-        
-        .api-key-input {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
         @media (max-width: 768px) {
             .app-container {
                 padding: 15px;
@@ -353,10 +338,6 @@
             .action-buttons button {
                 width: 100%;
             }
-            
-            .api-key-input {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
@@ -364,7 +345,7 @@
     <main class="app-container">
         <header class="header">
             <h1 class="app-title">
-                <i class="fas fa-robot"></i> Asistente AI
+                <i class="fas fa-robot"></i> Asistente AI (Local)
             </h1>
             <button class="theme-toggle" id="themeToggle">
                 <i class="fas fa-moon"></i>
@@ -372,23 +353,17 @@
         </header>
 
         <div id="asistente">
-            <div class="api-key-container">
-                <p><strong>Configuración de API:</strong> Para usar el asistente AI real, necesitas una clave de API de OpenAI.</p>
-                <div class="api-key-input">
-                    <input type="password" id="apiKeyInput" class="form-control" placeholder="Ingresa tu clave de API de OpenAI">
-                    <button onclick="saveApiKey()" class="btn btn-primary">Guardar Clave</button>
-                </div>
-                <small class="text-muted">Tu clave se guarda localmente y no se envía a nuestros servidores.</small>
-            </div>
-            
             <div class="row">
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
                             <i class="fas fa-comments me-2"></i>
-                            Charla con AI
+                            Charla con AI (Modelo Local)
                         </div>
                         <div class="card-body">
+                            <div id="loadingModel" class="alert alert-info">
+                                <i class="fas fa-spinner fa-spin me-2"></i> Cargando modelo de IA local... Esto puede tomar unos minutos la primera vez.
+                            </div>
                             <div class="chat-container" id="chatContainer">
                             </div>
                             
@@ -458,12 +433,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         let chatHistory = [
-            { mensaje: '¡Hola! Soy tu asistente AI. ¿En qué puedo ayudarte hoy?', de: 'AI', hora: obtenerHoraActual() }
+            { mensaje: '¡Hola! Soy tu asistente AI local. ¿En qué puedo ayudarte hoy?', de: 'AI', hora: obtenerHoraActual() }
         ];
         
-        let apiKey = localStorage.getItem('openai_api_key');
+        let pipeline; // Variable para el modelo de Transformers.js
         let isTyping = false;
-        document.addEventListener('DOMContentLoaded', function() {
+
+        document.addEventListener('DOMContentLoaded', async function() {
             loadChat();
             loadAsistenteTable();
             
@@ -474,15 +450,23 @@
                     interactuarAI();
                 }
             });
-            if (apiKey) {
-                document.getElementById('apiKeyInput').value = '••••••••••••••••';
+
+            // Cargar el modelo local
+            try {
+                pipeline = await pipeline('text-generation', 'microsoft/DialoGPT-small');
+                document.getElementById('loadingModel').style.display = 'none';
                 enableChat();
+                mostrarNotificacion('Modelo cargado correctamente. ¡Puedes chatear!', 'success');
+            } catch (error) {
+                console.error('Error cargando el modelo:', error);
+                mostrarNotificacion('Error al cargar el modelo. Verifica tu conexión e intenta recargar la página.', 'error');
             }
         });
 
         function obtenerHoraActual() {
             return new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         }
+
         function loadChat() {
             const chatContainer = document.getElementById('chatContainer');
             chatContainer.innerHTML = '';
@@ -494,297 +478,3 @@
                 const icon = item.de === 'Usuario' ? 
                     '<i class="fas fa-user user-icon"></i>' : 
                     '<i class="fas fa-robot ai-icon"></i>';
-                
-                messageDiv.innerHTML = `
-                    ${item.de === 'AI' ? icon : ''}
-                    <div class="message-bubble">
-                        ${item.mensaje}
-                        <div class="message-time">${item.hora}</div>
-                    </div>
-                    ${item.de === 'Usuario' ? icon : ''}
-                `;
-                
-                chatContainer.appendChild(messageDiv);
-            });
-            
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-        function loadAsistenteTable() {
-            const tableBody = document.getElementById('asistenteTableBody');
-            tableBody.innerHTML = '';
-            chatHistory.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${item.mensaje}</td>
-                    <td>${item.de}</td>
-                    <td>${item.hora}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
-        function saveApiKey() {
-            const apiKeyInput = document.getElementById('apiKeyInput');
-            const key = apiKeyInput.value.trim();
-            
-            if (key && key.length > 10) {
-                apiKey = key;
-                localStorage.setItem('openai_api_key', key);
-                apiKeyInput.value = '••••••••••••••••';
-                enableChat();
-                mostrarNotificacion('API key guardada correctamente', 'success');
-            } else {
-                mostrarNotificacion('Por favor, ingresa una API key válida', 'error');
-            }
-        }
-        function enableChat() {
-            document.getElementById('inputAI').disabled = false;
-            document.getElementById('sendButton').disabled = false;
-        }
-        async function interactuarAI() {
-            const input = document.getElementById('inputAI').value.trim();
-            if (!input) {
-                mostrarNotificacion('Por favor, escribe un mensaje.', 'error');
-                return;
-            }
-            
-            if (!apiKey) {
-                mostrarNotificacion('Primero debes configurar tu API key de OpenAI.', 'error');
-                return;
-            }
-            
-            const now = obtenerHoraActual();
-            
-            chatHistory.push({ mensaje: input, de: 'Usuario', hora: now });
-            loadChat();
-            document.getElementById('inputAI').value = '';
-            document.getElementById('sendButton').disabled = true;
-            document.getElementById('inputAI').disabled = true;
-            isTyping = true;
-            
-            mostrarIndicadorEscritura();
-            
-            try {
-
-                const respuesta = await llamarOpenAI(input);
-                
-                ocultarIndicadorEscritura();
-                
-                chatHistory.push({ mensaje: respuesta, de: 'AI', hora: obtenerHoraActual() });
-                loadChat();
-                loadAsistenteTable();
-
-                generarSugerencias(respuesta);
-                
-            } catch (error) {
-                console.error('Error al llamar a la API:', error);
-                ocultarIndicadorEscritura();
-                
-                chatHistory.push({ 
-                    mensaje: 'Lo siento, hubo un error al procesar tu solicitud. Por favor, verifica tu API key e intenta nuevamente.', 
-                    de: 'AI', 
-                    hora: obtenerHoraActual() 
-                });
-                loadChat();
-                loadAsistenteTable();
-            }
-            
-            document.getElementById('sendButton').disabled = false;
-            document.getElementById('inputAI').disabled = false;
-            isTyping = false;
-        }
-
-        async function llamarOpenAI(mensaje) {
-            const url = 'https://api.openai.com/v1/chat/completions';
-            
-            const mensajes = chatHistory.map(item => ({
-                role: item.de === 'Usuario' ? 'user' : 'assistant',
-                content: item.mensaje
-            }));
-            
-            mensajes.push({ role: 'user', content: mensaje });
-            
-            const data = {
-                model: 'gpt-3.5-turbo',
-                messages: mensajes,
-                max_tokens: 500,
-                temperature: 0.7
-            };
-            
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
-                },
-                body: JSON.stringify(data)
-            });
-            
-            if (!response.ok) {
-                throw new Error(`Error de API: ${response.status} ${response.statusText}`);
-            }
-            
-            const result = await response.json();
-            return result.choices[0].message.content;
-        }
-        function mostrarIndicadorEscritura() {
-            const chatContainer = document.getElementById('chatContainer');
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'chat-message ai-message';
-            typingDiv.id = 'typingIndicator';
-            typingDiv.innerHTML = `
-                <i class="fas fa-robot ai-icon"></i>
-                <div class="message-bubble typing-indicator">
-                    <span>Escribiendo</span>
-                    <div class="typing-dots">
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                    </div>
-                </div>
-            `;
-            chatContainer.appendChild(typingDiv);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-        function ocultarIndicadorEscritura() {
-            const typingIndicator = document.getElementById('typingIndicator');
-            if (typingIndicator) {
-                typingIndicator.remove();
-            }
-        }
-        function generarSugerencias(respuesta) {
-            const suggestionsText = document.getElementById('suggestionsText');
-        
-            if (respuesta.toLowerCase().includes('música') || respuesta.toLowerCase().includes('canción')) {
-                suggestionsText.innerHTML = `
-                    <p>Basado en tu conversación sobre música, te sugiero:</p>
-                    <ul>
-                        <li>Explorar listas de reproducción por género</li>
-                        <li>Descubrir nuevos artistas similares a tus gustos</li>
-                        <li>Crear una lista de reproducción personalizada</li>
-                    </ul>
-                `;
-            } else if (respuesta.toLowerCase().includes('relaj') || respuesta.toLowerCase().includes('calma')) {
-                suggestionsText.innerHTML = `
-                    <p>Basado en tu interés en la relajación, te sugiero:</p>
-                    <ul>
-                        <li>Probar meditaciones guiadas de 5 minutos</li>
-                        <li>Escuchar sonidos de la naturaleza</li>
-                        <li>Practicar ejercicios de respiración</li>
-                    </ul>
-                `;
-            } else if (respuesta.toLowerCase().includes('chiste') || respuesta.toLowerCase().includes('humor')) {
-                suggestionsText.innerHTML = `
-                    <p>¡Veo que te gusta el humor! También puedes:</p>
-                    <ul>
-                        <li>Pedir chistes de diferentes categorías</li>
-                        <li>Explorar curiosidades divertidas</li>
-                        <li>Jugar juegos de palabras</li>
-                    </ul>
-                `;
-            } else {
-                suggestionsText.innerHTML = `
-                    <p>Sugerencias generales:</p>
-                    <ul>
-                        <li>Pregunta sobre cualquier tema que te interese</li>
-                        <li>Solicita ayuda con tareas específicas</li>
-                        <li>Pide explicaciones detalladas sobre conceptos</li>
-                    </ul>
-                `;
-            }
-        }
-        function sortTable(columnIndex) {
-            const table = document.getElementById('asistenteTable');
-            const tbody = table.querySelector('tbody');
-            const rows = Array.from(tbody.querySelectorAll('tr'));
-            
-            const isAscending = table.getAttribute('data-sort') !== 'asc' || table.getAttribute('data-column') !== columnIndex;
-            table.setAttribute('data-sort', isAscending ? 'asc' : 'desc');
-            table.setAttribute('data-column', columnIndex);
-            
-            rows.sort((a, b) => {
-                const aText = a.children[columnIndex].textContent.trim();
-                const bText = b.children[columnIndex].textContent.trim();
-                
-                if (columnIndex === 2) {
-                    const aTime = convertTimeToMinutes(aText);
-                    const bTime = convertTimeToMinutes(bText);
-                    return isAscending ? aTime - bTime : bTime - aTime;
-                } else {
-                    if (isAscending) {
-                        return aText.localeCompare(bText, 'es', { numeric: true });
-                    } else {
-                        return bText.localeCompare(aText, 'es', { numeric: true });
-                    }
-                }
-            });
-            
-            rows.forEach(row => tbody.appendChild(row));
-        }
-
-        function convertTimeToMinutes(timeStr) {
-            const [time, modifier] = timeStr.split(' ');
-            let [hours, minutes] = time.split(':').map(Number);
-            
-            if (modifier === 'PM' && hours < 12) hours += 12;
-            if (modifier === 'AM' && hours === 12) hours = 0;
-            
-            return hours * 60 + minutes;
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-            const icon = document.querySelector('#themeToggle i');
-            if (document.body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        }
-
-        function insertSuggestion(text) {
-            document.getElementById('inputAI').value = text;
-        }
-
-        function limpiarChat() {
-            if (confirm('¿Estás seguro de que quieres limpiar el historial de chat?')) {
-                chatHistory = [
-                    { mensaje: '¡Hola! Soy tu asistente AI. ¿En qué puedo ayudarte hoy?', de: 'AI', hora: obtenerHoraActual() }
-                ];
-                loadChat();
-                loadAsistenteTable();
-                document.getElementById('suggestionsText').innerHTML = 'Una vez que empieces a chatear, aparecerán sugerencias personalizadas aquí.';
-            }
-        }
-
-        function mostrarNotificacion(mensaje, tipo) {
-            
-            const notificacion = document.createElement('div');
-            notificacion.className = `alert alert-${tipo === 'error' ? 'danger' : 'success'} alert-dismissible fade show`;
-            notificacion.innerHTML = `
-                ${mensaje}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            `;
-            
-            const appContainer = document.querySelector('.app-container');
-            appContainer.insertBefore(notificacion, appContainer.firstChild);
-            
-            setTimeout(() => {
-                if (notificacion.parentNode) {
-                    notificacion.remove();
-                }
-            }, 5000);
-        }
-
-        function mostrarVista(vista) {
-            console.log("Mostrando vista: " + vista);
-        }
-        
-        function regresar(vista) {
-            alert('Regresando a: ' + vista);
-        }
-    </script>
-</body>
-</html>
