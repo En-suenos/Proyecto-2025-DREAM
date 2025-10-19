@@ -6,17 +6,16 @@
     <meta name="description" content="Aplicación PlayList con múltiples vistas y autenticación.">
     <title>Aplicación PlayList</title>
     
-    <!-- Incluir Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Estilos personalizados -->
+ 
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f8f9fa;
         }
         .hidden {
-            display: none; /* Clase para ocultar vistas */
+            display: none; 
         }
         .navbar {
             background-color: #ffffff;
@@ -31,7 +30,7 @@
     </style>
 </head>
 <body>
-    <!-- Navbar principal -->
+    
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#" onclick="mostrarVista('principal')">☰ PlayList</a>
@@ -51,15 +50,15 @@
         </div>
     </nav>
 
-    <!-- Contenedor principal para todas las vistas -->
+   
     <main class="container main-content">
-        <!-- Vista principal con cuenta (si el usuario está logueado) -->
+        
         <div id="principal" class="hidden">
             <h1>Ventana principal con cuenta</h1>
             <p>Bienvenido, usuario logueado. Accede a: <a href="#" onclick="mostrarVista('perfil')">Mi perfil</a>, <a href="#" onclick="mostrarVista('playlists')">PlayLists</a>, etc.</p>
         </div>
 
-        <!-- Vista de Mi perfil -->
+        
         <div id="perfil" class="hidden">
             <h2>Ventana de Mi perfil</h2>
             <ul>
@@ -71,7 +70,6 @@
             <button onclick="regresar('principal')">Regresa a la ventana principal</button>
         </div>
 
-        <!-- Vista de Notificaciones -->
         <div id="notificaciones" class="hidden">
             <h2>Ventana de Notificaciones</h2>
             <p>Lista cronológica: Notificación 1, Notificación 2.</p>
@@ -79,7 +77,7 @@
             <button onclick="regresar('perfil')">Regresa al perfil</button>
         </div>
 
-        <!-- Vista de Idiomas -->
+        
         <div id="idiomas" class="hidden">
             <h2>Ventana de Idiomas</h2>
             <select id="paisSelect">
@@ -95,19 +93,18 @@
             <button onclick="regresar('perfil')">Regresa al perfil</button>
         </div>
 
-        <!-- Vista de Sonidos Favoritos -->
         <div id="sonidosFavoritos" class="hidden">
             <h2>Ventana de Sonidos Favoritos</h2>
             <ul>
                 <li>Sonido1</li>
                 <li>Sonido2</li>
                 <li>Sonido3</li>
-                <!-- Agrega más sonidos -->
+
             </ul>
             <button onclick="regresar('perfil')">Regresa al perfil</button>
         </div>
 
-        <!-- Vista de PlayLists -->
+
         <div id="playlists" class="hidden">
             <h2>Ventana de PlayList</h2>
             <button onclick="crearLista()">Crear nueva lista</button>
@@ -117,7 +114,6 @@
             <button onclick="regresar('principal')">Regresa al perfil</button>
         </div>
 
-        <!-- Vista de Mis Datos -->
         <div id="misDatos" class="hidden">
             <h2>Ventana de Mis Datos</h2>
             <form id="formDatos">
@@ -140,7 +136,6 @@
             <button onclick="regresar('principal')">Regresa a la ventana principal</button>
         </div>
 
-        <!-- Vista de Iniciar Sesión -->
         <div id="login" class="hidden">
             <h2>Iniciar Sesión</h2>
             <form id="formLogin">
@@ -152,7 +147,6 @@
             <button onclick="regresar('principal')">Regresa</button>
         </div>
 
-        <!-- Vista principal sin iniciar sesión -->
         <div id="principalSinSesion" class="hidden">
             <h2>Ventana principal sin iniciar sesión</h2>
             <p>Muestra la opción de PlayList: <a href="#" onclick="mostrarVista('playlists')">PlayList</a></p>
@@ -160,17 +154,17 @@
         </div>
     </main>
 
-    <!-- Incluir Bootstrap JS -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- JavaScript personalizado -->
+  
     <script>
         function mostrarVista(vista) {
-            // Oculta todas las vistas
+           
             document.querySelectorAll('.main-content > div').forEach(div => div.classList.add('hidden'));
             document.getElementById(vista).classList.remove('hidden');
             
-            // Simular autenticación: Si la vista es 'principal', verifica si el usuario está logueado
+           
             if (vista === 'principal' && !localStorage.getItem('usuario')) {
                 mostrarVista('principalSinSesion');
             }
@@ -182,14 +176,14 @@
 
         function iniciarSueno() {
             alert('Iniciando modo sueño...');
-            // Lógica real: Reproducir audio o redirigir
+        
         }
 
         function validarLogin() {
             const correo = document.getElementById('correoLogin').value;
             const contrasena = document.getElementById('contrasenaLogin').value;
             if (correo && contrasena) {
-                localStorage.setItem('usuario', correo); // Simular login
+                localStorage.setItem('usuario', correo); 
                 document.getElementById('mensajeLogin').innerHTML = '¡Se guardaron los datos correctamente!';
                 mostrarVista('principal');
             } else {
@@ -202,13 +196,10 @@
             validarLogin();
         });
 
-        // Otras funciones (ejemplos)
         function regresar(vista) { mostrarVista(vista); }
         function marcarLeidas() { alert('Marcadas como leídas'); }
         function actualizarIdioma() { document.getElementById('mensajeIdioma').innerHTML = 'Idioma actualizado correctamente'; }
-        // Agrega más funciones según necesites
-
-        // Cargar vista inicial
+        
         window.onload = function() {
             if (localStorage.getItem('usuario')) {
                 mostrarVista('principal');
