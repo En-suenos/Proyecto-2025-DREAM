@@ -31,7 +31,8 @@ Route::get('/', function () {
     return $usuario1;*/
     //return view('ventana principal.index', compact('usuario'));
     //return view('ventana principal.index ');
-    return view('usuarios con cuenta.index');
+    //return view('usuarios con cuenta.index');
+    return view('ventana asistente AI.index');
 });
 /*
 Route::get('/usuario', function () {
