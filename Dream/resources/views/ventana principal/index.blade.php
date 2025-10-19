@@ -164,7 +164,7 @@
             if (currentAudio) {
                 currentAudio.pause();
             }
-            const audio = document.querySelector(audio[src="${src}"]);
+            const audio = document.querySelector(`audio[src="${src}"]`);
             if (audio) {
                 audio.play();
                 currentAudio = audio;
@@ -204,11 +204,11 @@
             const message = input.value.trim();
             if (message) {
                 const chat = document.getElementById('chat-messages');
-                chat.innerHTML += <div class="chat-message user-message"><strong>Tú:</strong> ${message}</div>;
+                chat.innerHTML += `<div class="chat-message user-message"><strong>Tú:</strong> ${message}</div>`;
                 input.value = '';
                 // Simular respuesta AI
                 setTimeout(() => {
-                    chat.innerHTML += <div class="chat-message ai-message"><strong>AI:</strong> Gracias por tu mensaje. Recomiendo probar el sonido de lluvia para relajarte.</div>;
+                    chat.innerHTML += `<div class="chat-message ai-message"><strong>AI:</strong> Gracias por tu mensaje. Recomiendo probar el sonido de lluvia para relajarte.</div>`;
                     chat.scrollTop = chat.scrollHeight;
                 }, 1000);
             }
