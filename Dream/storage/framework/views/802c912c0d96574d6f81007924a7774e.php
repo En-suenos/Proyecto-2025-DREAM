@@ -1,0 +1,1 @@
+<?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/ventana playlista/index.blade.php ENDPATH**/ ?>

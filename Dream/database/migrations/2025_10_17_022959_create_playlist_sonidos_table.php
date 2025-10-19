@@ -16,14 +16,14 @@ return new class extends Migration
             $table->integer('orden');
             $table->timestamps();
 
-            // Foreign keys
+            // Foreign keys corregidas
             $table->foreign('id_playlist')
-                  ->references('id_playlist')
+                  ->references('id_playlist')  // Referencia a id_playlist
                   ->on('play_lists')
                   ->onDelete('cascade');
 
             $table->foreign('id_sonido')
-                  ->references('id')
+                  ->references('id_sonido')    // Referencia a id_sonido
                   ->on('sonidos')
                   ->onDelete('cascade');
         });

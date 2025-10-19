@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <title>Página Principal - SoundScape</title>
 =======
     <title>Ventana Principal - SleepWell</title>
 >>>>>>> ramaView2
+=======
+    <title>Página Principal - SoundScape</title>
+>>>>>>> InterfasC
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
@@ -256,6 +260,34 @@
         .ai-message {
             text-align: left;
         }
+        .sound-item {
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .sound-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .notification-badge {
+            position: relative;
+        }
+        .notification-badge .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+        .ai-chat {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .chat-message {
+            margin-bottom: 10px;
+        }
+        .user-message {
+            text-align: right;
+        }
+        .ai-message {
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -283,8 +315,12 @@
                             </select>
                         </div>
                         <div class="d-flex">
+<<<<<<< HEAD
                             <!-- Enlace a la vista de inicio de sesión -->
                             <a href="{{route('inicio sesion.index')}}" class="btn btn-outline-light me-2">
+=======
+                            <a href="login.html" class="btn btn-outline-light me-2">
+>>>>>>> InterfasC
                                 <i class="fas fa-sign-in-alt me-1"></i>Inicio de Sesión
                             </a>
                             <button class="btn btn-outline-light notification-badge me-2" onclick="mostrarNotificaciones()">
@@ -356,12 +392,19 @@
                     <button class="btn btn-primary w-100 mb-3" onclick="iniciarModoSueno()">
                         <i class="fas fa-moon me-2"></i>Iniciar sueño - Inicio el modo sueño
                     </button>
+<<<<<<< HEAD
                     <!--
                     <a href="{{ route('inicio sesion.index') }}" class="btn btn-success w-100"> 
                         <i class="fas fa-sign-in-alt me-2"></i>Iniciar sesión - Para iniciar sesión
                     </a> 
                        -->
                      
+=======
+                    
+                    <a href="login.html" class="btn btn-success w-100">
+                        <i class="fas fa-sign-in-alt me-2"></i>Iniciar sesión - Para iniciar sesión
+                    </a>
+>>>>>>> InterfasC
                 </div>
             </div>
 =======
@@ -408,6 +451,9 @@
     </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> InterfasC
     <!-- Incluir Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
@@ -419,7 +465,11 @@
             if (currentAudio) {
                 currentAudio.pause();
             }
+<<<<<<< HEAD
             const audio = document.querySelector(`audio[src="${src}"]`);
+=======
+            const audio = document.querySelector(audio[src="${src}"]);
+>>>>>>> InterfasC
             if (audio) {
                 audio.play();
                 currentAudio = audio;
@@ -459,11 +509,19 @@
             const message = input.value.trim();
             if (message) {
                 const chat = document.getElementById('chat-messages');
+<<<<<<< HEAD
                 chat.innerHTML += `<div class="chat-message user-message"><strong>Tú:</strong> ${message}</div>`;
                 input.value = '';
                 // Simular respuesta AI
                 setTimeout(() => {
                     chat.innerHTML += `<div class="chat-message ai-message"><strong>AI:</strong> Gracias por tu mensaje. Recomiendo probar el sonido de lluvia para relajarte.</div>`;
+=======
+                chat.innerHTML += <div class="chat-message user-message"><strong>Tú:</strong> ${message}</div>;
+                input.value = '';
+                // Simular respuesta AI
+                setTimeout(() => {
+                    chat.innerHTML += <div class="chat-message ai-message"><strong>AI:</strong> Gracias por tu mensaje. Recomiendo probar el sonido de lluvia para relajarte.</div>;
+>>>>>>> InterfasC
                     chat.scrollTop = chat.scrollHeight;
                 }, 1000);
             }
@@ -489,6 +547,7 @@
                 alert('Idioma cambiado a Español.');
             }
         }
+<<<<<<< HEAD
 =======
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -572,6 +631,8 @@
             observer.observe(btn);
         });
 >>>>>>> ramaView2
+=======
+>>>>>>> InterfasC
     </script>
 </body>
 </html>
