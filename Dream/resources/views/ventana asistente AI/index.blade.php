@@ -7,6 +7,8 @@
     <title>Asistente AI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Agregado: Script de Transformers.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0/dist/transformers.min.js"></script>
     <style>
         :root {
             --primary-color: #6c63ff;
@@ -318,22 +320,33 @@
             margin-top: 20px;
         }
         
-        .api-key-container {
-            margin-bottom: 20px;
-            padding: 15px;
-            background-color: #f8f9fa;
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
             border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
         }
         
-        .dark-mode .api-key-container {
-            background-color: #2d2d44;
+        .notification.show {
+            transform: translateX(0);
         }
         
-        .api-key-input {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
+        .notification.success {
+            background-color: #28a745;
+        }
+        
+        .notification.error {
+            background-color: #dc3545;
+        }
+        
+        .notification.info {
+            background-color: #17a2b8;
         }
         
         @media (max-width: 768px) {
@@ -353,10 +366,6 @@
             .action-buttons button {
                 width: 100%;
             }
-            
-            .api-key-input {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
@@ -364,7 +373,7 @@
     <main class="app-container">
         <header class="header">
             <h1 class="app-title">
-                <i class="fas fa-robot"></i> Asistente AI
+                <i class="fas fa-robot"></i> Asistente AI (Local)
             </h1>
             <button class="theme-toggle" id="themeToggle">
                 <i class="fas fa-moon"></i>
@@ -372,23 +381,17 @@
         </header>
 
         <div id="asistente">
-            <div class="api-key-container">
-                <p><strong>Configuración de API:</strong> Para usar el asistente AI real, necesitas una clave de API de OpenAI.</p>
-                <div class="api-key-input">
-                    <input type="password" id="apiKeyInput" class="form-control" placeholder="Ingresa tu clave de API de OpenAI">
-                    <button onclick="saveApiKey()" class="btn btn-primary">Guardar Clave</button>
-                </div>
-                <small class="text-muted">Tu clave se guarda localmente y no se envía a nuestros servidores.</small>
-            </div>
-            
             <div class="row">
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
                             <i class="fas fa-comments me-2"></i>
-                            Charla con AI
+                            Charla con AI (Modelo Local)
                         </div>
                         <div class="card-body">
+                            <div id="loadingModel" class="alert alert-info">
+                                <i class="fas fa-spinner fa-spin me-2"></i> Cargando modelo de IA local... Esto puede tomar unos minutos la primera vez.
+                            </div>
                             <div class="chat-container" id="chatContainer">
                             </div>
                             
@@ -455,15 +458,20 @@
         </div>
     </main>
 
+    <!-- Notificaciones -->
+    <div id="notification" class="notification"></div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         let chatHistory = [
-            { mensaje: '¡Hola! Soy tu asistente AI. ¿En qué puedo ayudarte hoy?', de: 'AI', hora: obtenerHoraActual() }
+            { mensaje: '¡Hola! Soy tu asistente AI local. ¿En qué puedo ayudarte hoy?', de: 'AI', hora: obtenerHoraActual() }
         ];
         
-        let apiKey = localStorage.getItem('openai_api_key');
+        let pipeline; // Variable para el modelo de Transformers.js
         let isTyping = false;
-        document.addEventListener('DOMContentLoaded', function() {
+        let sortDirection = {};
+
+        document.addEventListener('DOMContentLoaded', async function() {
             loadChat();
             loadAsistenteTable();
             
@@ -474,8 +482,19 @@
                     interactuarAI();
                 }
             });
-            if (apiKey) {
-                document.getElementById('apiKeyInput').value = '••••••••••••••••';
+
+            // Cargar el modelo local
+            try {
+                console.log('Cargando modelo de IA...');
+                pipeline = await transformers.pipeline('text-generation', 'Xenova/distilgpt2');
+                document.getElementById('loadingModel').style.display = 'none';
+                enableChat();
+                mostrarNotificacion('Modelo cargado correctamente. ¡Puedes chatear!', 'success');
+            } catch (error) {
+                console.error('Error cargando el modelo:', error);
+                mostrarNotificacion('Error al cargar el modelo. Usando respuestas predefinidas.', 'error');
+                // Fallback: habilitar chat incluso si el modelo no carga
+                document.getElementById('loadingModel').style.display = 'none';
                 enableChat();
             }
         });
@@ -483,6 +502,7 @@
         function obtenerHoraActual() {
             return new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         }
+
         function loadChat() {
             const chatContainer = document.getElementById('chatContainer');
             chatContainer.innerHTML = '';
@@ -509,281 +529,300 @@
             
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
+
         function loadAsistenteTable() {
             const tableBody = document.getElementById('asistenteTableBody');
             tableBody.innerHTML = '';
+            
             chatHistory.forEach(item => {
                 const row = document.createElement('tr');
+                
+                // Acortar mensajes largos para la tabla
+                let mensajeCorto = item.mensaje;
+                if (mensajeCorto.length > 50) {
+                    mensajeCorto = mensajeCorto.substring(0, 50) + '...';
+                }
+                
                 row.innerHTML = `
-                    <td>${item.mensaje}</td>
-                    <td>${item.de}</td>
+                    <td>${mensajeCorto}</td>
+                    <td><span class="badge ${item.de === 'Usuario' ? 'bg-primary' : 'bg-success'}">${item.de}</span></td>
                     <td>${item.hora}</td>
                 `;
                 tableBody.appendChild(row);
             });
         }
 
-        function saveApiKey() {
-            const apiKeyInput = document.getElementById('apiKeyInput');
-            const key = apiKeyInput.value.trim();
+        function sortTable(columnIndex) {
+            const table = document.getElementById('asistenteTable');
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
             
-            if (key && key.length > 10) {
-                apiKey = key;
-                localStorage.setItem('openai_api_key', key);
-                apiKeyInput.value = '••••••••••••••••';
-                enableChat();
-                mostrarNotificacion('API key guardada correctamente', 'success');
+            // Determinar dirección de ordenamiento
+            if (!sortDirection[columnIndex]) {
+                sortDirection[columnIndex] = 'asc';
             } else {
-                mostrarNotificacion('Por favor, ingresa una API key válida', 'error');
-            }
-        }
-        function enableChat() {
-            document.getElementById('inputAI').disabled = false;
-            document.getElementById('sendButton').disabled = false;
-        }
-        async function interactuarAI() {
-            const input = document.getElementById('inputAI').value.trim();
-            if (!input) {
-                mostrarNotificacion('Por favor, escribe un mensaje.', 'error');
-                return;
+                sortDirection[columnIndex] = sortDirection[columnIndex] === 'asc' ? 'desc' : 'asc';
             }
             
-            if (!apiKey) {
-                mostrarNotificacion('Primero debes configurar tu API key de OpenAI.', 'error');
-                return;
-            }
-            
-            const now = obtenerHoraActual();
-            
-            chatHistory.push({ mensaje: input, de: 'Usuario', hora: now });
-            loadChat();
-            document.getElementById('inputAI').value = '';
-            document.getElementById('sendButton').disabled = true;
-            document.getElementById('inputAI').disabled = true;
-            isTyping = true;
-            
-            mostrarIndicadorEscritura();
-            
-            try {
-
-                const respuesta = await llamarOpenAI(input);
+            // Ordenar filas
+            rows.sort((a, b) => {
+                const aText = a.children[columnIndex].textContent.trim();
+                const bText = b.children[columnIndex].textContent.trim();
                 
-                ocultarIndicadorEscritura();
+                let comparison = 0;
+                if (columnIndex === 2) { // Columna de hora
+                    const aTime = new Date('1970/01/01 ' + aText);
+                    const bTime = new Date('1970/01/01 ' + bText);
+                    comparison = aTime - bTime;
+                } else {
+                    comparison = aText.localeCompare(bText, 'es', { sensitivity: 'base' });
+                }
                 
-                chatHistory.push({ mensaje: respuesta, de: 'AI', hora: obtenerHoraActual() });
-                loadChat();
-                loadAsistenteTable();
-
-                generarSugerencias(respuesta);
-                
-            } catch (error) {
-                console.error('Error al llamar a la API:', error);
-                ocultarIndicadorEscritura();
-                
-                chatHistory.push({ 
-                    mensaje: 'Lo siento, hubo un error al procesar tu solicitud. Por favor, verifica tu API key e intenta nuevamente.', 
-                    de: 'AI', 
-                    hora: obtenerHoraActual() 
-                });
-                loadChat();
-                loadAsistenteTable();
-            }
-            
-            document.getElementById('sendButton').disabled = false;
-            document.getElementById('inputAI').disabled = false;
-            isTyping = false;
-        }
-
-        async function llamarOpenAI(mensaje) {
-            const url = 'https://api.openai.com/v1/chat/completions';
-            
-            const mensajes = chatHistory.map(item => ({
-                role: item.de === 'Usuario' ? 'user' : 'assistant',
-                content: item.mensaje
-            }));
-            
-            mensajes.push({ role: 'user', content: mensaje });
-            
-            const data = {
-                model: 'gpt-3.5-turbo',
-                messages: mensajes,
-                max_tokens: 500,
-                temperature: 0.7
-            };
-            
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': Bearer ${apiKey}
-                },
-                body: JSON.stringify(data)
+                return sortDirection[columnIndex] === 'desc' ? -comparison : comparison;
             });
             
-            if (!response.ok) {
-                throw new Error(Error de API: ${response.status} ${response.statusText});
-            }
+            // Actualizar iconos de ordenamiento
+            const headers = table.querySelectorAll('th');
+            headers.forEach((header, index) => {
+                const icon = header.querySelector('i');
+                if (index === columnIndex) {
+                    icon.className = sortDirection[columnIndex] === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down';
+                } else {
+                    icon.className = 'fas fa-sort';
+                }
+            });
             
-            const result = await response.json();
-            return result.choices[0].message.content;
+            // Reinsertar filas ordenadas
+            rows.forEach(row => tbody.appendChild(row));
         }
-        function mostrarIndicadorEscritura() {
+
+        async function interactuarAI() {
+            const input = document.getElementById('inputAI');
+            const mensaje = input.value.trim();
+            
+            if (!mensaje || isTyping) return;
+            
+            // Agregar mensaje del usuario al historial
+            chatHistory.push({
+                mensaje: mensaje,
+                de: 'Usuario',
+                hora: obtenerHoraActual()
+            });
+            
+            // Limpiar input
+            input.value = '';
+            
+            // Actualizar UI
+            loadChat();
+            loadAsistenteTable();
+            
+            // Mostrar indicador de escritura
+            mostrarTypingIndicator();
+            
+            // Deshabilitar entrada mientras la AI responde
+            isTyping = true;
+            disableChat();
+            
+            try {
+                let respuesta;
+                
+                if (pipeline) {
+                    // Usar el modelo de IA local
+                    const result = await pipeline(mensaje, {
+                        max_length: 100,
+                        num_return_sequences: 1,
+                        temperature: 0.7,
+                        do_sample: true
+                    });
+                    respuesta = result[0].generated_text;
+                } else {
+                    // Respuesta predefinida si el modelo no está disponible
+                    respuesta = generarRespuestaPredefinida(mensaje);
+                }
+                
+                // Agregar respuesta de la AI al historial
+                setTimeout(() => {
+                    ocultarTypingIndicator();
+                    
+                    chatHistory.push({
+                        mensaje: respuesta,
+                        de: 'AI',
+                        hora: obtenerHoraActual()
+                    });
+                    
+                    loadChat();
+                    loadAsistenteTable();
+                    actualizarSugerencias();
+                    
+                    isTyping = false;
+                    enableChat();
+                    
+                }, 1000); // Simular tiempo de procesamiento
+                
+            } catch (error) {
+                console.error('Error en la generación de respuesta:', error);
+                ocultarTypingIndicator();
+                
+                // Respuesta de error
+                chatHistory.push({
+                    mensaje: 'Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta de nuevo.',
+                    de: 'AI',
+                    hora: obtenerHoraActual()
+                });
+                
+                loadChat();
+                loadAsistenteTable();
+                
+                isTyping = false;
+                enableChat();
+            }
+        }
+
+        function generarRespuestaPredefinida(mensaje) {
+            const mensajeLower = mensaje.toLowerCase();
+            
+            if (mensajeLower.includes('hola') || mensajeLower.includes('hi') || mensajeLower.includes('hey')) {
+                return '¡Hola! Es un placer saludarte. ¿En qué puedo ayudarte hoy?';
+            } else if (mensajeLower.includes('cómo estás') || mensajeLower.includes('qué tal')) {
+                return '¡Estoy funcionando perfectamente! Listo para ayudarte con lo que necesites.';
+            } else if (mensajeLower.includes('chiste')) {
+                const chistes = [
+                    '¿Por qué los pájaros vuelan hacia el sur? ¡Porque caminar les tomaría demasiado tiempo!',
+                    '¿Qué le dice un jamón a otro jamón? ¡Nos vemos en el sándwich!',
+                    '¿Por qué los programadores prefieren el modo oscuro? ¡Porque la luz atrae los bugs!'
+                ];
+                return chistes[Math.floor(Math.random() * chistes.length)];
+            } else if (mensajeLower.includes('música') || mensajeLower.includes('canción')) {
+                return 'Te recomiendo escuchar música relajante como sonidos de naturaleza, música clásica o bandas sonoras de películas. ¿Te gustaría que te sugiera algún género específico?';
+            } else if (mensajeLower.includes('relaj') || mensajeLower.includes('calmar')) {
+                return 'Para relajarte, te sugiero: respirar profundamente, escuchar sonidos de la naturaleza, o practicar meditación. ¿Quieres que te guíe en algún ejercicio de relajación?';
+            } else if (mensajeLower.includes('qué puedes hacer') || mensajeLower.includes('ayuda')) {
+                return 'Puedo ayudarte con: responder preguntas, contar chistes, recomendar música, sugerir técnicas de relajación, y mantener conversaciones amenas. ¿Qué te gustaría hacer?';
+            } else {
+                const respuestasGenericas = [
+                    'Interesante pregunta. Déjame pensar en eso...',
+                    '¡Vaya! Esa es una perspectiva interesante.',
+                    'Me encanta conversar contigo. ¿Hay algo específico en lo que te pueda ayudar?',
+                    'Eso suena fascinante. ¿Podrías contarme más?',
+                    'Gracias por compartir eso conmigo. ¿En qué más puedo asistirte?'
+                ];
+                return respuestasGenericas[Math.floor(Math.random() * respuestasGenericas.length)];
+            }
+        }
+
+        function mostrarTypingIndicator() {
             const chatContainer = document.getElementById('chatContainer');
             const typingDiv = document.createElement('div');
             typingDiv.className = 'chat-message ai-message';
             typingDiv.id = 'typingIndicator';
             typingDiv.innerHTML = `
                 <i class="fas fa-robot ai-icon"></i>
-                <div class="message-bubble typing-indicator">
-                    <span>Escribiendo</span>
-                    <div class="typing-dots">
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
+                <div class="message-bubble">
+                    <div class="typing-indicator">
+                        AI está escribiendo
+                        <div class="typing-dots">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
                     </div>
                 </div>
             `;
             chatContainer.appendChild(typingDiv);
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
-        function ocultarIndicadorEscritura() {
+
+        function ocultarTypingIndicator() {
             const typingIndicator = document.getElementById('typingIndicator');
             if (typingIndicator) {
                 typingIndicator.remove();
             }
         }
-        function generarSugerencias(respuesta) {
-            const suggestionsText = document.getElementById('suggestionsText');
-        
-            if (respuesta.toLowerCase().includes('música') || respuesta.toLowerCase().includes('canción')) {
-                suggestionsText.innerHTML = `
-                    <p>Basado en tu conversación sobre música, te sugiero:</p>
-                    <ul>
-                        <li>Explorar listas de reproducción por género</li>
-                        <li>Descubrir nuevos artistas similares a tus gustos</li>
-                        <li>Crear una lista de reproducción personalizada</li>
-                    </ul>
-                `;
-            } else if (respuesta.toLowerCase().includes('relaj') || respuesta.toLowerCase().includes('calma')) {
-                suggestionsText.innerHTML = `
-                    <p>Basado en tu interés en la relajación, te sugiero:</p>
-                    <ul>
-                        <li>Probar meditaciones guiadas de 5 minutos</li>
-                        <li>Escuchar sonidos de la naturaleza</li>
-                        <li>Practicar ejercicios de respiración</li>
-                    </ul>
-                `;
-            } else if (respuesta.toLowerCase().includes('chiste') || respuesta.toLowerCase().includes('humor')) {
-                suggestionsText.innerHTML = `
-                    <p>¡Veo que te gusta el humor! También puedes:</p>
-                    <ul>
-                        <li>Pedir chistes de diferentes categorías</li>
-                        <li>Explorar curiosidades divertidas</li>
-                        <li>Jugar juegos de palabras</li>
-                    </ul>
-                `;
-            } else {
-                suggestionsText.innerHTML = `
-                    <p>Sugerencias generales:</p>
-                    <ul>
-                        <li>Pregunta sobre cualquier tema que te interese</li>
-                        <li>Solicita ayuda con tareas específicas</li>
-                        <li>Pide explicaciones detalladas sobre conceptos</li>
-                    </ul>
-                `;
-            }
-        }
-        function sortTable(columnIndex) {
-            const table = document.getElementById('asistenteTable');
-            const tbody = table.querySelector('tbody');
-            const rows = Array.from(tbody.querySelectorAll('tr'));
-            
-            const isAscending = table.getAttribute('data-sort') !== 'asc' || table.getAttribute('data-column') !== columnIndex;
-            table.setAttribute('data-sort', isAscending ? 'asc' : 'desc');
-            table.setAttribute('data-column', columnIndex);
-            
-            rows.sort((a, b) => {
-                const aText = a.children[columnIndex].textContent.trim();
-                const bText = b.children[columnIndex].textContent.trim();
-                
-                if (columnIndex === 2) {
-                    const aTime = convertTimeToMinutes(aText);
-                    const bTime = convertTimeToMinutes(bText);
-                    return isAscending ? aTime - bTime : bTime - aTime;
-                } else {
-                    if (isAscending) {
-                        return aText.localeCompare(bText, 'es', { numeric: true });
-                    } else {
-                        return bText.localeCompare(aText, 'es', { numeric: true });
-                    }
-                }
-            });
-            
-            rows.forEach(row => tbody.appendChild(row));
+
+        function insertSuggestion(texto) {
+            if (isTyping) return;
+            document.getElementById('inputAI').value = texto;
         }
 
-        function convertTimeToMinutes(timeStr) {
-            const [time, modifier] = timeStr.split(' ');
-            let [hours, minutes] = time.split(':').map(Number);
-            
-            if (modifier === 'PM' && hours < 12) hours += 12;
-            if (modifier === 'AM' && hours === 12) hours = 0;
-            
-            return hours * 60 + minutes;
+        function limpiarChat() {
+            if (confirm('¿Estás seguro de que quieres limpiar toda la conversación?')) {
+                chatHistory = [
+                    { mensaje: '¡Hola! Soy tu asistente AI local. ¿En qué puedo ayudarte hoy?', de: 'AI', hora: obtenerHoraActual() }
+                ];
+                loadChat();
+                loadAsistenteTable();
+                mostrarNotificacion('Chat limpiado correctamente', 'info');
+            }
+        }
+
+        function regresar(destino) {
+            mostrarNotificacion(Redirigiendo a ${destino}..., 'info');
+            // En una aplicación real, aquí redirigirías a la vista principal
+            console.log(Redirigiendo a: ${destino});
         }
 
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             const icon = document.querySelector('#themeToggle i');
             if (document.body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
             } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
             }
         }
 
-        function insertSuggestion(text) {
-            document.getElementById('inputAI').value = text;
+        function enableChat() {
+            document.getElementById('inputAI').disabled = false;
+            document.getElementById('sendButton').disabled = false;
         }
 
-        function limpiarChat() {
-            if (confirm('¿Estás seguro de que quieres limpiar el historial de chat?')) {
-                chatHistory = [
-                    { mensaje: '¡Hola! Soy tu asistente AI. ¿En qué puedo ayudarte hoy?', de: 'AI', hora: obtenerHoraActual() }
-                ];
-                loadChat();
-                loadAsistenteTable();
-                document.getElementById('suggestionsText').innerHTML = 'Una vez que empieces a chatear, aparecerán sugerencias personalizadas aquí.';
+        function disableChat() {
+            document.getElementById('inputAI').disabled = true;
+            document.getElementById('sendButton').disabled = true;
+        }
+
+        function actualizarSugerencias() {
+            const suggestionsText = document.getElementById('suggestionsText');
+            const ultimoMensaje = chatHistory[chatHistory.length - 1].mensaje.toLowerCase();
+            
+            if (ultimoMensaje.includes('música')) {
+                suggestionsText.innerHTML = `
+                    <strong>Sugerencias basadas en tu conversación:</strong><br>
+                    • <span class="suggestion-chip" onclick="insertSuggestion('Recomiéndame música clásica')">Música clásica</span>
+                    • <span class="suggestion-chip" onclick="insertSuggestion('Qué música es buena para dormir')">Música para dormir</span>
+                    • <span class="suggestion-chip" onclick="insertSuggestion('Artistas de música ambiental')">Música ambiental</span>
+                `;
+            } else if (ultimoMensaje.includes('relaj')) {
+                suggestionsText.innerHTML = `
+                    <strong>Sugerencias basadas en tu conversación:</strong><br>
+                    • <span class="suggestion-chip" onclick="insertSuggestion('Ejercicios de respiración')">Ejercicios de respiración</span>
+                    • <span class="suggestion-chip" onclick="insertSuggestion('Meditación guiada')">Meditación guiada</span>
+                    • <span class="suggestion-chip" onclick="insertSuggestion('Sonidos relajantes')">Sonidos relajantes</span>
+                `;
+            } else {
+                suggestionsText.innerHTML = `
+                    <strong>Sugerencias personalizadas:</strong><br>
+                    Basado en nuestra conversación, puedo ayudarte con técnicas de relajación, recomendaciones musicales, o simplemente mantener una charla amena.
+                `;
             }
         }
 
         function mostrarNotificacion(mensaje, tipo) {
-            
-            const notificacion = document.createElement('div');
-            notificacion.className = alert alert-${tipo === 'error' ? 'danger' : 'success'} alert-dismissible fade show;
-            notificacion.innerHTML = `
-                ${mensaje}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            `;
-            
-            const appContainer = document.querySelector('.app-container');
-            appContainer.insertBefore(notificacion, appContainer.firstChild);
+            const notification = document.getElementById('notification');
+            notification.textContent = mensaje;
+            notification.className = notification ${tipo} show;
             
             setTimeout(() => {
-                if (notificacion.parentNode) {
-                    notificacion.remove();
-                }
-            }, 5000);
+                notification.classList.remove('show');
+            }, 3000);
         }
 
-        function mostrarVista(vista) {
-            console.log("Mostrando vista: " + vista);
-        }
-        
-        function regresar(vista) {
-            alert('Regresando a: ' + vista);
+        // Cargar tema guardado
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.querySelector('#themeToggle i').className = 'fas fa-sun';
         }
     </script>
 </body>
