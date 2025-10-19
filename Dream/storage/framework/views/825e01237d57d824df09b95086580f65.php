@@ -48,7 +48,7 @@
                             </div>
                             <div class="flex items-center space-x-2">
                                 <i class="fas fa-clock text-yellow-300"></i>
-                                <span class="text-sm" id="currentTime">{{ now()->format('H:i:s') }}</span>
+                                <span class="text-sm" id="currentTime"><?php echo e(now()->format('H:i:s')); ?></span>
                             </div>
                         </div>
                     </div>
@@ -222,4 +222,4 @@
         });
     </script>
 </body>
-</html>
+</html><?php /**PATH C:\laragon\www\sueñito\Dream\resources\views/inicio sesion/index.blade.php ENDPATH**/ ?>

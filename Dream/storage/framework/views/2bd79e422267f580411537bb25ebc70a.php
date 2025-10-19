@@ -242,4 +242,4 @@
         });
     </script>
 </body>
-</html>
+</html><?php /**PATH C:\laragon\www\sueñito\Dream\resources\views/ventana perfil/index.blade.php ENDPATH**/ ?>
