@@ -3,20 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Página Principal - SoundScape</title>
+=======
+    <title>Ventana Principal - SleepWell</title>
+>>>>>>> ramaView2
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .main-container {
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #4fc3f7;
+            text-shadow: 0 0 20px rgba(79, 195, 247, 0.7);
+            text-align: center;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px rgba(79, 195, 247, 0.7);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(79, 195, 247, 1);
+            }
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .buttons-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .btn {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 20px;
+            font-size: 1rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-icon {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .btn-text {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .btn-login {
+            background: linear-gradient(45deg, #4fc3f7, #29b6f6);
+            border: none;
+        }
+
+        .btn-assistant {
+            background: linear-gradient(45deg, #7e57c2, #5e35b1);
+            border: none;
+        }
+
+        .btn-playlist {
+            background: linear-gradient(45deg, #66bb6a, #43a047);
+            border: none;
+        }
+
+        .btn-notification {
+            background: linear-gradient(45deg, #ffa726, #fb8c00);
+            border: none;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 42, 108, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            color: #4fc3f7;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #4fc3f7;
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            opacity: 0.8;
+            font-size: 0.9rem;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .buttons-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 18px;
+                font-size: 0.95rem;
+            }
+            
+            .navbar-nav {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+            
+            .btn {
+                padding: 16px;
+                font-size: 0.9rem;
+            }
         }
         .sound-item {
             cursor: pointer;
@@ -49,6 +259,7 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8">
@@ -153,9 +364,50 @@
                      
                 </div>
             </div>
+=======
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">SleepWell</a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="{{ route('mi-perfil') }}"><i class="fas fa-user me-1"></i>Perfil</a>
+            <a class="nav-link" href="{{ route('configuracion-idioma') }}"><i class="fas fa-globe me-1"></i>Idioma</a>
+            <a class="nav-link" href="#"><i class="fas fa-cog me-1"></i>Configuración</a>
+>>>>>>> ramaView2
         </div>
+    </nav>
+
+    <div class="container">
+        <div class="logo">SleepWell</div>
+        <p class="tagline">Tu compañero inteligente para un sueño reparador</p>
+        
+        <div class="buttons-container">
+            <a href="{{ route('inicio-sesion') }}" class="btn btn-login">
+                <i class="fas fa-sign-in-alt btn-icon"></i>
+                <span class="btn-text">Inicio de Sesión</span>
+            </a>
+            
+            <a href="{{ route('asistente-sueno') }}" class="btn btn-assistant">
+                <i class="fas fa-robot btn-icon"></i>
+                <span class="btn-text">Asistente de Sueño</span>
+            </a>
+            
+            <a href="{{ route('playlist-relajante') }}" class="btn btn-playlist">
+                <i class="fas fa-music btn-icon"></i>
+                <span class="btn-text">Playlist Relajante</span>
+            </a>
+            
+            <a href="{{ route('notificaciones') }}" class="btn btn-notification">
+                <i class="fas fa-bell btn-icon"></i>
+                <span class="btn-text">Notificaciones</span>
+            </a>
+        </div>
+        
+        <footer>
+            <p>SleepWell &copy; 2023 - Mejora tu sueño, mejora tu vida</p>
+            <small>Versión 1.0.0 | <a href="#" style="color: #4fc3f7;">Política de Privacidad</a></small>
+        </footer>
     </div>
 
+<<<<<<< HEAD
     <!-- Incluir Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
@@ -237,6 +489,89 @@
                 alert('Idioma cambiado a Español.');
             }
         }
+=======
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Funcionalidad mejorada para los botones
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Agregar animación de clic
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                    
+                    // Aquí puedes agregar lógica adicional, como tracking o validaciones
+                    const buttonText = this.querySelector('.btn-text').textContent;
+                    console.log(`Navegando a: ${buttonText}`);
+                    
+                    // Si no hay ruta definida, mostrar mensaje
+                    if (!this.href || this.href === '#') {
+                        e.preventDefault();
+                        showToast(`Funcionalidad "${buttonText}" próximamente disponible.`);
+                    }
+                });
+            });
+        });
+
+        // Función para mostrar toasts (notificaciones temporales)
+        function showToast(message) {
+            // Crear elemento toast si no existe
+            let toastContainer = document.querySelector('.toast-container');
+            if (!toastContainer) {
+                toastContainer = document.createElement('div');
+                toastContainer.className = 'toast-container position-fixed top-0 end-0 p-3';
+                toastContainer.style.zIndex = '1050';
+                document.body.appendChild(toastContainer);
+            }
+
+            const toast = document.createElement('div');
+            toast.className = 'toast align-items-center text-white bg-primary border-0';
+            toast.setAttribute('role', 'alert');
+            toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">${message}</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            `;
+            
+            toastContainer.appendChild(toast);
+            const bsToast = new bootstrap.Toast(toast);
+            bsToast.show();
+            
+            // Remover toast después de que se oculte
+            toast.addEventListener('hidden.bs.toast', () => {
+                toast.remove();
+            });
+        }
+
+        // Animación de entrada escalonada para botones
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.style.opacity = '0';
+            btn.style.transform = 'translateY(20px)';
+            btn.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(btn);
+        });
+>>>>>>> ramaView2
     </script>
 </body>
 </html>

@@ -10,6 +10,10 @@
     <!-- Agregado: Script de Transformers.js -->
     <script src="https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0/dist/transformers.min.js"></script>
     <style>
+<<<<<<< HEAD
+=======
+        /* El CSS permanece igual, lo omito por brevedad, pero inclúyelo completo en tu archivo */
+>>>>>>> ramaView2
         :root {
             --primary-color: #6c63ff;
             --secondary-color: #4a44b5;
@@ -320,6 +324,7 @@
             margin-top: 20px;
         }
         
+<<<<<<< HEAD
         .notification {
             position: fixed;
             top: 20px;
@@ -349,6 +354,8 @@
             background-color: #17a2b8;
         }
         
+=======
+>>>>>>> ramaView2
         @media (max-width: 768px) {
             .app-container {
                 padding: 15px;
@@ -458,9 +465,12 @@
         </div>
     </main>
 
+<<<<<<< HEAD
     <!-- Notificaciones -->
     <div id="notification" class="notification"></div>
 
+=======
+>>>>>>> ramaView2
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         let chatHistory = [
@@ -469,6 +479,7 @@
         
         let pipeline; // Variable para el modelo de Transformers.js
         let isTyping = false;
+<<<<<<< HEAD
         let sortDirection = {};
 
         document.addEventListener('DOMContentLoaded', async function() {
@@ -827,3 +838,45 @@
     </script>
 </body>
 </html>
+=======
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            loadChat();
+            loadAsistenteTable();
+            
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            
+            document.getElementById('inputAI').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !isTyping) {
+                    interactuarAI();
+                }
+            });
+
+            // Cargar el modelo local
+            try {
+                pipeline = await pipeline('text-generation', 'microsoft/DialoGPT-small');
+                document.getElementById('loadingModel').style.display = 'none';
+                enableChat();
+                mostrarNotificacion('Modelo cargado correctamente. ¡Puedes chatear!', 'success');
+            } catch (error) {
+                console.error('Error cargando el modelo:', error);
+                mostrarNotificacion('Error al cargar el modelo. Verifica tu conexión e intenta recargar la página.', 'error');
+            }
+        });
+
+        function obtenerHoraActual() {
+            return new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        }
+
+        function loadChat() {
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.innerHTML = '';
+            
+            chatHistory.forEach(item => {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = item.de === 'Usuario' ? 'chat-message user-message' : 'chat-message ai-message';
+                
+                const icon = item.de === 'Usuario' ? 
+                    '<i class="fas fa-user user-icon"></i>' : 
+                    '<i class="fas fa-robot ai-icon"></i>';
+>>>>>>> ramaView2

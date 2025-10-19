@@ -15,6 +15,7 @@ use App\Http\Controllers\AsistenteIA\AsistenteIAController;
 
 Route::get('/', function () {
     return view('ventana principal.index');
+<<<<<<< HEAD
 }); 
 
 
@@ -38,3 +39,6 @@ Route::get('/playlists/index', [PlaylistController::class, 'index'])->name('play
 
 //Ruta para Asistente IA
 Route::get('/asistente ia/index', [AsistenteIAController::class, 'index'])->name('asistente ia.index');
+=======
+});
+>>>>>>> ramaView2
