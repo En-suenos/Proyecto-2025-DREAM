@@ -166,6 +166,21 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -177,28 +192,44 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-<<<<<<< HEAD
-                    <li class="nav-item"><a class="nav-link" href="{{route('perfil.index')}}">Mi perfil</a></li> <!-- Enlace a la vista de perfil, se conecta con rutas -->
-                    <li class="nav-item"><a class="nav-link" href="{{route('playlists.index')}}">PlayLists</a></li> <!-- Enlace a la vista de PlayLists, se conecta con rutas -->
-                    <li class="nav-item"><a class="nav-link" href="{{route('asistente ia.index')}}">Asistente</a></li> <!-- Enlace a la vista de Asistente IA, se conecta con routas-->
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarVista('opciones')">Opciones</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="iniciarSueno()">Iniciar sueño</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('inicio sesion.index')}}">Iniciar sesión</a></li> <!-- Enlace a la vista de inicio de sesión, se conecta con rutas -->
-=======
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarVista('perfil')"><i class="fas fa-user"></i> Mi perfil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarVista('playlists')"><i class="fas fa-list"></i> PlayLists</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarVista('asistente')"><i class="fas fa-robot"></i> Asistente</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarVista('opciones')"><i class="fas fa-cog"></i> Opciones</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="iniciarSueno()"><i class="fas fa-moon"></i> Iniciar sueño</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarLogin()"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</a></li>
->>>>>>> ramaView2
+                    <!-- NAVEGACIÓN CORREGIDA - SIN CONFLICTOS -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('mi-perfil') }}">
+                            <i class="fas fa-user"></i> Mi perfil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('playlists.index') }}">
+                            <i class="fas fa-list"></i> PlayLists
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('asistente-ia.index') }}">
+                            <i class="fas fa-robot"></i> Asistente
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="mostrarVista('opciones')">
+                            <i class="fas fa-cog"></i> Opciones
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="iniciarSueno()">
+                            <i class="fas fa-moon"></i> Iniciar sueño
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('inicio-sesion.index') }}">
+                            <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <main class="container main-content">
-        <!-- Vista Principal (placeholder) -->
+        <!-- Vista Principal -->
         <div id="principal" class="fade-in">
             <div class="text-center">
                 <div class="avatar">
@@ -239,12 +270,11 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-            <a href="{{route('ventana principal.index')}}" class="btn btn-secondary mt-3">
-                Regresa a la ventana principal
-            </a> <!-- Botón para regresar a la ventana principal -->
-=======
->>>>>>> ramaView2
+            <div class="text-center mt-4">
+                <a href="{{ route('ventana-principal.index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Regresar a la ventana principal
+                </a>
+            </div>
         </div>
 
         <!-- Vista Perfil -->
@@ -287,7 +317,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresa a la ventana principal</button>
+                <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
             </div>
         </div>
 
@@ -312,11 +342,10 @@
             <p>Formulario de login aquí.</p>
             <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
         </div>
-        <!-- Agregar más vistas según sea necesario -->
     </main>
 
     <div class="footer">
-        <p>&copy; 2023 Aplicación PlayList. Todos los derechos reservados. | <a href="#" class="text-decoration-none">Política de Privacidad</a></p>
+        <p>&copy; 2024 Aplicación PlayList. Todos los derechos reservados. | <a href="#" class="text-decoration-none">Política de Privacidad</a></p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -328,7 +357,7 @@
             });
             const targetDiv = document.getElementById(vista);
             targetDiv.classList.remove('hidden');
-            setTimeout(() => targetDiv.classList.add('fade-in'), 10); // Trigger animation
+            setTimeout(() => targetDiv.classList.add('fade-in'), 10);
             if (vista === 'perfil') {
                 loadPerfilTable();
             }
