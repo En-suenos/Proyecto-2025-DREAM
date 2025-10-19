@@ -10,35 +10,14 @@ use App\Http\Controllers\Perfil\PerfilController;
 use App\Http\Controllers\UsuarioConCuenta\UsuarioConCuentaController;
 use App\Http\Controllers\Playlist\PlaylistController;
 use App\Http\Controllers\AsistenteIA\AsistenteIAController;
+//use Illuminate\Http\
 
-use Illuminate\Http\Request;
 
-/*
 Route::get('/', function () {
     return view('ventana principal.index');
-}); Para mostrar la ventana principal
-*/
-
-Route::get('/', function () {
-    /*$usuario1 = new Usuario();
-    $usuario1->nombre = 'Rosy';
-    $usuario1->correo = 'rosy@gmail.com';
-    $usuario1->contraseña = '12345';
-    $usuario1->tipo_usuario = 'free';
-    $usuario1->fecha_registro = '2023-10-01';
-    $usuario1->save();
-
-    return $usuario1;*/
-    //return view('ventana principal.index', compact('usuario'));
-    //return view('ventana principal.index ');
-    //return view('usuarios con cuenta.index');
-    return view('ventana asistente AI.index');
-});
-/*
-Route::get('/usuario', function () {
-    return View('usuario.index', compact('usuario'));
 }); 
-*/
+
+
 
 //Se comunican con Controllers---------------------------------------------------------------------------------------
 //Ruta para la ventana principal
@@ -49,10 +28,10 @@ Route::get('/ventana principal/find', [VentanaPrincipalController::class, 'find'
 Route::get('/inicio sesion/index',[InicioSesionController::class, 'index'])->name('inicio sesion.index');
 
 //Ruta para usuario con cuenta
-Route::get('/usuarios con cuenta/index', [UsuarioConCuentaController::class, 'index'])->name('usuarios.index');
+Route::get('/usuario con cuenta/index', [UsuarioConCuentaController::class, 'index'])->name('usuario con cuenta.index');
 
 //Ruta para perfil de usuario con cuenta
-Route::get('/ventana perfil/index', [PerfilController::class, 'index'])->name('perfil.index');
+Route::get('/perfil/index', [PerfilController::class, 'index'])->name('perfil.index');
 
 //Ruta para Playlists
 Route::get('/playlists/index', [PlaylistController::class, 'index'])->name('playlists.index');
