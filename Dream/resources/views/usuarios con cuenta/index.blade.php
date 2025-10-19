@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Aplicación PlayList con múltiples vistas y autenticación.">
-    <title>Aplicación PlayList</title>
+    <title>PlayList</title>
     
-    <!-- Incluir Bootstrap CSS -->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Estilos personalizados para tablas -->
+ 
     <style>
         table {
             width: 100%;
@@ -31,7 +31,6 @@
     </style>
 </head>
 <body>
-    <!-- Navbar principal -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#" onclick="mostrarVista('principal')">☰ PlayList</a>
@@ -44,16 +43,19 @@
                     <li class="nav-item"><a class="nav-link" href="{{route('playlists.index')}}">PlayLists</a></li> <!-- Enlace a la vista de PlayLists, se conecta con rutas -->
                     <li class="nav-item"><a class="nav-link" href="{{route('asistente ia.index')}}">Asistente</a></li> <!-- Enlace a la vista de Asistente IA, se conecta con routas-->
                     <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarVista('opciones')">Opciones</a></li>
+
                     <li class="nav-item"><a class="nav-link" href="#" onclick="iniciarSueno()">Iniciar sueño</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('inicio sesion.index')}}">Iniciar sesión</a></li> <!-- Enlace a la vista de inicio de sesión, se conecta con rutas -->
+
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarLogin()">Iniciar sesión</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Contenedor principal -->
+ 
     <main class="container main-content">
-        <!-- Vista de Mi perfil (actualizada con tabla) -->
+     
         <div id="perfil" class="hidden">
             <h2>Mi perfil</h2>
             <ul>
@@ -63,7 +65,7 @@
                 <li><a href="#" onclick="mostrarVista('misDatos')">Mis datos</a></li>
             </ul>
             
-            <!-- Tabla agregada para detalles de cuenta -->
+           
             <div class="table-container mt-4">
                 <h3>Detalles de tu Cuenta</h3>
                 <table id="perfilTable" class="table table-striped table-bordered">
@@ -74,7 +76,7 @@
                         </tr>
                     </thead>
                     <tbody id="perfilTableBody">
-                        <!-- La tabla se poblará dinámicamente -->
+                       
                     </tbody>
                 </table>
             </div>
@@ -82,24 +84,19 @@
                 Regresa a la ventana principal
             </a> <!-- Botón para regresar a la ventana principal -->
         </div>
-
-        <!-- Otras vistas permanecen iguales... -->
-        <!-- ... -->
     </main>
 
-    <!-- Scripts -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Función para mostrar vistas
+        
         function mostrarVista(vista) {
             document.querySelectorAll('.main-content > div').forEach(div => div.classList.add('hidden'));
             document.getElementById(vista).classList.remove('hidden');
             if (vista === 'perfil') {
-                loadPerfilTable();  // Cargar tabla al mostrar esta vista
+                loadPerfilTable(); 
             }
         }
-
-        // Datos de ejemplo para la tabla de perfil
         let perfilData = [
             { campo: 'Nombre', valor: 'Juan' },
             { campo: 'Apellido', valor: 'Pérez' },
@@ -108,10 +105,9 @@
             { campo: 'Último Acceso', valor: 'Hoy' }
         ];
 
-        // Función para poblar la tabla de perfil
         function loadPerfilTable() {
             const tableBody = document.getElementById('perfilTableBody');
-            tableBody.innerHTML = '';  // Limpiar contenido
+            tableBody.innerHTML = '';  
             perfilData.forEach(item => {
                 const row = document.createElement('tr');
                 row.innerHTML = `<td>${item.campo}</td><td>${item.valor}</td>`;
@@ -119,9 +115,8 @@
             });
         }
 
-        // Función para ordenar la tabla
         function sortTable(columnIndex) {
-            const table = document.getElementById('perfilTable');  // Ajustado para esta tabla
+            const table = document.getElementById('perfilTable'); 
             const tbody = table.querySelector('tbody');
             const rows = Array.from(tbody.querySelectorAll('tr'));
             
@@ -142,11 +137,10 @@
             rows.forEach(row => tbody.appendChild(row));
         }
 
-        // Otras funciones
+       
         function mostrarLogin() { mostrarVista('login'); }
         function iniciarSueno() { alert('Iniciando modo sueño...'); }
         function regresar(vista) { mostrarVista(vista); }
-        // ...
     </script>
 </body>
 </html>

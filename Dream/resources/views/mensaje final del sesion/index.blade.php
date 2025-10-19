@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensaje Final de Inicio de Sesión</title>
+    <title> Gracias por registrarte</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Estilos personalizados -->
@@ -38,8 +38,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="success-message">
-                    <h2>¡Bienvenido! Inicio de sesión exitoso.</h2>
-                    <p>Aquí está un resumen de tu cuenta. Esta es una versión sin autenticación para demostración.</p>
+                    <h2>¡Yupiii! Inicio de sesión exitoso.</h2>
+                    <p>Datos guardados de cuenta</p>
                 </div>
                 
                 <div class="table-container">
@@ -51,7 +51,7 @@
                             </tr>
                         </thead>
                         <tbody id="successTableBody">
-                            <!-- La tabla se poblará dinámicamente con JavaScript -->
+                            
                         </tbody>
                     </table>
                 </div>
@@ -61,7 +61,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Datos de ejemplo (simulados, sin login)
         let successData = [
             { campo: 'Correo', valor: 'usuario@example.com' },
             { campo: 'Nombre', valor: 'Juan' },
@@ -69,10 +68,9 @@
             { campo: 'Último Acceso', valor: 'Hoy' }
         ];
 
-        // Función para poblar la tabla
         function loadSuccessTable() {
             const tableBody = document.getElementById('successTableBody');
-            tableBody.innerHTML = '';  // Limpiar contenido
+            tableBody.innerHTML = '';  
             successData.forEach(item => {
                 const row = document.createElement('tr');
                 row.innerHTML = `<td>${item.campo}</td><td>${item.valor}</td>`;
@@ -80,10 +78,10 @@
             });
         }
 
-        // Llamar a la función al cargar la página
+       
         window.onload = loadSuccessTable;
 
-        // Función para ordenar la tabla
+        
         function sortTable(columnIndex) {
             const table = document.getElementById('successTable');
             const tbody = table.querySelector('tbody');

@@ -21,14 +21,15 @@
                         </div>
 
                         <form>
+                            @foreach($usuarios as $usuario)
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="nombre" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" value="Juan Pérez">
+                                    <input type="text" class="form-control" id="nombre" value="{{$usuario->nombre}}">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" value="usuario@ejemplo.com">
+                                    <input type="email" class="form-control" id="email" value="{{$usuario->correo}}">
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -36,10 +37,11 @@
                                 <input type="tel" class="form-control" id="telefono" value="+1234567890">
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
+                            @endforeach
                         </form>
 
                         <div class="text-center mt-3">
-                            <a href="{{ route('usuario con cuenta.index') }}" class="text-decoration-none">
+                            <a href="{{ route('usuarios.index') }}" class="text-decoration-none">
                                 ← Volver al inicio
                             </a>
                         </div>

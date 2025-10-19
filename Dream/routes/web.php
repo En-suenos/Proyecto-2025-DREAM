@@ -30,7 +30,8 @@ Route::get('/', function () {
 
     return $usuario1;*/
     //return view('ventana principal.index', compact('usuario'));
-    return view('usuarios con cuenta.index ');
+    //return view('ventana principal.index ');
+    return view('usuarios con cuenta.index');
 });
 /*
 Route::get('/usuario', function () {
@@ -47,10 +48,10 @@ Route::get('/ventana principal/find', [VentanaPrincipalController::class, 'find'
 Route::get('/inicio sesion/index',[InicioSesionController::class, 'index'])->name('inicio sesion.index');
 
 //Ruta para usuario con cuenta
-Route::get('/usuario con cuenta/index', [UsuarioConCuentaController::class, 'index'])->name('usuario con cuenta.index');
+Route::get('/usuarios con cuenta/index', [UsuarioConCuentaController::class, 'index'])->name('usuarios.index');
 
 //Ruta para perfil de usuario con cuenta
-Route::get('/perfil/index', [PerfilController::class, 'index'])->name('perfil.index');
+Route::get('/ventana perfil/index', [PerfilController::class, 'index'])->name('perfil.index');
 
 //Ruta para Playlists
 Route::get('/playlists/index', [PlaylistController::class, 'index'])->name('playlists.index');
