@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aplicación de Asistente AI con interfaz moderna y configuración opcional de API.">
+    <meta name="description" content="Aplicación PlayList con múltiples vistas y autenticación.">
     <title>Asistente AI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* [Estilos CSS permanecen iguales, pero agregué algunos ajustes menores para profesionalismo] */
         :root {
             --primary-color: #6c63ff;
             --secondary-color: #4a44b5;
@@ -70,7 +69,6 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--text-dark);
-            transition: color 0.3s;
         }
         
         .dark-mode .theme-toggle {
@@ -320,7 +318,7 @@
             margin-top: 20px;
         }
         
-        .api-key-section {
+        .api-key-container {
             margin-bottom: 20px;
             padding: 15px;
             background-color: #f8f9fa;
@@ -328,60 +326,14 @@
             border-left: 4px solid var(--primary-color);
         }
         
-        .dark-mode .api-key-section {
+        .dark-mode .api-key-container {
             background-color: #2d2d44;
         }
         
-        .api-key-toggle {
-            background: none;
-            border: none;
-            color: var(--primary-color);
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 10px;
-        }
-        
-        .api-key-input-container {
+        .api-key-input {
             display: flex;
             gap: 10px;
             margin-top: 10px;
-        }
-        
-        .api-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-        
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #6c757d;
-            transition: background-color 0.3s;
-        }
-        
-        .status-dot.active {
-            background-color: #28a745;
-        }
-        
-        .loading-spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
         
         @media (max-width: 768px) {
@@ -402,7 +354,7 @@
                 width: 100%;
             }
             
-            .api-key-input-container {
+            .api-key-input {
                 flex-direction: column;
             }
         }
@@ -412,64 +364,46 @@
     <main class="app-container">
         <header class="header">
             <h1 class="app-title">
-                <i class="fas fa-robot" aria-hidden="true"></i> Asistente AI
+                <i class="fas fa-robot"></i> Asistente AI
             </h1>
-            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-                <i class="fas fa-moon" aria-hidden="true"></i>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
             </button>
         </header>
 
         <div id="asistente">
-            <!-- Sección de configuración de API Key -->
-            <div class="api-key-section" role="region" aria-labelledby="api-config-title">
-                <p id="api-config-title"><strong>Configuración opcional:</strong> Para respuestas avanzadas, agrega tu clave de OpenAI.</p>
-                
-                <div class="api-status">
-                    <div class="status-dot" id="statusDot" aria-hidden="true"></div>
-                    <span id="statusText">Modo gratuito activado</span>
+            <div class="api-key-container">
+                <p><strong>Configuración de API:</strong> Para usar el asistente AI real, necesitas una clave de API de OpenAI.</p>
+                <div class="api-key-input">
+                    <input type="password" id="apiKeyInput" class="form-control" placeholder="Ingresa tu clave de API de OpenAI">
+                    <button onclick="saveApiKey()" class="btn btn-primary">Guardar Clave</button>
                 </div>
-                
-                <button class="api-key-toggle" id="apiKeyToggle" aria-expanded="false" aria-controls="apiKeyContainer">
-                    <i class="fas fa-chevron-down" aria-hidden="true"></i> Configurar API Key
-                </button>
-                
-                <div class="api-key-input-container hidden" id="apiKeyContainer">
-                    <input type="password" id="apiKeyInput" class="form-control" placeholder="Ingresa tu clave de API de OpenAI" aria-label="Clave de API de OpenAI">
-                    <button onclick="saveApiKey()" class="btn btn-primary" id="saveApiBtn">
-                        <i class="fas fa-save" aria-hidden="true"></i> Guardar
-                    </button>
-                    <button onclick="removeApiKey()" class="btn btn-outline-secondary" id="removeApiBtn">
-                        <i class="fas fa-trash" aria-hidden="true"></i> Eliminar
-                    </button>
-                </div>
-                
-                <small class="text-muted">Tu clave se guarda localmente y no se comparte.</small>
+                <small class="text-muted">Tu clave se guarda localmente y no se envía a nuestros servidores.</small>
             </div>
             
             <div class="row">
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
-                            <i class="fas fa-comments" aria-hidden="true"></i>
+                            <i class="fas fa-comments me-2"></i>
                             Charla con AI
                         </div>
                         <div class="card-body">
-                            <div class="chat-container" id="chatContainer" role="log" aria-live="polite" aria-label="Historial de chat">
-                                <!-- Mensajes se cargan aquí -->
+                            <div class="chat-container" id="chatContainer">
                             </div>
                             
                             <div class="input-group">
-                                <input type="text" id="inputAI" class="form-control" placeholder="Escribe tu mensaje aquí..." aria-label="Mensaje para el asistente AI">
-                                <button onclick="interactuarAI()" id="sendButton" class="btn btn-primary" aria-label="Enviar mensaje">
-                                    <i class="fas fa-paper-plane" aria-hidden="true"></i> Enviar
+                                <input type="text" id="inputAI" class="form-control" placeholder="Escribe tu mensaje aquí..." disabled>
+                                <button onclick="interactuarAI()" id="sendButton" class="btn btn-primary" disabled>
+                                    <i class="fas fa-paper-plane"></i> Enviar
                                 </button>
                             </div>
                             
                             <div class="suggestions">
-                                <div class="suggestion-chip" onclick="insertSuggestion('¿Qué puedes hacer?')" role="button" tabindex="0">¿Qué puedes hacer?</div>
-                                <div class="suggestion-chip" onclick="insertSuggestion('Cuéntame un chiste')" role="button" tabindex="0">Cuéntame un chiste</div>
-                                <div class="suggestion-chip" onclick="insertSuggestion('Recomiéndame música')" role="button" tabindex="0">Recomiéndame música</div>
-                                <div class="suggestion-chip" onclick="insertSuggestion('Ayúdame a relajarme')" role="button" tabindex="0">Ayúdame a relajarme</div>
+                                <div class="suggestion-chip" onclick="insertSuggestion('¿Qué puedes hacer?')">¿Qué puedes hacer?</div>
+                                <div class="suggestion-chip" onclick="insertSuggestion('Cuéntame un chiste')">Cuéntame un chiste</div>
+                                <div class="suggestion-chip" onclick="insertSuggestion('Recomiéndame música')">Recomiéndame música</div>
+                                <div class="suggestion-chip" onclick="insertSuggestion('Ayúdame a relajarme')">Ayúdame a relajarme</div>
                             </div>
                         </div>
                     </div>
@@ -478,21 +412,20 @@
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
-                            <i class="fas fa-history" aria-hidden="true"></i>
+                            <i class="fas fa-history me-2"></i>
                             Historial de Conversación
                         </div>
                         <div class="card-body p-0">
                             <div class="table-container">
-                                <table id="asistenteTable" class="table table-striped" role="table" aria-label="Historial de conversación">
+                                <table id="asistenteTable" class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th onclick="sortTable(0)" role="columnheader" aria-sort="none">Mensaje <i class="fas fa-sort" aria-hidden="true"></i></th>
-                                            <th onclick="sortTable(1)" role="columnheader" aria-sort="none">De <i class="fas fa-sort" aria-hidden="true"></i></th>
-                                            <th onclick="sortTable(2)" role="columnheader" aria-sort="none">Hora <i class="fas fa-sort" aria-hidden="true"></i></th>
+                                            <th onclick="sortTable(0)">Mensaje <i class="fas fa-sort"></i></th>
+                                            <th onclick="sortTable(1)">De <i class="fas fa-sort"></i></th>
+                                            <th onclick="sortTable(2)">Hora <i class="fas fa-sort"></i></th>
                                         </tr>
                                     </thead>
                                     <tbody id="asistenteTableBody">
-                                        <!-- Contenido de la tabla -->
                                     </tbody>
                                 </table>
                             </div>
@@ -501,4 +434,357 @@
                     
                     <div class="card mt-4">
                         <div class="card-header d-flex align-items-center">
-                            <i class="fas fa-lightbulb" aria
+                            <i class="fas fa-lightbulb me-2"></i>
+                            Sugerencias AI
+                        </div>
+                        <div class="card-body">
+                            <p id="suggestionsText">Una vez que empieces a chatear, aparecerán sugerencias personalizadas aquí.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons mt-4">
+                <button onclick="regresar('principal')" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i> Regresar
+                </button>
+                <button onclick="limpiarChat()" class="btn btn-outline-danger">
+                    <i class="fas fa-trash me-2"></i> Limpiar Chat
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let chatHistory = [
+            { mensaje: '¡Hola! Soy tu asistente AI. ¿En qué puedo ayudarte hoy?', de: 'AI', hora: obtenerHoraActual() }
+        ];
+        
+        let apiKey = localStorage.getItem('openai_api_key');
+        let isTyping = false;
+        document.addEventListener('DOMContentLoaded', function() {
+            loadChat();
+            loadAsistenteTable();
+            
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            
+            document.getElementById('inputAI').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !isTyping) {
+                    interactuarAI();
+                }
+            });
+            if (apiKey) {
+                document.getElementById('apiKeyInput').value = '••••••••••••••••';
+                enableChat();
+            }
+        });
+
+        function obtenerHoraActual() {
+            return new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        }
+        function loadChat() {
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.innerHTML = '';
+            
+            chatHistory.forEach(item => {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = item.de === 'Usuario' ? 'chat-message user-message' : 'chat-message ai-message';
+                
+                const icon = item.de === 'Usuario' ? 
+                    '<i class="fas fa-user user-icon"></i>' : 
+                    '<i class="fas fa-robot ai-icon"></i>';
+                
+                messageDiv.innerHTML = `
+                    ${item.de === 'AI' ? icon : ''}
+                    <div class="message-bubble">
+                        ${item.mensaje}
+                        <div class="message-time">${item.hora}</div>
+                    </div>
+                    ${item.de === 'Usuario' ? icon : ''}
+                `;
+                
+                chatContainer.appendChild(messageDiv);
+            });
+            
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        function loadAsistenteTable() {
+            const tableBody = document.getElementById('asistenteTableBody');
+            tableBody.innerHTML = '';
+            chatHistory.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.mensaje}</td>
+                    <td>${item.de}</td>
+                    <td>${item.hora}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function saveApiKey() {
+            const apiKeyInput = document.getElementById('apiKeyInput');
+            const key = apiKeyInput.value.trim();
+            
+            if (key && key.length > 10) {
+                apiKey = key;
+                localStorage.setItem('openai_api_key', key);
+                apiKeyInput.value = '••••••••••••••••';
+                enableChat();
+                mostrarNotificacion('API key guardada correctamente', 'success');
+            } else {
+                mostrarNotificacion('Por favor, ingresa una API key válida', 'error');
+            }
+        }
+        function enableChat() {
+            document.getElementById('inputAI').disabled = false;
+            document.getElementById('sendButton').disabled = false;
+        }
+        async function interactuarAI() {
+            const input = document.getElementById('inputAI').value.trim();
+            if (!input) {
+                mostrarNotificacion('Por favor, escribe un mensaje.', 'error');
+                return;
+            }
+            
+            if (!apiKey) {
+                mostrarNotificacion('Primero debes configurar tu API key de OpenAI.', 'error');
+                return;
+            }
+            
+            const now = obtenerHoraActual();
+            
+            chatHistory.push({ mensaje: input, de: 'Usuario', hora: now });
+            loadChat();
+            document.getElementById('inputAI').value = '';
+            document.getElementById('sendButton').disabled = true;
+            document.getElementById('inputAI').disabled = true;
+            isTyping = true;
+            
+            mostrarIndicadorEscritura();
+            
+            try {
+
+                const respuesta = await llamarOpenAI(input);
+                
+                ocultarIndicadorEscritura();
+                
+                chatHistory.push({ mensaje: respuesta, de: 'AI', hora: obtenerHoraActual() });
+                loadChat();
+                loadAsistenteTable();
+
+                generarSugerencias(respuesta);
+                
+            } catch (error) {
+                console.error('Error al llamar a la API:', error);
+                ocultarIndicadorEscritura();
+                
+                chatHistory.push({ 
+                    mensaje: 'Lo siento, hubo un error al procesar tu solicitud. Por favor, verifica tu API key e intenta nuevamente.', 
+                    de: 'AI', 
+                    hora: obtenerHoraActual() 
+                });
+                loadChat();
+                loadAsistenteTable();
+            }
+            
+            document.getElementById('sendButton').disabled = false;
+            document.getElementById('inputAI').disabled = false;
+            isTyping = false;
+        }
+
+        async function llamarOpenAI(mensaje) {
+            const url = 'https://api.openai.com/v1/chat/completions';
+            
+            const mensajes = chatHistory.map(item => ({
+                role: item.de === 'Usuario' ? 'user' : 'assistant',
+                content: item.mensaje
+            }));
+            
+            mensajes.push({ role: 'user', content: mensaje });
+            
+            const data = {
+                model: 'gpt-3.5-turbo',
+                messages: mensajes,
+                max_tokens: 500,
+                temperature: 0.7
+            };
+            
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify(data)
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Error de API: ${response.status} ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            return result.choices[0].message.content;
+        }
+        function mostrarIndicadorEscritura() {
+            const chatContainer = document.getElementById('chatContainer');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chat-message ai-message';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <i class="fas fa-robot ai-icon"></i>
+                <div class="message-bubble typing-indicator">
+                    <span>Escribiendo</span>
+                    <div class="typing-dots">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            chatContainer.appendChild(typingDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        function ocultarIndicadorEscritura() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+        function generarSugerencias(respuesta) {
+            const suggestionsText = document.getElementById('suggestionsText');
+        
+            if (respuesta.toLowerCase().includes('música') || respuesta.toLowerCase().includes('canción')) {
+                suggestionsText.innerHTML = `
+                    <p>Basado en tu conversación sobre música, te sugiero:</p>
+                    <ul>
+                        <li>Explorar listas de reproducción por género</li>
+                        <li>Descubrir nuevos artistas similares a tus gustos</li>
+                        <li>Crear una lista de reproducción personalizada</li>
+                    </ul>
+                `;
+            } else if (respuesta.toLowerCase().includes('relaj') || respuesta.toLowerCase().includes('calma')) {
+                suggestionsText.innerHTML = `
+                    <p>Basado en tu interés en la relajación, te sugiero:</p>
+                    <ul>
+                        <li>Probar meditaciones guiadas de 5 minutos</li>
+                        <li>Escuchar sonidos de la naturaleza</li>
+                        <li>Practicar ejercicios de respiración</li>
+                    </ul>
+                `;
+            } else if (respuesta.toLowerCase().includes('chiste') || respuesta.toLowerCase().includes('humor')) {
+                suggestionsText.innerHTML = `
+                    <p>¡Veo que te gusta el humor! También puedes:</p>
+                    <ul>
+                        <li>Pedir chistes de diferentes categorías</li>
+                        <li>Explorar curiosidades divertidas</li>
+                        <li>Jugar juegos de palabras</li>
+                    </ul>
+                `;
+            } else {
+                suggestionsText.innerHTML = `
+                    <p>Sugerencias generales:</p>
+                    <ul>
+                        <li>Pregunta sobre cualquier tema que te interese</li>
+                        <li>Solicita ayuda con tareas específicas</li>
+                        <li>Pide explicaciones detalladas sobre conceptos</li>
+                    </ul>
+                `;
+            }
+        }
+        function sortTable(columnIndex) {
+            const table = document.getElementById('asistenteTable');
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            
+            const isAscending = table.getAttribute('data-sort') !== 'asc' || table.getAttribute('data-column') !== columnIndex;
+            table.setAttribute('data-sort', isAscending ? 'asc' : 'desc');
+            table.setAttribute('data-column', columnIndex);
+            
+            rows.sort((a, b) => {
+                const aText = a.children[columnIndex].textContent.trim();
+                const bText = b.children[columnIndex].textContent.trim();
+                
+                if (columnIndex === 2) {
+                    const aTime = convertTimeToMinutes(aText);
+                    const bTime = convertTimeToMinutes(bText);
+                    return isAscending ? aTime - bTime : bTime - aTime;
+                } else {
+                    if (isAscending) {
+                        return aText.localeCompare(bText, 'es', { numeric: true });
+                    } else {
+                        return bText.localeCompare(aText, 'es', { numeric: true });
+                    }
+                }
+            });
+            
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+        function convertTimeToMinutes(timeStr) {
+            const [time, modifier] = timeStr.split(' ');
+            let [hours, minutes] = time.split(':').map(Number);
+            
+            if (modifier === 'PM' && hours < 12) hours += 12;
+            if (modifier === 'AM' && hours === 12) hours = 0;
+            
+            return hours * 60 + minutes;
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('#themeToggle i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        function insertSuggestion(text) {
+            document.getElementById('inputAI').value = text;
+        }
+
+        function limpiarChat() {
+            if (confirm('¿Estás seguro de que quieres limpiar el historial de chat?')) {
+                chatHistory = [
+                    { mensaje: '¡Hola! Soy tu asistente AI. ¿En qué puedo ayudarte hoy?', de: 'AI', hora: obtenerHoraActual() }
+                ];
+                loadChat();
+                loadAsistenteTable();
+                document.getElementById('suggestionsText').innerHTML = 'Una vez que empieces a chatear, aparecerán sugerencias personalizadas aquí.';
+            }
+        }
+
+        function mostrarNotificacion(mensaje, tipo) {
+            
+            const notificacion = document.createElement('div');
+            notificacion.className = `alert alert-${tipo === 'error' ? 'danger' : 'success'} alert-dismissible fade show`;
+            notificacion.innerHTML = `
+                ${mensaje}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            const appContainer = document.querySelector('.app-container');
+            appContainer.insertBefore(notificacion, appContainer.firstChild);
+            
+            setTimeout(() => {
+                if (notificacion.parentNode) {
+                    notificacion.remove();
+                }
+            }, 5000);
+        }
+
+        function mostrarVista(vista) {
+            console.log("Mostrando vista: " + vista);
+        }
+        
+        function regresar(vista) {
+            alert('Regresando a: ' + vista);
+        }
+    </script>
+</body>
+</html>
