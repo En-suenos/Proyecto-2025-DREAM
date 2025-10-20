@@ -43,36 +43,36 @@
 <body>
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
-        <form action="{{route('inicio_sesion.login')}}" method="POST" id="formLogin">
+        <form action="{{ route('inicio_sesion.login') }}" method="POST" id="formLogin">
             @csrf
             <div class="mb-3">
                 <label for="correoLogin" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="correoLogin" placeholder="Correo" required>
+                <input type="email" class="form-control" id="correoLogin" name="correoLogin" placeholder="Correo" required>
             </div>
             <div class="mb-3">
                 <label for="contrasenaLogin" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="contrasenaLogin" placeholder="Contraseña" required>
+                <input type="password" class="form-control" id="contrasenaLogin" name="contrasenaLogin" placeholder="Contraseña" required>
             </div>
             <button type="submit" class="btn btn-primary">Ingresar</button>
         </form>
+        
         @if(session('error'))
             <div class="alert alert-danger alert-custom">
-                {{ sesion('error') }}
+                {{ session('error') }}
             </div>
         @endif
 
         @if (session('success'))
             <div class="alert alert-success alert-custom">
-                {{ sesion('success') }}
+                {{ session('success') }}
             </div>
         @endif
 
-        <div id="mensajeLogin" class="alert alert-info alert-custom" style="display: none;"></div>
         <p class="text-center mt-3">
-            ¿No tienes cuenta? <a href="{{route('ventana datos.index')}}">Regístrate aquí</a>
+            ¿No tienes cuenta? <a href="{{ route('ventana datos.index') }}">Regístrate aquí</a>
         </p>
         <p class="text-center">
-            <a href="{{route('ventana principal.index')}}">Volver a la aplicación</a>
+            <a href="{{ route('ventana principal.index') }}">Volver a la aplicación</a>
         </p>
     </div>
 </body>

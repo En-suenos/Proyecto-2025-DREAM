@@ -27,6 +27,8 @@
             justify-content: center;
             padding: 20px;
             overflow-x: hidden;
+            padding-top: 90px; /* o el alto de tu navbar */
+
         }
 
         .container {
@@ -282,16 +284,38 @@
         .ai-message {
             text-align: left;
         }
+
+        .navbar {
+           position: fixed;
+           top: 0;
+           left: 0;
+           right: 0;
+           background: rgba(26, 42, 108, 0.9);
+           backdrop-filter: blur(10px);
+           padding: 15px 20px;
+           z-index: 1000;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+           transition: top 0.4s ease;
+        }
+
+        .navbar.hide {
+          top: -160px; /* Desliza hacia arriba para ocultar */
+        }
+
+        
     </style>
 </head>
 <body>
 
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-md-10 col-lg-8">
-                <div class="main-container p-4 text-white">
+            <div class="col-md-10 col-lg-8 ">
+                <div class="main-container p-5 text-white ">
                     <!-- Header -->
-                    <div class="text-center mb-4">
+                    <div class="text-center mb-4" >
                         <h1 class="fw-bold mb-2">
                             <i class="fas fa-headphones me-2"></i>SoundScape
                         </h1>
@@ -301,6 +325,7 @@
                     </div>
 
                     <!-- Navegación rápida con idioma a la izquierda -->
+                     <!--
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div class="d-flex align-items-center">
                             <select id="idiomaSelect" class="form-select form-select-sm bg-transparent text-white border-light me-3" onchange="cambiarIdioma()">
@@ -308,9 +333,10 @@
                                 <option value="en">English</option>
                             </select>
                         </div>
+                        
                         <div class="d-flex">
 
-                            <!-- Enlace a la vista de inicio de sesión -->
+                            <!- Enlace a la vista de inicio de sesión 
                             <a href="<?php echo e(route('inicio_sesion.index')); ?>" class="btn btn-outline-light me-2">
 
                             <a href="login.html" class="btn btn-outline-light me-2">
@@ -324,10 +350,11 @@
                             <button class="btn btn-outline-light" onclick="mostrarAI()">
                                 <i class="fas fa-robot me-1"></i>Asistencia AI
                             </button>
-                        </div>
-                    </div>
+                        </div> 
+                    </div> -->
 
                     <!-- Sección de Sonidos -->
+                     <!--
                     <div class="card bg-transparent border-light mb-4">
                         <div class="card-body">
                             <h4><i class="fas fa-music me-2"></i>PlayList de Sonidos</h4>
@@ -351,22 +378,25 @@
                                 <button class="btn btn-secondary" onclick="detenerSonido()">Detener</button>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!-- Sección de Notificaciones (oculta por defecto) -->
+                     <!--
                     <div id="notificaciones" class="card bg-transparent border-light mb-4" style="display: none;">
                         <div class="card-body">
                             <h4><i class="fas fa-bell me-2"></i>Notificaciones</h4>
                             <ul class="list-unstyled">
-                                <li class="mb-2"><i class="fas fa-info-circle me-2"></i>Nueva actualización disponible.</li>
-                                <li class="mb-2"><i class="fas fa-music me-2"></i>Canción recomendada: "Relajación Total".</li>
-                                <li><i class="fas fa-user me-2"></i>Recuerda iniciar sesión para guardar tus preferencias.</li>
+                                <li class="mb-2"><i class="fas fa-info-circle me-2">Nueva actualización disponible.</li>
+                                <li class="mb-2"><i class="fas fa-music me-2">Canción recomendada: "Relajación Total".</li>
+                                <li><i class="fas fa-user me-2">Recuerda iniciar sesión para guardar tus preferencias.</li>
                             </ul>
                             <button class="btn btn-sm btn-outline-light" onclick="marcarLeidas()">Marcar como leídas</button>
                         </div>
                     </div>
+                     -->
 
                     <!-- Sección de Asistencia AI (oculta por defecto) -->
+
                     <div id="asistencia-ai" class="card bg-transparent border-light mb-4" style="display: none;">
                         <div class="card-body">
                             <h4><i class="fas fa-robot me-2"></i>Asistencia AI</h4>
@@ -383,29 +413,32 @@
                     </div>
 
                     <!-- Botones de acción -->
-                    <button class="btn btn-primary w-100 mb-3" onclick="iniciarModoSueno()">
-                        <i class="fas fa-moon me-2"></i>Iniciar sueño - Inicio el modo sueño
+                    <div class="text-center mb-4">
+                    <p class="tagline"> "Mientras sueñas, tu cerebro combina recuerdos y emociones para crear nuevas ideas y fortalecer la memoria"</p>
+                    </div>
+
+                    <button class="btn btn-primary w-200 mb-3 buttons-container" onclick="iniciarModoSueno()">
+                        <i class="fas fa-moon me-2"></i>Iniciar
                     </button>
 
                     <!--
-                    <a href="<?php echo e(route('inicio_sesion.index')); ?>" class="btn btn-success w-100"> 
-                        <i class="fas fa-sign-in-alt me-2"></i>Iniciar sesión - Para iniciar sesión
-                    </a> 
-                       -->
+                     <a href="<?php echo e(route('inicio_sesion.index')); ?>" class="btn btn-success w-200"> 
+                        <i class="fas fa-sign-in-alt me-2"></i>Iniciar sesión
+                     </a> -->
+            
                      
 
-                    
+                    <!--
                     <a href="login.html" class="btn btn-success w-100">
-                        <i class="fas fa-sign-in-alt me-2"></i>Iniciar sesión - Para iniciar sesión
-                    </a>
-
+                        <i class="fas fa-sign-in-alt me-2"></i>Iniciar sesión
+                    </a>-->
                 </div>
             </div>
 
     <nav class="navbar">
         <a class="navbar-brand" href="#">SleepWell</a>
         <div class="navbar-nav">
-            <a class="nav-link" href="<?php echo e(route('perfil.index')); ?>"><i class="fas fa-user me-1"></i>Perfil</a>
+           <!-- <a class="nav-link" href="<?php echo e(route('perfil.index')); ?>"><i class="fas fa-user me-1"></i>Perfil</a>-->
             <a class="nav-link" href="#"><i class="fas fa-globe me-1"></i>Idioma</a>
             <a class="nav-link" href="#"><i class="fas fa-cog me-1"></i>Configuración</a>
 
@@ -439,6 +472,7 @@
         </div>
         
         <footer>
+            <p class="tagline">Mientras duermes, tu cerebro se limpia de toxinas acumuladas durante el día, como si se “reiniciara” para funcionar mejor al despertar.</p>
             <p>SleepWell &copy; 2023 - Mejora tu sueño, mejora tu vida</p>
             <small>Versión 1.0.0 | <a href="#" style="color: #4fc3f7;">Política de Privacidad</a></small>
         </footer>
@@ -624,6 +658,25 @@
         });
 
     </script>
+    <script>
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.navbar');
+
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+            // Deslizando hacia abajo → ocultar navbar
+            navbar.classList.add('hide');
+        } else {
+            // Deslizando hacia arriba → mostrar navbar
+            navbar.classList.remove('hide');
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Evita valores negativos
+    });
+    </script>
+
 </body>
 </html>
 

@@ -47,29 +47,29 @@
             <?php echo csrf_field(); ?>
             <div class="mb-3">
                 <label for="correoLogin" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="correoLogin" placeholder="Correo" required>
+                <input type="email" class="form-control" id="correoLogin" name="correoLogin" placeholder="Correo" required>
             </div>
             <div class="mb-3">
                 <label for="contrasenaLogin" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="contrasenaLogin" placeholder="Contraseña" required>
+                <input type="password" class="form-control" id="contrasenaLogin" name="contrasenaLogin" placeholder="Contraseña" required>
             </div>
             <button type="submit" class="btn btn-primary">Ingresar</button>
         </form>
+        
         <?php if(session('error')): ?>
             <div class="alert alert-danger alert-custom">
-                <?php echo e(sesion('error')); ?>
+                <?php echo e(session('error')); ?>
 
             </div>
         <?php endif; ?>
 
         <?php if(session('success')): ?>
             <div class="alert alert-success alert-custom">
-                <?php echo e(sesion('success')); ?>
+                <?php echo e(session('success')); ?>
 
             </div>
         <?php endif; ?>
 
-        <div id="mensajeLogin" class="alert alert-info alert-custom" style="display: none;"></div>
         <p class="text-center mt-3">
             ¿No tienes cuenta? <a href="<?php echo e(route('ventana datos.index')); ?>">Regístrate aquí</a>
         </p>
@@ -78,5 +78,4 @@
         </p>
     </div>
 </body>
-</html>
-<?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/inicio sesion/index.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/inicio sesion/index.blade.php ENDPATH**/ ?>

@@ -4,38 +4,38 @@ namespace App\Http\Controllers\InicioSesion;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Usuario;
+use Illuminate\Support\Facades\Redirect;
 
 class InicioSesionController extends Controller
 {
-    //
-    public function index(Request $request)
+    public function index()
     {
         return view('inicio sesion.index');
     }
 
     public function login(Request $request)
     {
-        // Validar campos requeridos
+        // Validar que los campos no estén vacíos
         $request->validate([
-            'correo' => 'required|email',
-            'contrasena' => 'required'
+            'correoLogin' => 'required|email',
+            'contrasenaLogin' => 'required'
         ]);
 
-        // Buscar usuario en BD por correo
-        $usuario = Usuario::where('correo', $request->correo)->first();
+        $correo = $request->input('correoLogin');
+        $contrasena = $request->input('contrasenaLogin');
 
-        // Verificar si existe y la contraseña coincide
-        if ($usuario && Hash::check($request->contrasena, $usuario->contraseña)) {
-            // Guardar sesión
-            session(['usuario_id' => $usuario->id_usuario]);
+        // Buscar el usuario por correo
+        $usuario = Usuario::where('correo', $correo)->first();
 
-            // Redirigir al panel del usuario
-            return redirect()->route('usuario_con_cuenta.index')->with('success', 'Inicio de sesión exitoso.');
-        }else {
-           dd('No coincide o no existe el usuario');
+        // Verificar si el usuario existe y la contraseña es correcta
+        if ($usuario && password_verify($contrasena, $usuario->contraseña)) {
+            // Usuario encontrado y contraseña válida
+            session(['usuario_id' => $usuario->id_usuario, 'usuario_correo' => $usuario->correo]);
+            return Redirect::route('usuario_con_cuenta.index')->with('success', 'Inicio de sesión exitoso');
+        } else {
+            // Usuario no encontrado o contraseña incorrecta
+            return Redirect::route('ventana datos.index')->with('error', 'Credenciales incorrectas. Por favor, crea una cuenta.');
         }
-
-        // Si falla, regresar con mensaje de error
-        return back()->with('error', 'Correo o contraseña incorrectos.');
     }
 }

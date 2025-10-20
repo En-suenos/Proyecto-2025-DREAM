@@ -132,7 +132,7 @@
                         </form>
 
                         <div class="text-center mt-3">
-                            <a href="{{ route('usuario con cuenta.index') }}" class="back-link">
+                            <a href="{{ route('usuario_con_cuenta.index') }}" class="back-link">
                                 <i class="fas fa-arrow-left me-2"></i>Volver al inicio
                             </a>
                         </div>
@@ -250,7 +250,7 @@
 
                                         <!-- Enlace de regreso -->
                                         <div class="text-center mt-4">
-                                            <a href="/" class="back-link">
+                                            <a href="{{route('usuario_con_cuenta.index')}}" class="back-link">
                                                 <i class="fas fa-arrow-left me-2"></i>
                                                 Volver al Inicio
                                             </a>

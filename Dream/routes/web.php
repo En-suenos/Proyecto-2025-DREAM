@@ -32,7 +32,7 @@ Route::post('/inicio sesion/login', [InicioSesionController::class, 'login'])->n
 
 
 //Ruta para usuario con cuenta
-Route::get('/usuario-con-cuenta/index', [UsuarioConCuentaController::class, 'index'])->name('usuario_con_cuenta.index');
+Route::get('/usuarios con cuenta/index', [UsuarioConCuentaController::class, 'index'])->name('usuario_con_cuenta.index');
 
 //Ruta para perfil de usuario con cuenta
 Route::get('/perfil/index', [PerfilController::class, 'index'])->name('perfil.index');

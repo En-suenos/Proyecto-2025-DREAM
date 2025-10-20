@@ -185,7 +185,7 @@
                     <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarVista('opciones')">Opciones</a></li>
 
                     <li class="nav-item"><a class="nav-link" href="#" onclick="iniciarSueno()">Iniciar sueño</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('inicio sesion.index')}}">Iniciar sesión</a></li> <!-- Enlace a la vista de inicio de sesión, se conecta con rutas -->
+                    <li class="nav-item"><a class="nav-link" href="{{route('inicio_sesion.index')}}">Iniciar sesión</a></li> <!-- Enlace a la vista de inicio de sesión, se conecta con rutas -->
 
                     <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarLogin()">Iniciar sesión</a></li>
                 </ul>

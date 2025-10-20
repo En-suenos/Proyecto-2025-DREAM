@@ -14,7 +14,7 @@ class UsuarioConCuentaController extends Controller
     public function index(Request $request)
     {
         $usuarios = Usuario::orderBy('id_usuario', 'DESC')->get();
-        return view('ventana perfil.index', compact('usuarios'));
+        return view('usuarios con cuenta.index', compact('usuarios'));
     }
 
     public function find(Request $request)
