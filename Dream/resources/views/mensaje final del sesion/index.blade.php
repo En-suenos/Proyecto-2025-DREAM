@@ -131,16 +131,8 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="success-message">
-<<<<<<< HEAD
                     <h2>¡Yupiii! Inicio de sesión exitoso.</h2>
                     <p>Datos guardados de cuenta</p>
-=======
-                    <div class="avatar">
-                        <i class="fas fa-user-check"></i>
-                    </div>
-                    <h2><i class="fas fa-check-circle"></i> ¡Bienvenido! Inicio de sesión exitoso.</h2>
-                    <p>Aquí está un resumen de tu cuenta. Esta es una versión sin autenticación para demostración.</p>
->>>>>>> ramaView2
                 </div>
                 
                 <div class="table-container">
@@ -152,10 +144,7 @@
                             </tr>
                         </thead>
                         <tbody id="successTableBody">
-<<<<<<< HEAD
                             
-=======
->>>>>>> ramaView2
                         </tbody>
                     </table>
                 </div>
@@ -179,11 +168,6 @@
             { campo: 'Fecha de Registro', valor: '01/10/2023' },
             { campo: 'Último Acceso', valor: 'Hoy' }
         ];
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> ramaView2
         function loadSuccessTable() {
             const tableBody = document.getElementById('successTableBody');
             tableBody.innerHTML = '';  
@@ -197,17 +181,11 @@
                 tableBody.appendChild(row);
             });
         }
-<<<<<<< HEAD
 
        
         window.onload = loadSuccessTable;
 
         
-=======
-        
-        window.onload = loadSuccessTable;
-
->>>>>>> ramaView2
         function sortTable(columnIndex) {
             const table = document.getElementById('successTable');
             const tbody = table.querySelector('tbody');

@@ -43,7 +43,8 @@
 <body>
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
-        <form id="formLogin">
+        <form action="<?php echo e(route('inicio_sesion.login')); ?>" method="POST" id="formLogin">
+            <?php echo csrf_field(); ?>
             <div class="mb-3">
                 <label for="correoLogin" class="form-label">Correo Electrónico</label>
                 <input type="email" class="form-control" id="correoLogin" placeholder="Correo" required>
@@ -54,49 +55,28 @@
             </div>
             <button type="submit" class="btn btn-primary">Ingresar</button>
         </form>
+        <?php if(session('error')): ?>
+            <div class="alert alert-danger alert-custom">
+                <?php echo e(sesion('error')); ?>
+
+            </div>
+        <?php endif; ?>
+
+        <?php if(session('success')): ?>
+            <div class="alert alert-success alert-custom">
+                <?php echo e(sesion('success')); ?>
+
+            </div>
+        <?php endif; ?>
+
         <div id="mensajeLogin" class="alert alert-info alert-custom" style="display: none;"></div>
         <p class="text-center mt-3">
-            ¿No tienes cuenta? <a href="#" onclick="mostrarRegistro()">Regístrate aquí</a>
+            ¿No tienes cuenta? <a href="<?php echo e(route('ventana datos.index')); ?>">Regístrate aquí</a>
         </p>
         <p class="text-center">
-            <a href="#" onclick="volverApp()">Volver a la aplicación</a>
+            <a href="<?php echo e(route('ventana principal.index')); ?>">Volver a la aplicación</a>
         </p>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function validarLogin() {
-            const correo = document.getElementById('correoLogin').value;
-            const contrasena = document.getElementById('contrasenaLogin').value;
-            const mensaje = document.getElementById('mensajeLogin');
-            
-            if (correo && contrasena) {
-                localStorage.setItem('usuario', correo);
-                mensaje.className = 'alert alert-success alert-custom';
-                mensaje.innerHTML = '¡Inicio de sesión exitoso! Redirigiendo...';
-                mensaje.style.display = 'block';
-                setTimeout(() => {
-                    window.location.href = 'index.html'; // Redirigir a la app principal (ajusta la ruta)
-                }, 2000);
-            } else {
-                mensaje.className = 'alert alert-danger alert-custom';
-                mensaje.innerHTML = 'Por favor, completa todos los campos.';
-                mensaje.style.display = 'block';
-            }
-        }
-
-        function mostrarRegistro() {
-            alert('Funcionalidad de registro no implementada aún.'); // Placeholder
-        }
-
-        function volverApp() {
-            window.location.href ="<?php echo e(route('ventana principal.index')); ?>"; // Redirigir a la app principal (ajusta la ruta)
-        }
-
-        document.getElementById('formLogin').addEventListener('submit', function(e) {
-            e.preventDefault();
-            validarLogin();
-        });
-    </script>
 </body>
 </html>
 <?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/inicio sesion/index.blade.php ENDPATH**/ ?>

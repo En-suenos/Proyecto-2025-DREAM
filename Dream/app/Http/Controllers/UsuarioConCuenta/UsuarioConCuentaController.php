@@ -13,7 +13,7 @@ class UsuarioConCuentaController extends Controller
     // conectar con la vista
     public function index(Request $request)
     {
-        $usuarios = Usuario::orderBy('id', 'DESC')->get();
+        $usuarios = Usuario::orderBy('id_usuario', 'DESC')->get();
         return view('ventana perfil.index', compact('usuarios'));
     }
 

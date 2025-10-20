@@ -3,15 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     <title>Página Principal - SoundScape</title>
-=======
-    <title>Ventana Principal - SleepWell</title>
->>>>>>> ramaView2
-=======
-    <title>Página Principal - SoundScape</title>
->>>>>>> InterfasC
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
@@ -291,7 +285,7 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
+
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8">
@@ -315,12 +309,12 @@
                             </select>
                         </div>
                         <div class="d-flex">
-<<<<<<< HEAD
+
                             <!-- Enlace a la vista de inicio de sesión -->
-                            <a href="{{route('inicio sesion.index')}}" class="btn btn-outline-light me-2">
-=======
+                            <a href="{{route('inicio_sesion.index')}}" class="btn btn-outline-light me-2">
+
                             <a href="login.html" class="btn btn-outline-light me-2">
->>>>>>> InterfasC
+
                                 <i class="fas fa-sign-in-alt me-1"></i>Inicio de Sesión
                             </a>
                             <button class="btn btn-outline-light notification-badge me-2" onclick="mostrarNotificaciones()">
@@ -392,29 +386,29 @@
                     <button class="btn btn-primary w-100 mb-3" onclick="iniciarModoSueno()">
                         <i class="fas fa-moon me-2"></i>Iniciar sueño - Inicio el modo sueño
                     </button>
-<<<<<<< HEAD
+
                     <!--
-                    <a href="{{ route('inicio sesion.index') }}" class="btn btn-success w-100"> 
+                    <a href="{{ route('inicio_sesion.index') }}" class="btn btn-success w-100"> 
                         <i class="fas fa-sign-in-alt me-2"></i>Iniciar sesión - Para iniciar sesión
                     </a> 
                        -->
                      
-=======
+
                     
                     <a href="login.html" class="btn btn-success w-100">
                         <i class="fas fa-sign-in-alt me-2"></i>Iniciar sesión - Para iniciar sesión
                     </a>
->>>>>>> InterfasC
+
                 </div>
             </div>
-=======
+
     <nav class="navbar">
         <a class="navbar-brand" href="#">SleepWell</a>
         <div class="navbar-nav">
-            <a class="nav-link" href="{{ route('mi-perfil') }}"><i class="fas fa-user me-1"></i>Perfil</a>
-            <a class="nav-link" href="{{ route('configuracion-idioma') }}"><i class="fas fa-globe me-1"></i>Idioma</a>
+            <a class="nav-link" href="{{ route('perfil.index') }}"><i class="fas fa-user me-1"></i>Perfil</a>
+            <a class="nav-link" href="#"><i class="fas fa-globe me-1"></i>Idioma</a>
             <a class="nav-link" href="#"><i class="fas fa-cog me-1"></i>Configuración</a>
->>>>>>> ramaView2
+
         </div>
     </nav>
 
@@ -423,22 +417,22 @@
         <p class="tagline">Tu compañero inteligente para un sueño reparador</p>
         
         <div class="buttons-container">
-            <a href="{{ route('inicio-sesion') }}" class="btn btn-login">
+            <a href="{{ route('inicio_sesion.index') }}" class="btn btn-login">
                 <i class="fas fa-sign-in-alt btn-icon"></i>
                 <span class="btn-text">Inicio de Sesión</span>
             </a>
             
-            <a href="{{ route('asistente-sueno') }}" class="btn btn-assistant">
+            <a href="#" class="btn btn-assistant">
                 <i class="fas fa-robot btn-icon"></i>
                 <span class="btn-text">Asistente de Sueño</span>
             </a>
             
-            <a href="{{ route('playlist-relajante') }}" class="btn btn-playlist">
+            <a href="#" class="btn btn-playlist">
                 <i class="fas fa-music btn-icon"></i>
                 <span class="btn-text">Playlist Relajante</span>
             </a>
             
-            <a href="{{ route('notificaciones') }}" class="btn btn-notification">
+            <a href="#" class="btn btn-notification">
                 <i class="fas fa-bell btn-icon"></i>
                 <span class="btn-text">Notificaciones</span>
             </a>
@@ -450,10 +444,8 @@
         </footer>
     </div>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> InterfasC
+
+
     <!-- Incluir Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
@@ -465,11 +457,11 @@
             if (currentAudio) {
                 currentAudio.pause();
             }
-<<<<<<< HEAD
+
             const audio = document.querySelector(`audio[src="${src}"]`);
-=======
+
             const audio = document.querySelector(audio[src="${src}"]);
->>>>>>> InterfasC
+
             if (audio) {
                 audio.play();
                 currentAudio = audio;
@@ -509,19 +501,19 @@
             const message = input.value.trim();
             if (message) {
                 const chat = document.getElementById('chat-messages');
-<<<<<<< HEAD
+
                 chat.innerHTML += `<div class="chat-message user-message"><strong>Tú:</strong> ${message}</div>`;
                 input.value = '';
                 // Simular respuesta AI
                 setTimeout(() => {
                     chat.innerHTML += `<div class="chat-message ai-message"><strong>AI:</strong> Gracias por tu mensaje. Recomiendo probar el sonido de lluvia para relajarte.</div>`;
-=======
+
                 chat.innerHTML += <div class="chat-message user-message"><strong>Tú:</strong> ${message}</div>;
                 input.value = '';
                 // Simular respuesta AI
                 setTimeout(() => {
                     chat.innerHTML += <div class="chat-message ai-message"><strong>AI:</strong> Gracias por tu mensaje. Recomiendo probar el sonido de lluvia para relajarte.</div>;
->>>>>>> InterfasC
+
                     chat.scrollTop = chat.scrollHeight;
                 }, 1000);
             }
@@ -547,8 +539,8 @@
                 alert('Idioma cambiado a Español.');
             }
         }
-<<<<<<< HEAD
-=======
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Funcionalidad mejorada para los botones
@@ -590,12 +582,12 @@
             const toast = document.createElement('div');
             toast.className = 'toast align-items-center text-white bg-primary border-0';
             toast.setAttribute('role', 'alert');
-            toast.innerHTML = `
+            toast.innerHTML = 
                 <div class="d-flex">
                     <div class="toast-body">${message}</div>
                     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
                 </div>
-            `;
+            ;
             
             toastContainer.appendChild(toast);
             const bsToast = new bootstrap.Toast(toast);
@@ -630,9 +622,7 @@
             btn.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(btn);
         });
->>>>>>> ramaView2
-=======
->>>>>>> InterfasC
+
     </script>
 </body>
 </html>

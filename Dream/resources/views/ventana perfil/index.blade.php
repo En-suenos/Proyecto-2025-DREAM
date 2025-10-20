@@ -5,24 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Perfil - Dream</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<<<<<<< HEAD
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-        .card-body {
-            padding: 2rem;
-=======
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .profile-card {
@@ -36,26 +18,10 @@
             border-radius: 15px;
             padding: 2rem;
             margin: -2rem -2rem 2rem -2rem;
->>>>>>> InterfasC
         }
         .profile-img {
             width: 120px;
             height: 120px;
-<<<<<<< HEAD
-            object-fit: cover;
-            border: 4px solid #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
-        }
-        .profile-img:hover {
-            transform: scale(1.05);
-        }
-        .form-control {
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            padding: 12px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-=======
             border: 4px solid white;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
@@ -64,7 +30,6 @@
             border: 1px solid #e0e0e0;
             padding: 12px 15px;
             transition: all 0.3s ease;
->>>>>>> InterfasC
         }
         .form-control:focus {
             border-color: #667eea;
@@ -73,43 +38,6 @@
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
-<<<<<<< HEAD
-            border-radius: 25px;
-            padding: 12px;
-            font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        .btn-outline-secondary {
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .btn-outline-secondary:hover {
-            background-color: #667eea;
-            border-color: #667eea;
-        }
-        .back-link {
-            color: #667eea;
-            font-weight: 500;
-        }
-        .back-link:hover {
-            color: #764ba2;
-            text-decoration: none;
-        }
-        .input-group-text {
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 10px 0 0 10px;
-        }
-        .invalid-feedback {
-            display: none;
-        }
-        .was-validated .form-control:invalid ~ .invalid-feedback {
-            display: block;
-=======
             border-radius: 10px;
             padding: 12px;
             font-weight: 600;
@@ -142,14 +70,13 @@
         }
         .back-link:hover {
             color: #764ba2;
->>>>>>> InterfasC
         }
     </style>
 </head>
 <body class="bg-light">
     <div class="container py-5">
         <div class="row justify-content-center">
-<<<<<<< HEAD
+
             <div class="col-md-8">
                 <div class="card shadow">
                     <div class="card-body">
@@ -166,18 +93,6 @@
                             <p class="text-muted" id="userEmail">usuario@ejemplo.com</p>
                         </div>
 
-<<<<<<< HEAD
-                        <form>
-                            @foreach($usuarios as $usuario)
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="nombre" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" value="{{$usuario->nombre}}">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" value="{{$usuario->correo}}">
-=======
                         <form id="profileForm" class="needs-validation" novalidate>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -199,7 +114,6 @@
                                             Por favor, ingresa un email válido.
                                         </div>
                                     </div>
->>>>>>> ramaView2
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -215,23 +129,13 @@
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary"><i class="fas fa-save me-2"></i>Guardar Cambios</button>
                             </div>
-<<<<<<< HEAD
-                            <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
-                            @endforeach
                         </form>
 
                         <div class="text-center mt-3">
-                            <a href="{{ route('usuarios.index') }}" class="text-decoration-none">
-                                ← Volver al inicio
-=======
-                        </form>
-
-                        <div class="text-center mt-3">
-                            <a href="{{ route('ventana-principal') }}" class="back-link">
+                            <a href="{{ route('usuario con cuenta.index') }}" class="back-link">
                                 <i class="fas fa-arrow-left me-2"></i>Volver al inicio
->>>>>>> ramaView2
                             </a>
-=======
+                        </div>
             <div class="col-lg-10">
                 <!-- Tarjeta Principal -->
                 <div class="card profile-card shadow-lg">
@@ -354,7 +258,7 @@
                                     </div>
                                 </div>
                             </div>
->>>>>>> InterfasC
+
                         </div>
                     </div>
                 </div>
@@ -362,117 +266,6 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-    <!-- Modal de confirmación -->
-    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmModalLabel">Confirmación</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="modalMessage"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" id="confirmBtn">Aceptar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal para cambiar foto -->
-    <div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="photoModalLabel">Cambiar Foto de Perfil</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="file" class="form-control" id="photoInput" accept="image/*">
-                    <small class="text-muted">Selecciona una imagen (máx. 5MB)</small>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="uploadBtn">Subir</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Cargar datos del perfil desde localStorage
-        function loadProfile() {
-            const profile = JSON.parse(localStorage.getItem('userProfile')) || {
-                name: 'Usuario Ejemplo',
-                email: 'usuario@ejemplo.com',
-                phone: '+1234567890',
-                photo: 'https://via.placeholder.com/150'
-            };
-            document.getElementById('userName').textContent = profile.name;
-            document.getElementById('userEmail').textContent = profile.email;
-            document.getElementById('nombre').value = profile.name;
-            document.getElementById('email').value = profile.email;
-            document.getElementById('telefono').value = profile.phone;
-            document.getElementById('profileImg').src = profile.photo;
-        }
-
-        // Guardar cambios
-        document.getElementById('profileForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (!this.checkValidity()) {
-                e.stopPropagation();
-                this.classList.add('was-validated');
-                return;
-            }
-
-            const profile = {
-                name: document.getElementById('nombre').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('telefono').value,
-                photo: document.getElementById('profileImg').src
-            };
-
-            localStorage.setItem('userProfile', JSON.stringify(profile));
-            document.getElementById('userName').textContent = profile.name;
-            document.getElementById('userEmail').textContent = profile.email;
-
-            document.getElementById('modalMessage').textContent = 'Cambios guardados exitosamente.';
-            const modal = new bootstrap.Modal(document.getElementById('confirmModal'));
-            modal.show();
-        });
-
-        // Cambiar foto
-        document.getElementById('changePhotoBtn').addEventListener('click', function() {
-            const modal = new bootstrap.Modal(document.getElementById('photoModal'));
-            modal.show();
-        });
-
-        document.getElementById('uploadBtn').addEventListener('click', function() {
-            const fileInput = document.getElementById('photoInput');
-            const file = fileInput.files[0];
-            if (file) {
-                if (file.size > 5 * 1024 * 1024) { // 5MB limit
-                    alert('La imagen es demasiado grande. Máximo 5MB.');
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('profileImg').src = e.target.result;
-                    const profile = JSON.parse(localStorage.getItem('userProfile')) || {};
-                    profile.photo = e.target.result;
-                    localStorage.setItem('userProfile', JSON.stringify(profile));
-                    bootstrap.Modal.getInstance(document.getElementById('photoModal')).hide();
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        window.onload = loadProfile;
-=======
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Efectos interactivos simples
@@ -508,7 +301,6 @@
                 });
             });
         });
->>>>>>> InterfasC
     </script>
 </body>
 </html>

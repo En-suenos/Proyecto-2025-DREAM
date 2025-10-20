@@ -76,6 +76,66 @@
 <body class="bg-light">
     <div class="container py-5">
         <div class="row justify-content-center">
+
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4 text-primary"><i class="fas fa-user-circle me-2"></i>Mi Perfil</h2>
+                        
+                        <div class="text-center mb-4">
+                            <div class="position-relative d-inline-block">
+                                <img src="https://via.placeholder.com/150" class="rounded-circle profile-img" id="profileImg" alt="Foto de perfil">
+                                <button class="btn btn-sm btn-outline-secondary position-absolute bottom-0 end-0 rounded-circle" id="changePhotoBtn" title="Cambiar foto">
+                                    <i class="fas fa-camera"></i>
+                                </button>
+                            </div>
+                            <h4 id="userName" class="mt-3">Usuario Ejemplo</h4>
+                            <p class="text-muted" id="userEmail">usuario@ejemplo.com</p>
+                        </div>
+
+                        <form id="profileForm" class="needs-validation" novalidate>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nombre" class="form-label"><i class="fas fa-user me-2"></i>Nombre</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        <input type="text" class="form-control" id="nombre" value="Juan Pérez" required>
+                                        <div class="invalid-feedback">
+                                            Por favor, ingresa un nombre válido.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i>Email</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        <input type="email" class="form-control" id="email" value="usuario@ejemplo.com" required>
+                                        <div class="invalid-feedback">
+                                            Por favor, ingresa un email válido.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label"><i class="fas fa-phone me-2"></i>Teléfono</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    <input type="tel" class="form-control" id="telefono" value="+1234567890" pattern="^\+?[1-9]\d{1,14}$">
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresa un número de teléfono válido.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-save me-2"></i>Guardar Cambios</button>
+                            </div>
+                        </form>
+
+                        <div class="text-center mt-3">
+                            <a href="<?php echo e(route('usuario con cuenta.index')); ?>" class="back-link">
+                                <i class="fas fa-arrow-left me-2"></i>Volver al inicio
+                            </a>
+                        </div>
             <div class="col-lg-10">
                 <!-- Tarjeta Principal -->
                 <div class="card profile-card shadow-lg">
@@ -198,6 +258,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -242,4 +303,5 @@
         });
     </script>
 </body>
-</html><?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/ventana perfil/index.blade.php ENDPATH**/ ?>
+</html>
+<?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/ventana perfil/index.blade.php ENDPATH**/ ?>
