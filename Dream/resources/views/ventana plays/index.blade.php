@@ -6,14 +6,9 @@
     <meta name="description" content="Reproductor de Música con estilo de aplicación móvil moderno.">
     <title>Reproductor de musica de dormir</title>
     
-<<<<<<< HEAD
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
-=======
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
  
->>>>>>> ramaView2
     <style>
         /* Variables y Estilos Base */
         :root {
@@ -38,22 +33,8 @@
             min-height: 100vh;
             overflow: hidden; /* Oculta barras de desplazamiento si la 'app' cabe en la pantalla */
         }
-<<<<<<< HEAD
-
-        /* Contenedor principal que simula la pantalla del teléfono */
-        .app-container {
-            width: 380px; /* Ancho típico de un smartphone en vista vertical */
-            height: 800px; /* Altura para simular la pantalla */
-            background-color: var(--color-fondo-oscuro);
-            border-radius: 20px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-=======
         .hidden {
             display: none; 
->>>>>>> ramaView2
         }
 
         /* Encabezado (Header) de la app */
@@ -197,38 +178,6 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
-
-    <div class="app-container">
-        <header class="app-header">
-            Reproductor de Música
-        </header>
-
-        <nav class="nav-tabs-mobile">
-            <a href="#" class="nav-link-mobile active" id="tab-canciones">CANCIONES</a>
-            <a href="#" class="nav-link-mobile" id="tab-playlist">LISTA DE REPRODUCCIÓN</a>
-        </nav>
-
-        <div id="canciones-content" class="song-list-content">
-
-            <div class="shuffle-item" onclick="shuffleAll()">
-                <i class="bi bi-shuffle shuffle-icon"></i>
-                <span>Barajar Todo</span>
-            </div>
-            
-            <div class="song-item">
-                <img src="https://via.placeholder.com/50/FF5722/FFFFFF?text=A1" alt="Album Art" class="song-item-image">
-                <div class="song-info">
-                    <div class="song-title">Still Luvin</div>
-                    <div class="song-artist">Delassa, Quevedo, Bigla The...</div>
-                </div>
-                <div class="song-details">
-                    <span class="song-duration">3:09</span>
-                    <span class="song-quality-tag" style="background-color: var(--color-resalte-azul);">HQ</span>
-                </div>
-                <i class="bi bi-three-dots-vertical song-options-icon"></i>
-            </div>
-=======
     
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
@@ -368,7 +317,6 @@
                 mostrarVista('principalSinSesion');
             }
         }
->>>>>>> ramaView2
 
             <div class="song-item">
                 <img src="https://via.placeholder.com/50/4CAF50/FFFFFF?text=A2" alt="Album Art" class="song-item-image">
@@ -446,13 +394,6 @@
         
     </div>
 
-<<<<<<< HEAD
-    <script>
-        function shuffleAll() {
-            alert('¡Barajando todas las canciones!')
-        }
-        document.getElementById('tab-playlist').addEventListener('click', function(e) {
-=======
         function iniciarSueno() {
             alert('Iniciando modo sueño...');
         
@@ -471,7 +412,6 @@
         }
 
         document.getElementById('formLogin').addEventListener('submit', function(e) {
->>>>>>> ramaView2
             e.preventDefault();
             this.classList.add('active');
             document.getElementById('tab-canciones').classList.remove('active');
@@ -479,14 +419,6 @@
             alert('Cambiando a Lista de Reproducción');
         });
 
-<<<<<<< HEAD
-        document.getElementById('tab-canciones').addEventListener('click', function(e) {
-            e.preventDefault();
-            this.classList.add('active');
-            document.getElementById('tab-playlist').classList.remove('active');
-        });
-        
-=======
         function regresar(vista) { mostrarVista(vista); }
         function marcarLeidas() { alert('Marcadas como leídas'); }
         function actualizarIdioma() { document.getElementById('mensajeIdioma').innerHTML = 'Idioma actualizado correctamente'; }
@@ -498,7 +430,6 @@
                 mostrarVista('principalSinSesion');
             }
         };
->>>>>>> ramaView2
     </script>
 </body>
 </html>

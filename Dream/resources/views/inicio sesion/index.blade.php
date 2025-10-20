@@ -43,37 +43,61 @@
 <body>
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
-        <form action="{{route('inicio_sesion.login')}}" method="POST" id="formLogin">
+
+        <!-- MOSTRAR MENSAJES PRIMERO -->
+        @if (session('success'))
+            <div class="alert alert-success alert-custom">
+                {{ session('success') }} <!-- CORREGIDO: session() no sesion() -->
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger alert-custom">
+                {{ session('error') }} <!-- CORREGIDO: session() no sesion() -->
+            </div>
+        @endif
+
+        <form action="{{ route('inicio_sesion.login') }}" method="POST" id="formLogin">
             @csrf
             <div class="mb-3">
                 <label for="correoLogin" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="correoLogin" placeholder="Correo" required>
+                <input type="email" class="form-control" id="correoLogin" name="correo" placeholder="Correo" required> <!-- AGREGADO: name="correo" -->
             </div>
             <div class="mb-3">
                 <label for="contrasenaLogin" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="contrasenaLogin" placeholder="Contraseña" required>
+                <input type="password" class="form-control" id="contrasenaLogin" name="contraseña" placeholder="Contraseña" required> <!-- AGREGADO: name="contraseña" -->
             </div>
             <button type="submit" class="btn btn-primary">Ingresar</button>
         </form>
-        @if(session('error'))
-            <div class="alert alert-danger alert-custom">
-                {{ sesion('error') }}
-            </div>
-        @endif
-
-        @if (session('success'))
-            <div class="alert alert-success alert-custom">
-                {{ sesion('success') }}
-            </div>
-        @endif
 
         <div id="mensajeLogin" class="alert alert-info alert-custom" style="display: none;"></div>
+        
         <p class="text-center mt-3">
-            ¿No tienes cuenta? <a href="{{route('ventana datos.index')}}">Regístrate aquí</a>
+            ¿No tienes cuenta? <a href="{{ route('ventana datos.index') }}">Regístrate aquí</a>
         </p>
         <p class="text-center">
-            <a href="{{route('ventana principal.index')}}">Volver a la aplicación</a>
+            <a href="{{ route('ventana principal.index') }}">Volver a la aplicación</a>
         </p>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('formLogin').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const correo = document.getElementById('correoLogin').value;
+            const contrasena = document.getElementById('contrasenaLogin').value;
+            const mensaje = document.getElementById('mensajeLogin');
+            
+            if (correo && contrasena) {
+                // Enviar el formulario normalmente
+                this.submit();
+            } else {
+                mensaje.className = 'alert alert-danger alert-custom';
+                mensaje.innerHTML = 'Por favor, completa todos los campos.';
+                mensaje.style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
