@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Aplicación PlayList con múltiples vistas y autenticación.">
+<<<<<<< HEAD
     <title>Vista de usuario con cuenta</title>
     
+=======
+    <title>Aplicación PlayList</title>
+>>>>>>> InterfasC
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
+<<<<<<< HEAD
  
+=======
+>>>>>>> InterfasC
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -196,8 +203,12 @@
                 <ul class="navbar-nav ms-auto">
                     <!-- NAVEGACIÓN CORREGIDA - SIN CONFLICTOS -->
                     <li class="nav-item">
+<<<<<<< HEAD
                         <!--<a class="nav-link" href="<?php echo e(route('mi-perfil')); ?>">-->
                         <a href="#" onclick="mostrarVista('perfil')" class="nav-link">
+=======
+                        <a class="nav-link" href="<?php echo e(route('mi-perfil')); ?>">
+>>>>>>> InterfasC
                             <i class="fas fa-user"></i> Mi perfil
                         </a>
                     </li>
@@ -222,8 +233,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
+<<<<<<< HEAD
                         <a class="nav-link" href="<?php echo e(route('ventana-principal.index')); ?>">
                             <i class="fas fa-sign-in-alt"></i> Cerrar sesión
+=======
+                        <a class="nav-link" href="<?php echo e(route('inicio-sesion.index')); ?>">
+                            <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+>>>>>>> InterfasC
                         </a>
                     </li>
                 </ul>
@@ -231,7 +247,10 @@
         </div>
     </nav>
 
+<<<<<<< HEAD
  
+=======
+>>>>>>> InterfasC
     <main class="container main-content">
         <!-- Vista Principal -->
         <div id="principal" class="fade-in">
@@ -239,7 +258,11 @@
                 <div class="avatar">
                     <i class="fas fa-music"></i>
                 </div>
+<<<<<<< HEAD
                 <h2>Bienvenido, <?php echo e($usuario->nombre); ?></h2>
+=======
+                <h2>Bienvenido a PlayList</h2>
+>>>>>>> InterfasC
                 <p>Explora tus playlists, configura tu perfil y disfruta de la música.</p>
                 <div class="row mt-4">
                     <div class="col-md-4">
@@ -262,7 +285,10 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
                     
+=======
+>>>>>>> InterfasC
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body text-center">
@@ -355,7 +381,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+<<<<<<< HEAD
         
+=======
+>>>>>>> InterfasC
         function mostrarVista(vista) {
             document.querySelectorAll('.main-content > div').forEach(div => {
                 div.classList.add('hidden');
@@ -365,6 +394,7 @@
             targetDiv.classList.remove('hidden');
             setTimeout(() => targetDiv.classList.add('fade-in'), 10);
             if (vista === 'perfil') {
+<<<<<<< HEAD
                 loadPerfilTable(); 
             }
         }
@@ -380,6 +410,17 @@
             { campo: 'Correo', valor: usuario.correo },
             { campo: 'Tipo de Usuario', valor: usuario.tipo_usuario },
             { campo: 'Fecha de Registro', valor: usuario.fecha_registro },
+=======
+                loadPerfilTable();
+            }
+        }
+
+        let perfilData = [
+            { campo: 'Nombre', valor: 'Juan' },
+            { campo: 'Apellido', valor: 'Pérez' },
+            { campo: 'Correo', valor: 'juan@example.com' },
+            { campo: 'Fecha de Registro', valor: '01/10/2023' },
+>>>>>>> InterfasC
             { campo: 'Último Acceso', valor: 'Hoy' }
         ];
 
@@ -392,17 +433,24 @@
                 if (item.campo === 'Último Acceso' && item.valor === 'Hoy') {
                     valorDisplay = `<span class="badge bg-success">${item.valor}</span>`;
                 }
+<<<<<<< HEAD
                 if (item.campo === 'Tipo de Usuario') {
                     const badgeClass = item.valor === 'Premium' ? 'bg-warning' : item.valor === 'Admin' ? 'bg-danger' : 'bg-info';
                     valorDisplay = `<span class="badge ${badgeClass}">${item.valor}</span>`;
                }
+=======
+>>>>>>> InterfasC
                 row.innerHTML = `<td><i class="fas fa-info-circle text-primary"></i> ${item.campo}</td><td>${valorDisplay}</td>`;
                 tableBody.appendChild(row);
             });
         }
 
         function sortTable(columnIndex) {
+<<<<<<< HEAD
             const table = document.getElementById('perfilTable'); 
+=======
+            const table = document.getElementById('perfilTable');  
+>>>>>>> InterfasC
             const tbody = table.querySelector('tbody');
             const rows = Array.from(tbody.querySelectorAll('tr'));
             
@@ -423,10 +471,19 @@
             rows.forEach(row => tbody.appendChild(row));
         }
 
+<<<<<<< HEAD
        
         function mostrarLogin() { mostrarVista('login'); }
         function iniciarSueno() { alert('Iniciando modo sueño...'); }
         function regresar(vista) { mostrarVista(vista); }
+=======
+        function mostrarLogin() { mostrarVista('login'); }
+        function iniciarSueno() { alert('Iniciando modo sueño...'); }
+        function regresar(vista) { mostrarVista(vista); }
+
+        // Mostrar vista principal por defecto
+        window.onload = () => mostrarVista('principal');
+>>>>>>> InterfasC
     </script>
 </body>
 </html><?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/usuarios con cuenta/index.blade.php ENDPATH**/ ?>

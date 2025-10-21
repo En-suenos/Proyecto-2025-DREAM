@@ -6,10 +6,14 @@
     <title>SleepAssistant - Ayuda para Problemas de Sueño</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<<<<<<< HEAD
     <!-- Agregado: Script de Transformers.js -->
     <script src="https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0/dist/transformers.min.js"></script>
     <style>
         /* El CSS permanece igual, lo omito por brevedad, pero inclúyelo completo en tu archivo */
+=======
+    <style>
+>>>>>>> InterfasC
         :root {
             --primary-color: #4a6fa5;
             --secondary-color: #2c4d7a;
@@ -116,6 +120,7 @@
             border: 1px solid #bbdefb;
             border-radius: 10px;
             padding: 15px;
+<<<<<<< HEAD
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.3s;
@@ -200,6 +205,8 @@
                 width: 100%;
             }
 
+=======
+>>>>>>> InterfasC
             margin-bottom: 20px;
         }
         
@@ -415,6 +422,7 @@
         </div>
     </div>
 
+<<<<<<< HEAD
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -424,6 +432,8 @@
         
         let pipeline; // Variable para el modelo de Transformers.js
         let isTyping = false;
+=======
+>>>>>>> InterfasC
     <script>
         let isTyping = false;
         let currentSound = null;
@@ -766,5 +776,9 @@ Agua tibia con sales de magnesio 1-2 horas antes de dormir.`,
         });
     </script>
 </body>
+<<<<<<< HEAD
 </html>
 <?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/ventana asistente AI/index.blade.php ENDPATH**/ ?>
+=======
+</html><?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/ventana asistente AI/index.blade.php ENDPATH**/ ?>
+>>>>>>> InterfasC
