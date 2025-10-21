@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Aplicación PlayList con múltiples vistas y autenticación.">
-    <title>PlayList</title>
+    <title>Vista de usuario con cuenta</title>
     
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -238,7 +238,7 @@
                 <div class="avatar">
                     <i class="fas fa-music"></i>
                 </div>
-                <h2>Bienvenido a PlayList</h2>
+                <h2>Bienvenido, <?php echo e($usuario->nombre); ?></h2>
                 <p>Explora tus playlists, configura tu perfil y disfruta de la música.</p>
                 <div class="row mt-4">
                     <div class="col-md-4">
@@ -366,11 +366,18 @@
                 loadPerfilTable(); 
             }
         }
+        const usuario = {
+           nombre: "<?php echo e($usuario->nombre); ?>",
+           correo: "<?php echo e($usuario->correo); ?>",
+           tipo_usuario: "<?php echo e(ucfirst($usuario->tipo_usuario)); ?>",
+           fecha_registro: "<?php echo e(\Carbon\Carbon::parse($usuario->fecha_registro)->format('d/m/Y')); ?>"
+       };
+
         let perfilData = [
-            { campo: 'Nombre', valor: 'Juan' },
-            { campo: 'Apellido', valor: 'Pérez' },
-            { campo: 'Correo', valor: 'juan@example.com' },
-            { campo: 'Fecha de Registro', valor: '01/10/2023' },
+            { campo: 'Nombre', valor: usuario.nombre },
+            { campo: 'Correo', valor: usuario.correo },
+            { campo: 'Tipo de Usuario', valor: usuario.tipo_usuario },
+            { campo: 'Fecha de Registro', valor: usuario.fecha_registro },
             { campo: 'Último Acceso', valor: 'Hoy' }
         ];
 
@@ -383,6 +390,10 @@
                 if (item.campo === 'Último Acceso' && item.valor === 'Hoy') {
                     valorDisplay = `<span class="badge bg-success">${item.valor}</span>`;
                 }
+                if (item.campo === 'Tipo de Usuario') {
+                    const badgeClass = item.valor === 'Premium' ? 'bg-warning' : item.valor === 'Admin' ? 'bg-danger' : 'bg-info';
+                    valorDisplay = `<span class="badge ${badgeClass}">${item.valor}</span>`;
+               }
                 row.innerHTML = `<td><i class="fas fa-info-circle text-primary"></i> ${item.campo}</td><td>${valorDisplay}</td>`;
                 tableBody.appendChild(row);
             });
