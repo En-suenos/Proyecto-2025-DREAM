@@ -3,766 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca de Sonidos - SleepWell</title>
+    <title>Ventana Principal - SleepWell</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        :root {
-            --primary-color: #4fc3f7;
-            --secondary-color: #7e57c2;
-            --success-color: #66bb6a;
-            --dark-color: #1e3c72;
-            --light-color: #f8f9fa;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
             color: #fff;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
+            overflow-x: hidden;
         }
-        
+
         .container {
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            animation: fadeInUp 1s ease-out;
         }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-top: 20px;
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        .header h1 {
+
+        .logo {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-color);
-            text-shadow: 0 0 15px rgba(79, 195, 247, 0.5);
             margin-bottom: 10px;
+            color: #4fc3f7;
+            text-shadow: 0 0 20px rgba(79, 195, 247, 0.7);
+            text-align: center;
+            animation: glow 2s ease-in-out infinite alternate;
         }
-        
-        .header p {
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px rgba(79, 195, 247, 0.7);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(79, 195, 247, 1);
+            }
+        }
+
+        .tagline {
             font-size: 1.1rem;
             opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 400px;
         }
-        
-        .sound-card {
+
+        .buttons-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .btn {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 20px;
+            font-size: 1rem;
             border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 25px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        .sound-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
-        .sound-card-header {
-            padding: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .sound-card-body {
-            padding: 20px;
-        }
-        
-        .sound-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .sound-title i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .sound-description {
-            opacity: 0.8;
-            margin-bottom: 15px;
-        }
-        
-        .sound-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-        }
-        
-        .play-btn {
-            background: linear-gradient(45deg, var(--primary-color), #29b6f6);
-            border: none;
-            color: white;
-            border-radius: 50px;
-            padding: 8px 20px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        
-        .play-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(79, 195, 247, 0.4);
-        }
-        
-        .play-btn i {
-            margin-right: 8px;
-        }
-        
-        .volume-control {
-            display: flex;
-            align-items: center;
-            width: 60%;
-        }
-        
-        .volume-control i {
-            margin-right: 10px;
-            opacity: 0.8;
-        }
-        
-        .volume-slider {
-            width: 100%;
-            -webkit-appearance: none;
-            height: 5px;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.2);
-            outline: none;
-        }
-        
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--primary-color);
             cursor: pointer;
-        }
-        
-        .progress-container {
-            margin-top: 15px;
-        }
-        
-        .progress-bar {
-            height: 6px;
-            border-radius: 3px;
-            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            position: relative;
             overflow: hidden;
         }
-        
-        .progress {
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
             height: 100%;
-            background: var(--primary-color);
-            width: 0%;
-            transition: width 0.1s linear;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
         }
-        
-        .time-display {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            opacity: 0.7;
-            margin-top: 5px;
+
+        .btn:hover::before {
+            left: 100%;
         }
-        
-        .sound-categories {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-        
-        .category-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            border-radius: 50px;
-            padding: 8px 20px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-        
-        .category-btn.active, .category-btn:hover {
-            background: var(--primary-color);
-            transform: scale(1.05);
-        }
-        
-        .back-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            border-radius: 50px;
-            padding: 10px 25px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            margin-top: 20px;
-        }
-        
-        .back-btn:hover {
+
+        .btn:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-            color: white;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
         }
-        
-        .back-btn i {
-            margin-right: 8px;
+
+        .btn-icon {
+            font-size: 2rem;
+            margin-bottom: 5px;
         }
-        
-        .currently-playing {
+
+        .btn-text {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .btn-login {
+            background: linear-gradient(45deg, #4fc3f7, #29b6f6);
+            border: none;
+        }
+
+        .btn-assistant {
+            background: linear-gradient(45deg, #7e57c2, #5e35b1);
+            border: none;
+        }
+
+        .btn-playlist {
+            background: linear-gradient(45deg, #66bb6a, #43a047);
+            border: none;
+        }
+
+        .btn-notification {
+            background: linear-gradient(45deg, #ffa726, #fb8c00);
+            border: none;
+        }
+
+        .navbar {
             position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
             right: 0;
-            background: rgba(30, 60, 114, 0.95);
+            background: rgba(26, 42, 108, 0.9);
             backdrop-filter: blur(10px);
             padding: 15px 20px;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        
-        .currently-playing.show {
-            transform: translateY(0);
-        }
-        
-        .current-sound-info {
-            display: flex;
-            align-items: center;
-        }
-        
-        .current-sound-info i {
-            font-size: 1.5rem;
-            margin-right: 15px;
-            color: var(--primary-color);
-        }
-        
-        .current-sound-text h5 {
-            margin-bottom: 0;
-            font-size: 1rem;
-        }
-        
-        .current-sound-text p {
-            margin-bottom: 0;
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-        
-        .current-sound-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        @media (max-width: 768px) {
-            .sound-controls {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            
-            .volume-control {
-                width: 100%;
-            }
-            
-            .currently-playing {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
-            .current-sound-info {
-                justify-content: center;
-            }
-        }
-        
-        .favorite-btn {
-            background: transparent;
-            border: none;
-            color: #ffc107;
+
+        .navbar-brand {
+            color: #4fc3f7;
+            font-weight: 700;
             font-size: 1.2rem;
-            transition: all 0.3s ease;
         }
-        
-        .favorite-btn:hover {
-            transform: scale(1.2);
+
+        .navbar-nav {
+            display: flex;
+            gap: 20px;
         }
-        
-        .sound-duration {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            margin-top: 5px;
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #4fc3f7;
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            opacity: 0.8;
+            font-size: 0.9rem;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .buttons-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 18px;
+                font-size: 0.95rem;
+            }
+            
+            .navbar-nav {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+            
+            .btn {
+                padding: 16px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">SleepWell</a>
+        <div class="navbar-nav">
+            <!-- RUTAS CORREGIDAS -->
+            <a class="nav-link" href="{{ route('mi-perfil') }}"><i class="fas fa-user me-1"></i>Perfil</a>
+            <a class="nav-link" href="#"><i class="fas fa-globe me-1"></i>Idioma</a>
+            <a class="nav-link" href="#"><i class="fas fa-cog me-1"></i>Configuración</a>
+        </div>
+    </nav>
+
     <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-music me-2"></i>Biblioteca de Sonidos</h1>
-            <p>Descubre sonidos relajantes para mejorar tu sueño y concentración</p>
-        </div>
+        <div class="logo">SleepWell</div>
+        <p class="tagline">Tu compañero inteligente para un sueño reparador</p>
         
-        <div class="sound-categories">
-            <button class="category-btn active" data-category="all">Todos</button>
-            <button class="category-btn" data-category="nature">Naturaleza</button>
-            <button class="category-btn" data-category="ambient">Ambientales</button>
-            <button class="category-btn" data-category="white">Ruido Blanco</button>
-            <button class="category-btn" data-category="water">Agua</button>
-        </div>
-        
-        <div class="row" id="sounds-container">
-            <div class="col-lg-6 mb-4" data-categories="nature water">
-                <div class="sound-card">
-                    <div class="sound-card-header">
-                        <h3 class="sound-title"><i class="fas fa-cloud-rain"></i>Sonido de Lluvia</h3>
-                        <p class="sound-description">Relajante lluvia constante con truenos suaves</p>
-                        <div class="sound-duration">Duración: 60 min</div>
-                    </div>
-                    <div class="sound-card-body">
-                        <div class="progress-container">
-                            <div class="progress-bar">
-                                <div class="progress" id="progress-rain"></div>
-                            </div>
-                            <div class="time-display">
-                                <span id="current-time-rain">0:00</span>
-                                <span id="duration-rain">1:00:00</span>
-                            </div>
-                        </div>
-                        <div class="sound-controls">
-                            <button class="play-btn" data-sound="rain">
-                                <i class="fas fa-play"></i> Reproducir
-                            </button>
-                            <div class="volume-control">
-                                <i class="fas fa-volume-up"></i>
-                                <input type="range" class="volume-slider" min="0" max="100" value="50" data-sound="rain">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-4" data-categories="nature water">
-                <div class="sound-card">
-                    <div class="sound-card-header">
-                        <h3 class="sound-title"><i class="fas fa-water"></i>Olas del Mar</h3>
-                        <p class="sound-description">Sonido de olas suaves en la playa</p>
-                        <div class="sound-duration">Duración: 45 min</div>
-                    </div>
-                    <div class="sound-card-body">
-                        <div class="progress-container">
-                            <div class="progress-bar">
-                                <div class="progress" id="progress-waves"></div>
-                            </div>
-                            <div class="time-display">
-                                <span id="current-time-waves">0:00</span>
-                                <span id="duration-waves">0:45:00</span>
-                            </div>
-                        </div>
-                        <div class="sound-controls">
-                            <button class="play-btn" data-sound="waves">
-                                <i class="fas fa-play"></i> Reproducir
-                            </button>
-                            <div class="volume-control">
-                                <i class="fas fa-volume-up"></i>
-                                <input type="range" class="volume-slider" min="0" max="100" value="50" data-sound="waves">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-4" data-categories="nature ambient">
-                <div class="sound-card">
-                    <div class="sound-card-header">
-                        <h3 class="sound-title"><i class="fas fa-tree"></i>Bosque Sereno</h3>
-                        <p class="sound-description">Sonidos del bosque con pájaros y brisa</p>
-                        <div class="sound-duration">Duración: 50 min</div>
-                    </div>
-                    <div class="sound-card-body">
-                        <div class="progress-container">
-                            <div class="progress-bar">
-                                <div class="progress" id="progress-forest"></div>
-                            </div>
-                            <div class="time-display">
-                                <span id="current-time-forest">0:00</span>
-                                <span id="duration-forest">0:50:00</span>
-                            </div>
-                        </div>
-                        <div class="sound-controls">
-                            <button class="play-btn" data-sound="forest">
-                                <i class="fas fa-play"></i> Reproducir
-                            </button>
-                            <div class="volume-control">
-                                <i class="fas fa-volume-up"></i>
-                                <input type="range" class="volume-slider" min="0" max="100" value="50" data-sound="forest">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-4" data-categories="white ambient">
-                <div class="sound-card">
-                    <div class="sound-card-header">
-                        <h3 class="sound-title"><i class="fas fa-fan"></i>Ventilador</h3>
-                        <p class="sound-description">Sonido constante de ventilador para enmascarar ruidos</p>
-                        <div class="sound-duration">Duración: 8 horas</div>
-                    </div>
-                    <div class="sound-card-body">
-                        <div class="progress-container">
-                            <div class="progress-bar">
-                                <div class="progress" id="progress-fan"></div>
-                            </div>
-                            <div class="time-display">
-                                <span id="current-time-fan">0:00</span>
-                                <span id="duration-fan">8:00:00</span>
-                            </div>
-                        </div>
-                        <div class="sound-controls">
-                            <button class="play-btn" data-sound="fan">
-                                <i class="fas fa-play"></i> Reproducir
-                            </button>
-                            <div class="volume-control">
-                                <i class="fas fa-volume-up"></i>
-                                <input type="range" class="volume-slider" min="0" max="100" value="50" data-sound="fan">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="buttons-container">
+            <!-- RUTAS CORREGIDAS -->
+            <a href="{{ route('inicio-sesion.index') }}" class="btn btn-login">
+                <i class="fas fa-sign-in-alt btn-icon"></i>
+                <span class="btn-text">Inicio de Sesión</span>
+            </a>
             
-            <!-- Llamas -->
-            <div class="col-lg-6 mb-4" data-categories="nature ambient">
-                <div class="sound-card">
-                    <div class="sound-card-header">
-                        <h3 class="sound-title"><i class="fas fa-fire"></i>Fuego Crepitante</h3>
-                        <p class="sound-description">Sonido relajante de llamas crepitantes</p>
-                        <div class="sound-duration">Duración: 30 min</div>
-                    </div>
-                    <div class="sound-card-body">
-                        <div class="progress-container">
-                            <div class="progress-bar">
-                                <div class="progress" id="progress-fire"></div>
-                            </div>
-                            <div class="time-display">
-                                <span id="current-time-fire">0:00</span>
-                                <span id="duration-fire">0:30:00</span>
-                            </div>
-                        </div>
-                        <div class="sound-controls">
-                            <button class="play-btn" data-sound="fire">
-                                <i class="fas fa-play"></i> Reproducir
-                            </button>
-                            <div class="volume-control">
-                                <i class="fas fa-volume-up"></i>
-                                <input type="range" class="volume-slider" min="0" max="100" value="50" data-sound="fire">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-4" data-categories="white ambient">
-                <div class="sound-card">
-                    <div class="sound-card-header">
-                        <h3 class="sound-title"><i class="fas fa-wave-square"></i>Ruido Blanco</h3>
-                        <p class="sound-description">Sonido constante para mejorar la concentración</p>
-                        <div class="sound-duration">Duración: 2 horas</div>
-                    </div>
-                    <div class="sound-card-body">
-                        <div class="progress-container">
-                            <div class="progress-bar">
-                                <div class="progress" id="progress-white"></div>
-                            </div>
-                            <div class="time-display">
-                                <span id="current-time-white">0:00</span>
-                                <span id="duration-white">2:00:00</span>
-                            </div>
-                        </div>
-                        <div class="sound-controls">
-                            <button class="play-btn" data-sound="white">
-                                <i class="fas fa-play"></i> Reproducir
-                            </button>
-                            <div class="volume-control">
-                                <i class="fas fa-volume-up"></i>
-                                <input type="range" class="volume-slider" min="0" max="100" value="50" data-sound="white">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="text-center">
-            <a href="{{ route('ventana-principal') }}" class="back-btn">
-                <i class="fas fa-arrow-left"></i> Volver a la página principal
+            <a href="{{ route('asistente-ia.index') }}" class="btn btn-assistant">
+                <i class="fas fa-robot btn-icon"></i>
+                <span class="btn-text">Asistente de Sueño</span>
+            </a>
+            
+            <a href="{{ route('playlists.index') }}" class="btn btn-playlist">
+                <i class="fas fa-music btn-icon"></i>
+                <span class="btn-text">Playlist Relajante</span>
+            </a>
+            
+            <a href="#" class="btn btn-notification">
+                <i class="fas fa-bell btn-icon"></i>
+                <span class="btn-text">Notificaciones</span>
             </a>
         </div>
-    </div>
-    <div class="currently-playing" id="currently-playing">
-        <div class="current-sound-info">
-            <i class="fas fa-music"></i>
-            <div class="current-sound-text">
-                <h5 id="current-sound-title">Sonido de Lluvia</h5>
-                <p id="current-sound-desc">Reproduciendo...</p>
-            </div>
-        </div>
-        <div class="current-sound-controls">
-            <button class="play-btn" id="current-play-btn">
-                <i class="fas fa-pause"></i> Pausar
-            </button>
-            <button class="favorite-btn" id="favorite-btn">
-                <i class="far fa-heart"></i>
-            </button>
-        </div>
+        
+        <footer>
+            <p>SleepWell &copy; 2024 - Mejora tu sueño, mejora tu vida</p>
+            <small>Versión 1.0.0 | <a href="#" style="color: #4fc3f7;">Política de Privacidad</a></small>
+        </footer>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const playButtons = document.querySelectorAll('.play-btn');
-            const volumeSliders = document.querySelectorAll('.volume-slider');
-            const progressBars = document.querySelectorAll('.progress');
-            const currentTimeDisplays = document.querySelectorAll('.time-display span:first-child');
-            const categoryButtons = document.querySelectorAll('.category-btn');
-            const soundsContainer = document.getElementById('sounds-container');
-            const currentlyPlaying = document.getElementById('currently-playing');
-            const currentSoundTitle = document.getElementById('current-sound-title');
-            const currentSoundDesc = document.getElementById('current-sound-desc');
-            const currentPlayBtn = document.getElementById('current-play-btn');
-            const favoriteBtn = document.getElementById('favorite-btn');
-        
-            let currentSound = null;
-            let isPlaying = false;
-            let progressIntervals = {};
-            let audioElements = {};
-
-            const soundData = {
-                rain: { 
-                    title: 'Sonido de Lluvia', 
-                    desc: 'Relajante lluvia constante con truenos suaves',
-                    duration: 3600
-                },
-                waves: { 
-                    title: 'Olas del Mar', 
-                    desc: 'Sonido de olas suaves en la playa',
-                    duration: 2700 
-                },
-                forest: { 
-                    title: 'Bosque Sereno', 
-                    desc: 'Sonidos del bosque con pájaros y brisa',
-                    duration: 3000
-                },
-                fan: { 
-                    title: 'Ventilador', 
-                    desc: 'Sonido constante de ventilador para enmascarar ruidos',
-                    duration: 28800
-                },
-                fire: { 
-                    title: 'Fuego Crepitante', 
-                    desc: 'Sonido relajante de llamas crepitantes',
-                    duration: 1800
-                },
-                white: { 
-                    title: 'Ruido Blanco', 
-                    desc: 'Sonido constante para mejorar la concentración',
-                    duration: 7200
-                }
-            };
+            const buttons = document.querySelectorAll('.btn');
             
-            function initSoundControls() {
-                playButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        const soundId = this.getAttribute('data-sound');
-                        togglePlayback(soundId, this);
-                    });
-                });
-                
-                volumeSliders.forEach(slider => {
-                    slider.addEventListener('input', function() {
-                        const soundId = this.getAttribute('data-sound');
-                        setVolume(soundId, this.value);
-                    });
-                });
-                
-                Object.keys(soundData).forEach(soundId => {
-                    const duration = soundData[soundId].duration;
-                    const durationDisplay = document.getElementById(`duration-${soundId}`);
-                    if (durationDisplay) {
-                        durationDisplay.textContent = formatTime(duration);
-                    }
-                });
-            }
-            function togglePlayback(soundId, button) {
-                if (currentSound === soundId && isPlaying) {
-                    pauseSound(soundId, button);
-                    return;
-                }
-                
-                if (currentSound && currentSound !== soundId) {
-                    pauseSound(currentSound);
-                }
-                
-
-                playSound(soundId, button);
-            }
-            
-            function playSound(soundId, button) {
-            
-                currentSound = soundId;
-                isPlaying = true;
-                updatePlayButtons(soundId, true);
-                showCurrentlyPlaying(soundId);
-                simulatePlayback(soundId);
-                if (button) {
-                    button.innerHTML = '<i class="fas fa-pause"></i> Pausar';
-                }
-                currentPlayBtn.innerHTML = '<i class="fas fa-pause"></i> Pausar';
-            }
-            
-            function pauseSound(soundId, button) {
-                isPlaying = false;  
-                updatePlayButtons(soundId, false);
-                if (progressIntervals[soundId]) {
-                    clearInterval(progressIntervals[soundId]);
-                    delete progressIntervals[soundId];
-                }
-                if (button) {
-                    button.innerHTML = '<i class="fas fa-play"></i> Reproducir';
-                }
-                currentPlayBtn.innerHTML = '<i class="fas fa-play"></i> Reproducir';
-            }
-            function updatePlayButtons(activeSoundId, playing) {
-                playButtons.forEach(button => {
-                    const soundId = button.getAttribute('data-sound');
-                    if (soundId === activeSoundId) {
-                        button.innerHTML = playing ? 
-                            '<i class="fas fa-pause"></i> Pausar' : 
-                            '<i class="fas fa-play"></i> Reproducir';
-                    } else {
-                        button.innerHTML = '<i class="fas fa-play"></i> Reproducir';
-                    }
-                });
-            }
-            function showCurrentlyPlaying(soundId) {
-                const sound = soundData[soundId];
-                currentSoundTitle.textContent = sound.title;
-                currentSoundDesc.textContent = sound.desc;
-                currentlyPlaying.classList.add('show');
-            }
-            
-            function hideCurrentlyPlaying() {
-                currentlyPlaying.classList.remove('show');
-                currentSound = null;
-                isPlaying = false;
-            }
-            
-            function simulatePlayback(soundId) {
-                const progressBar = document.getElementById(`progress-${soundId}`);
-                const currentTimeDisplay = document.getElementById(`current-time-${soundId}`);
-                const duration = soundData[soundId].duration;
-                
-                let currentTime = 0;
-                if (progressIntervals[soundId]) {
-                    clearInterval(progressIntervals[soundId]);
-                }
-                
-                progressIntervals[soundId] = setInterval(() => {
-                    if (currentTime >= duration) {
-                        clearInterval(progressIntervals[soundId]);
-                        delete progressIntervals[soundId];
-                        pauseSound(soundId);
-                        return;
-                    }
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Agregar animación de clic
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
                     
-                    currentTime++;
-                    const progressPercent = (currentTime / duration) * 100;
-                    
-                    if (progressBar) {
-                        progressBar.style.width = `${progressPercent}%`;
+                    // Si no hay ruta definida, mostrar mensaje
+                    if (!this.href || this.href === '#' || this.href.includes('#')) {
+                        e.preventDefault();
+                        const buttonText = this.querySelector('.btn-text').textContent;
+                        showToast(`Funcionalidad "${buttonText}" próximamente disponible.`);
                     }
-                    
-                    if (currentTimeDisplay) {
-                        currentTimeDisplay.textContent = formatTime(currentTime);
-                    }
-                }, 1000);
-            }
-            function setVolume(soundId, volume) {
+                });
+            });
+        });
 
-                console.log(`Volumen de ${soundId} ajustado a ${volume}%`);
+        // Función para mostrar toasts (notificaciones temporales)
+        function showToast(message) {
+            // Crear elemento toast si no existe
+            let toastContainer = document.querySelector('.toast-container');
+            if (!toastContainer) {
+                toastContainer = document.createElement('div');
+                toastContainer.className = 'toast-container position-fixed top-0 end-0 p-3';
+                toastContainer.style.zIndex = '1050';
+                document.body.appendChild(toastContainer);
             }
-            function formatTime(seconds) {
-                const hrs = Math.floor(seconds / 3600);
-                const mins = Math.floor((seconds % 3600) / 60);
-                const secs = seconds % 60;
-                
-                if (hrs > 0) {
-                    return `${hrs}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-                } else {
-                    return `${mins}:${secs.toString().padStart(2, '0')}`;
-                }
-            }
-            function initCategoryFilters() {
-                categoryButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        categoryButtons.forEach(btn => btn.classList.remove('active'));
-                        this.classList.add('active');
-                        
-                        const category = this.getAttribute('data-category');
-                        
-                        const soundCards = soundsContainer.querySelectorAll('.col-lg-6');
-                        soundCards.forEach(card => {
-                            const categories = card.getAttribute('data-categories');
-                            
-                            if (category === 'all' || categories.includes(category)) {
-                                card.style.display = 'block';
-                            } else {
-                                card.style.display = 'none';
-                            }
-                        });
-                    });
-                });
-            }
+
+            const toast = document.createElement('div');
+            toast.className = 'toast align-items-center text-white bg-primary border-0';
+            toast.setAttribute('role', 'alert');
+            toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">${message}</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            `;
             
-            function initCurrentlyPlayingControls() {
-                currentPlayBtn.addEventListener('click', function() {
-                    if (currentSound) {
-                        if (isPlaying) {
-                            pauseSound(currentSound);
-                        } else {
-                            playSound(currentSound);
-                        }
-                    }
-                });
-                
-                favoriteBtn.addEventListener('click', function() {
-                    this.classList.toggle('fas');
-                    this.classList.toggle('far');
-                });
-            }
-    
-            initSoundControls();
-            initCategoryFilters();
-            initCurrentlyPlayingControls();
+            toastContainer.appendChild(toast);
+            const bsToast = new bootstrap.Toast(toast);
+            bsToast.show();
+            
+            // Remover toast después de que se oculte
+            toast.addEventListener('hidden.bs.toast', () => {
+                toast.remove();
+            });
+        }
+
+        // Animación de entrada escalonada para botones
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.style.opacity = '0';
+            btn.style.transform = 'translateY(20px)';
+            btn.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(btn);
         });
     </script>
 </body>

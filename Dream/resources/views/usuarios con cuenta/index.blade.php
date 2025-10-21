@@ -168,6 +168,21 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -179,6 +194,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+<<<<<<< HEAD
                     <li class="nav-item"><a class="nav-link" href="{{route('perfil.index')}}">Mi perfil</a></li> <!-- Enlace a la vista de perfil, se conecta con rutas -->
                     <li class="nav-item"><a class="nav-link" href="{{route('playlists.index')}}">PlayLists</a></li> <!-- Enlace a la vista de PlayLists, se conecta con rutas -->
                     <li class="nav-item"><a class="nav-link" href="{{route('asistente ia.index')}}">Asistente</a></li> <!-- Enlace a la vista de Asistente IA, se conecta con routas-->
@@ -188,6 +204,39 @@
                     <li class="nav-item"><a class="nav-link" href="{{route('inicio_sesion.index')}}">Iniciar sesión</a></li> <!-- Enlace a la vista de inicio de sesión, se conecta con rutas -->
 
                     <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarLogin()">Iniciar sesión</a></li>
+=======
+                    <!-- NAVEGACIÓN CORREGIDA - SIN CONFLICTOS -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('mi-perfil') }}">
+                            <i class="fas fa-user"></i> Mi perfil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('playlists.index') }}">
+                            <i class="fas fa-list"></i> PlayLists
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('asistente-ia.index') }}">
+                            <i class="fas fa-robot"></i> Asistente
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="mostrarVista('opciones')">
+                            <i class="fas fa-cog"></i> Opciones
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="iniciarSueno()">
+                            <i class="fas fa-moon"></i> Iniciar sueño
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('inicio-sesion.index') }}">
+                            <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                        </a>
+                    </li>
+>>>>>>> InterfasC
                 </ul>
             </div>
         </div>
@@ -195,6 +244,7 @@
 
  
     <main class="container main-content">
+<<<<<<< HEAD
      
         <div id="perfil" class="hidden">
             <h2>Mi perfil</h2>
@@ -227,6 +277,127 @@
     </main>
 
     
+=======
+        <!-- Vista Principal -->
+        <div id="principal" class="fade-in">
+            <div class="text-center">
+                <div class="avatar">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h2>Bienvenido a PlayList</h2>
+                <p>Explora tus playlists, configura tu perfil y disfruta de la música.</p>
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="fas fa-list fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Mis PlayLists</h5>
+                                <p class="card-text">Gestiona tus listas de reproducción favoritas.</p>
+                                <a href="#" onclick="mostrarVista('playlists')" class="btn btn-custom">Ver PlayLists</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="fas fa-user fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Mi Perfil</h5>
+                                <p class="card-text">Configura tu información personal.</p>
+                                <a href="#" onclick="mostrarVista('perfil')" class="btn btn-custom">Ir al Perfil</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="fas fa-robot fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Asistente</h5>
+                                <p class="card-text">Obtén ayuda con recomendaciones musicales.</p>
+                                <a href="#" onclick="mostrarVista('asistente')" class="btn btn-custom">Usar Asistente</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="{{ route('ventana-principal.index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Regresar a la ventana principal
+                </a>
+            </div>
+        </div>
+
+        <!-- Vista Perfil -->
+        <div id="perfil" class="hidden fade-in">
+            <div class="text-center">
+                <div class="avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h2>Mi Perfil</h2>
+                <p>Administra tu información personal y preferencias.</p>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5><i class="fas fa-bell"></i> Opciones Rápidas</h5>
+                            <ul class="mt-3">
+                                <li><a href="#" onclick="mostrarVista('notificaciones')"><i class="fas fa-bell"></i> Notificaciones</a></li>
+                                <li><a href="#" onclick="mostrarVista('idiomas')"><i class="fas fa-language"></i> Idiomas</a></li>
+                                <li><a href="#" onclick="mostrarVista('sonidosFavoritos')"><i class="fas fa-heart"></i> Sonidos favoritos</a></li>
+                                <li><a href="#" onclick="mostrarVista('misDatos')"><i class="fas fa-id-card"></i> Mis datos</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="table-container">
+                        <h3><i class="fas fa-table"></i> Detalles de tu Cuenta</h3>
+                        <table id="perfilTable" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th onclick="sortTable(0)">Campo <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTable(1)">Valor <i class="fas fa-sort"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody id="perfilTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
+            </div>
+        </div>
+
+        <!-- Placeholders para otras vistas -->
+        <div id="playlists" class="hidden fade-in text-center">
+            <h2>PlayLists</h2>
+            <p>Aquí puedes gestionar tus listas de reproducción.</p>
+            <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
+        </div>
+        <div id="asistente" class="hidden fade-in text-center">
+            <h2>Asistente</h2>
+            <p>Tu asistente musical está aquí para ayudarte.</p>
+            <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
+        </div>
+        <div id="opciones" class="hidden fade-in text-center">
+            <h2>Opciones</h2>
+            <p>Configura tus preferencias de la aplicación.</p>
+            <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
+        </div>
+        <div id="login" class="hidden fade-in text-center">
+            <h2>Iniciar Sesión</h2>
+            <p>Formulario de login aquí.</p>
+            <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
+        </div>
+    </main>
+
+    <div class="footer">
+        <p>&copy; 2024 Aplicación PlayList. Todos los derechos reservados. | <a href="#" class="text-decoration-none">Política de Privacidad</a></p>
+    </div>
+
+>>>>>>> InterfasC
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         
@@ -237,7 +408,7 @@
             });
             const targetDiv = document.getElementById(vista);
             targetDiv.classList.remove('hidden');
-            setTimeout(() => targetDiv.classList.add('fade-in'), 10); // Trigger animation
+            setTimeout(() => targetDiv.classList.add('fade-in'), 10);
             if (vista === 'perfil') {
                 loadPerfilTable(); 
             }
