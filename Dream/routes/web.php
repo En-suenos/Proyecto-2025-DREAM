@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 
 // Rutas corregidas (CONSISTENTES)
-Route::get('/ventana-principal/index', [VentanaPrincipalController::class, 'index'])->name('ventana-principal.index');
+Route::get('/ventana principal/index', [VentanaPrincipalController::class, 'index'])->name('ventana-principal.index');
 
 //Ruta para inicio de sesión
 Route::get('/inicio sesion/index',[InicioSesionController::class, 'index'])->name('inicio_sesion.index');
