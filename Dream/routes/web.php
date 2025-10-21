@@ -34,7 +34,7 @@ Route::get('/perfil/index', [PerfilController::class, 'index'])->name('perfil.in
 Route::get('/mi-perfil', [PerfilController::class, 'index'])->name('mi-perfil');
 
 // Ruta para Playlists
-Route::get('/playlists/index', [PlaylistController::class, 'index'])->name('playlists.index');
+Route::get('/ventana playlista/index', [PlaylistController::class, 'index'])->name('playlists.index');
 
 //Ruta para Asistente IA
 Route::get('/asistente ia/index', [AsistenteIAController::class, 'index'])->name('asistente-ia.index');
@@ -47,4 +47,8 @@ Route::get('/usuario/create', [App\Http\Controllers\Usuario\UsuarioController::c
 Route::post('/usuario/store', [App\Http\Controllers\Usuario\UsuarioController::class, 'store'])->name('usuarios.store');
 Route::post('/usuario/update/{usuario}', [App\Http\Controllers\Usuario\UsuarioController::class, 'update'])->name('usuarios.update');
 
-
+//Ruta para sonidos
+Route::get('/ventana sonido/index', [App\Http\Controllers\Sonido\SonidoController::class, 'index'])->name('sonidos.index');
+Route::get('/ventana sonido/create', [App\Http\Controllers\Sonido\SonidoController::class, 'create'])->name('sonidos.create');
+Route::post('/ventana sonido/store', [App\Http\Controllers\Sonido\SonidoController::class, 'store'])->name('sonidos.store');
+Route::delete('/ventana sonido/{id}', [App\Http\Controllers\Sonido\SonidoController::class, 'destroy'])->name('sonidos.destroy');

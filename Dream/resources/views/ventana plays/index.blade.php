@@ -262,6 +262,7 @@
             <button onclick="regresar('principal')">Regresa al perfil</button>
         </div>
 
+        <!--
         <div id="misDatos" class="hidden">
             <h2>Ventana de Mis Datos</h2>
             <form id="formDatos">
@@ -273,17 +274,18 @@
                 <button type="submit">Guardar</button>
             </form>
             <button onclick="regresar('perfil')">Regresa al perfil</button>
-        </div>
+        </div>-->
 
-        <!-- Vista de Asistente -->
+        <!-- 
         <div id="asistente" class="hidden">
             <h2>Ventana de Asistente</h2>
             <p>Charla con AI: <input type="text" id="inputAI" placeholder="Escribe un mensaje"></p>
             <button onclick="interactuarAI()">Enviar</button>
             <p>Sugerencias AI: Sugerencia 1, Sugerencia 2.</p>
             <button onclick="regresar('principal')">Regresa a la ventana principal</button>
-        </div>
+        </div>-->
 
+        <!-- 
         <div id="login" class="hidden">
             <h2>Iniciar Sesión</h2>
             <form id="formLogin">
@@ -293,7 +295,7 @@
             </form>
             <p id="mensajeLogin"></p>
             <button onclick="regresar('principal')">Regresa</button>
-        </div>
+        </div>-->
 
         <div id="principalSinSesion" class="hidden">
             <h2>Ventana principal sin iniciar sesión</h2>

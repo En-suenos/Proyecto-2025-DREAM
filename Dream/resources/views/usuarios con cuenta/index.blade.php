@@ -248,7 +248,7 @@
                                 <i class="fas fa-list fa-3x text-primary mb-3"></i>
                                 <h5 class="card-title">Mis PlayLists</h5>
                                 <p class="card-text">Gestiona tus listas de reproducción favoritas.</p>
-                                <a href="#" onclick="mostrarVista('playlists')" class="btn btn-custom">Ver PlayLists</a>
+                                <a href="{{route('sonidos.index')}}" class="btn btn-custom">Ver PlayLists</a>
                             </div>
                         </div>
                     </div>
