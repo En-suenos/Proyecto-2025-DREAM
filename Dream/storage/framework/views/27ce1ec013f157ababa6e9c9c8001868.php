@@ -303,4 +303,4 @@
 
 </body>
 </html>
-<?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/ventana de datos/index.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\laragon\www\carpeta principal\Proyecto-2025-DREAM\Dream\resources\views/ventana de datos/index.blade.php ENDPATH**/ ?>
