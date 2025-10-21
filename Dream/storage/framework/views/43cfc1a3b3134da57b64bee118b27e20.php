@@ -74,7 +74,7 @@
             ¿No tienes cuenta? <a href="<?php echo e(route('ventana datos.index')); ?>">Regístrate aquí</a>
         </p>
         <p class="text-center">
-            <a href="<?php echo e(route('ventana principal.index')); ?>">Volver a la aplicación</a>
+            <a href="<?php echo e(route('ventana-principal.index')); ?>">Volver a la aplicación</a>
         </p>
     </div>
 </body>

@@ -9,10 +9,7 @@
     <!-- Agregado: Script de Transformers.js -->
     <script src="https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0/dist/transformers.min.js"></script>
     <style>
-<<<<<<< HEAD
-=======
         /* El CSS permanece igual, lo omito por brevedad, pero inclúyelo completo en tu archivo */
->>>>>>> ramaView2
         :root {
             --primary-color: #4a6fa5;
             --secondary-color: #2c4d7a;

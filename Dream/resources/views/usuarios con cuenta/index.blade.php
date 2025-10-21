@@ -194,17 +194,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-<<<<<<< HEAD
-                    <li class="nav-item"><a class="nav-link" href="{{route('perfil.index')}}">Mi perfil</a></li> <!-- Enlace a la vista de perfil, se conecta con rutas -->
-                    <li class="nav-item"><a class="nav-link" href="{{route('playlists.index')}}">PlayLists</a></li> <!-- Enlace a la vista de PlayLists, se conecta con rutas -->
-                    <li class="nav-item"><a class="nav-link" href="{{route('asistente ia.index')}}">Asistente</a></li> <!-- Enlace a la vista de Asistente IA, se conecta con routas-->
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarVista('opciones')">Opciones</a></li>
-
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="iniciarSueno()">Iniciar sueño</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{route('inicio_sesion.index')}}">Iniciar sesión</a></li> <!-- Enlace a la vista de inicio de sesión, se conecta con rutas -->
-
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarLogin()">Iniciar sesión</a></li>
-=======
                     <!-- NAVEGACIÓN CORREGIDA - SIN CONFLICTOS -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('mi-perfil') }}">
@@ -232,11 +221,10 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('inicio-sesion.index') }}">
+                        <a class="nav-link" href="{{ route('inicio_sesion.index') }}">
                             <i class="fas fa-sign-in-alt"></i> Iniciar sesión
                         </a>
                     </li>
->>>>>>> InterfasC
                 </ul>
             </div>
         </div>
@@ -244,40 +232,6 @@
 
  
     <main class="container main-content">
-<<<<<<< HEAD
-     
-        <div id="perfil" class="hidden">
-            <h2>Mi perfil</h2>
-            <ul>
-                <li><a href="#" onclick="mostrarVista('notificaciones')">Notificaciones</a></li>
-                <li><a href="#" onclick="mostrarVista('idiomas')">Idiomas</a></li>
-                <li><a href="#" onclick="mostrarVista('sonidosFavoritos')">Sonidos favoritos</a></li>
-                <li><a href="#" onclick="mostrarVista('misDatos')">Mis datos</a></li>
-            </ul>
-            
-           
-            <div class="table-container mt-4">
-                <h3>Detalles de tu Cuenta</h3>
-                <table id="perfilTable" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th onclick="sortTable(0)">Campo</th>
-                            <th onclick="sortTable(1)">Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody id="perfilTableBody">
-                       
-                    </tbody>
-                </table>
-            </div>
-            <a href="{{route('ventana principal.index')}}" class="btn btn-secondary mt-3">
-                Regresa a la ventana principal
-            </a> <!-- Botón para regresar a la ventana principal -->
-        </div>
-    </main>
-
-    
-=======
         <!-- Vista Principal -->
         <div id="principal" class="fade-in">
             <div class="text-center">
@@ -397,7 +351,6 @@
         <p>&copy; 2024 Aplicación PlayList. Todos los derechos reservados. | <a href="#" class="text-decoration-none">Política de Privacidad</a></p>
     </div>
 
->>>>>>> InterfasC
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         

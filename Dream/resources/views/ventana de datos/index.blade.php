@@ -78,7 +78,7 @@
                 mensaje.innerHTML = '¡Inicio de sesión exitoso! Redirigiendo...';
                 mensaje.style.display = 'block';
                 setTimeout(() => {
-                    window.location.href = '{{route('ventana principal.index')}}'; // Redirigir a la app principal 
+                    window.location.href = '{{route('ventana_principal.index')}}'; // Redirigir a la app principal 
                 }, 2000);
             } else {
                 mensaje.className = 'alert alert-danger alert-custom';

@@ -3,16 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
+
 
     <title>Página Principal - SoundScape</title>
 
-=======
-<<<<<<< HEAD
+
     <title>Página Principal - SoundScape</title>
-=======
-    <title>Ventana Principal - SleepWell</title>
->>>>>>> ramaView2
 >>>>>>> InterfasC
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -317,7 +313,6 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
 
     <div class="container py-5">
         <div class="row justify-content-center">
@@ -444,18 +439,12 @@
                 </div>
             </div>
 
-=======
->>>>>>> InterfasC
     <nav class="navbar">
         <a class="navbar-brand" href="#">SleepWell</a>
         <div class="navbar-nav">
            <!-- <a class="nav-link" href="{{ route('perfil.index') }}"><i class="fas fa-user me-1"></i>Perfil</a>-->
             <a class="nav-link" href="#"><i class="fas fa-globe me-1"></i>Idioma</a>
             <a class="nav-link" href="#"><i class="fas fa-cog me-1"></i>Configuración</a>
-<<<<<<< HEAD
-
-=======
->>>>>>> InterfasC
         </div>
     </nav>
 
@@ -492,7 +481,6 @@
         </footer>
     </div>
 
-<<<<<<< HEAD
 
 
     <!-- Incluir Bootstrap JS -->
@@ -590,8 +578,6 @@
         }
 
 
-=======
->>>>>>> InterfasC
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Funcionalidad mejorada para los botones
@@ -673,10 +659,6 @@
             btn.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(btn);
         });
-<<<<<<< HEAD
-
-=======
->>>>>>> InterfasC
     </script>
     <script>
     let lastScrollTop = 0;
@@ -699,7 +681,3 @@
 
 </body>
 </html>
-<<<<<<< HEAD
-
-=======
->>>>>>> InterfasC

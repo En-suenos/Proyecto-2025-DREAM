@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
     <title>Página Principal - SoundScape</title>
 
+
+    <title>Página Principal - SoundScape</title>
+>>>>>>> InterfasC
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
@@ -441,7 +445,6 @@
            <!-- <a class="nav-link" href="<?php echo e(route('perfil.index')); ?>"><i class="fas fa-user me-1"></i>Perfil</a>-->
             <a class="nav-link" href="#"><i class="fas fa-globe me-1"></i>Idioma</a>
             <a class="nav-link" href="#"><i class="fas fa-cog me-1"></i>Configuración</a>
-
         </div>
     </nav>
 
@@ -656,7 +659,6 @@
             btn.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(btn);
         });
-
     </script>
     <script>
     let lastScrollTop = 0;
@@ -679,5 +681,4 @@
 
 </body>
 </html>
-
 <?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/ventana principal/index.blade.php ENDPATH**/ ?>
