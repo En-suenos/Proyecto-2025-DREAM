@@ -269,7 +269,7 @@
                                 <i class="fas fa-robot fa-3x text-primary mb-3"></i>
                                 <h5 class="card-title">Asistente</h5>
                                 <p class="card-text">Obtén ayuda con recomendaciones musicales.</p>
-                                <a href="#" onclick="mostrarVista('asistente')" class="btn btn-custom">Usar Asistente</a>
+                                <a href="{{route('asistente-ia.index')}}" class="btn btn-custom">Usar Asistente</a>
                             </div>
                         </div>
                     </div>
@@ -277,7 +277,7 @@
             </div>
             <div class="text-center mt-4">
                 <a href="{{ route('ventana-principal.index') }}" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Regresar a la ventana principal
+                    <i class="fas fa-arrow-left"></i> Cerrar sesion
                 </a>
             </div>
         </div>
