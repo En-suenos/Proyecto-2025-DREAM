@@ -6,10 +6,7 @@
     <title>SleepAssistant - Ayuda para Problemas de Sueño</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Agregado: Script de Transformers.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0/dist/transformers.min.js"></script>
     <style>
-        /* El CSS permanece igual, lo omito por brevedad, pero inclúyelo completo en tu archivo */
         :root {
             --primary-color: #4a6fa5;
             --secondary-color: #2c4d7a;
@@ -116,90 +113,6 @@
             border: 1px solid #bbdefb;
             border-radius: 10px;
             padding: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .table th:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        .table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .dark-mode .table th {
-            background-color: var(--secondary-color);
-        }
-        
-        .dark-mode .table td {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            background-color: #2d2d44;
-            color: var(--text-light);
-        }
-        
-        .suggestions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .suggestion-chip {
-            background-color: #e9ecef;
-            border-radius: 20px;
-            padding: 8px 16px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .suggestion-chip:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .dark-mode .suggestion-chip {
-            background-color: #3a3a52;
-            color: var(--text-light);
-        }
-        
-        .ai-icon {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-        }
-        
-        .user-icon {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-        }
-        
-        .action-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .app-container {
-                padding: 15px;
-            }
-            
-            .message-bubble {
-                max-width: 85%;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .action-buttons button {
-                width: 100%;
-            }
-
             margin-bottom: 20px;
         }
         
@@ -415,15 +328,6 @@
         </div>
     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        let chatHistory = [
-            { mensaje: '¡Hola! Soy tu asistente AI local. ¿En qué puedo ayudarte hoy?', de: 'AI', hora: obtenerHoraActual() }
-        ];
-        
-        let pipeline; // Variable para el modelo de Transformers.js
-        let isTyping = false;
     <script>
         let isTyping = false;
         let currentSound = null;
