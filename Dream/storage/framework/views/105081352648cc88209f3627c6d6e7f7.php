@@ -201,8 +201,8 @@
     <main class="container main-content">
         <div class="login-container">
             <h2>Iniciar Sesión</h2>
-            <form action="{{ route('inicio_sesion.login') }}" method="POST" id="formLogin">
-                @csrf
+            <form action="<?php echo e(route('inicio_sesion.login')); ?>" method="POST" id="formLogin">
+                <?php echo csrf_field(); ?>
                 <div class="mb-3">
                     <label for="correoLogin" class="form-label">Correo Electrónico</label>
                     <input type="email" class="form-control" id="correoLogin" name="correoLogin" placeholder="Correo" required>
@@ -214,23 +214,25 @@
                 <button type="submit" class="btn btn-primary">Ingresar</button>
             </form>
             
-            @if(session('error'))
+            <?php if(session('error')): ?>
                 <div class="alert alert-danger alert-custom">
-                    {{ session('error') }}
-                </div>
-            @endif
+                    <?php echo e(session('error')); ?>
 
-            @if (session('success'))
-                <div class="alert alert-success alert-custom">
-                    {{ session('success') }}
                 </div>
-            @endif
+            <?php endif; ?>
+
+            <?php if(session('success')): ?>
+                <div class="alert alert-success alert-custom">
+                    <?php echo e(session('success')); ?>
+
+                </div>
+            <?php endif; ?>
 
             <p class="text-center mt-3">
-                ¿No tienes cuenta? <a href="{{ route('ventana datos.index') }}">Regístrate aquí</a>
+                ¿No tienes cuenta? <a href="<?php echo e(route('ventana datos.index')); ?>">Regístrate aquí</a>
             </p>
             <p class="text-center">
-                <a href="{{ route('ventana-principal.index') }}">Volver a la aplicación</a>
+                <a href="<?php echo e(route('ventana-principal.index')); ?>">Volver a la aplicación</a>
             </p>
         </div>
     </main>
@@ -238,3 +240,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php /**PATH C:\laragon\www\carpeta principal\Proyecto-2025-DREAM\Dream\resources\views/inicio sesion/index.blade.php ENDPATH**/ ?>
