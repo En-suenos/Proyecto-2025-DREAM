@@ -46,7 +46,9 @@ Route::get('/ventana datos/index', [VentanaDatosController::class, 'index'])->na
 Route::get('/usuario/create', [App\Http\Controllers\Usuario\UsuarioController::class, 'create'])->name('usuario.create');
 Route::post('/usuario/store', [App\Http\Controllers\Usuario\UsuarioController::class, 'store'])->name('usuarios.store');
 Route::post('/usuario/update/{usuario}', [App\Http\Controllers\Usuario\UsuarioController::class, 'update'])->name('usuarios.update');
-
+//Rutas para eliminar usuario
+Route::delete('/usuario/destroy/{usuario}', [App\Http\Controllers\Usuario\UsuarioController::class, 'destroy'])
+    ->name('usuarios.destroy');
 //Ruta para sonidos
 Route::get('/ventana sonido/index', [App\Http\Controllers\Sonido\SonidoController::class, 'index'])->name('sonidos.index');
 Route::get('/ventana sonido/create', [App\Http\Controllers\Sonido\SonidoController::class, 'create'])->name('sonidos.create');

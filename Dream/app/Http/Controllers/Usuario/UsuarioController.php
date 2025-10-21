@@ -46,4 +46,17 @@ class UsuarioController extends Controller
         $usuario->update($request->all());
         return Redirect::to('/ventana de datos/index');
     }
+
+    // para eliminar usuario (lógica)
+    public function delete($id){
+        $usuario=Usuario::find($id);
+        return View::make('usuarios con cuenta.delete', compact('usuario'));
+    }
+
+    public function destroy(Usuario $usuario)
+   {
+    $usuario->delete(); // Eliminación lógica (porque usas SoftDeletes)
+    return Redirect::route('ventana-principal.index')->with('success', 'Tu cuenta ha sido eliminada correctamente.');
+   }
+
 }

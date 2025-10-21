@@ -196,18 +196,18 @@
                 <ul class="navbar-nav ms-auto">
                     <!-- NAVEGACIÓN CORREGIDA - SIN CONFLICTOS -->
                     <li class="nav-item">
-                        <!--<a class="nav-link" href="{{ route('mi-perfil') }}">-->
+                        <!--<a class="nav-link" href="<?php echo e(route('mi-perfil')); ?>">-->
                         <a href="#" onclick="mostrarVista('perfil')" class="nav-link">
                             <i class="fas fa-user"></i> Mi perfil
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('playlists.index') }}">
+                        <a class="nav-link" href="<?php echo e(route('playlists.index')); ?>">
                             <i class="fas fa-list"></i> PlayLists
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('asistente-ia.index') }}">
+                        <a class="nav-link" href="<?php echo e(route('asistente-ia.index')); ?>">
                             <i class="fas fa-robot"></i> Asistente
                         </a>
                     </li>
@@ -222,7 +222,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('ventana-principal.index') }}">
+                        <a class="nav-link" href="<?php echo e(route('ventana-principal.index')); ?>">
                             <i class="fas fa-sign-in-alt"></i> Cerrar sesión
                         </a>
                     </li>
@@ -239,7 +239,7 @@
                 <div class="avatar">
                     <i class="fas fa-music"></i>
                 </div>
-                <h2>Bienvenido, {{ $usuario->nombre }}</h2>
+                <h2>Bienvenido, <?php echo e($usuario->nombre); ?></h2>
                 <p>Explora tus playlists, configura tu perfil y disfruta de la música.</p>
                 <div class="row mt-4">
                     <div class="col-md-4">
@@ -248,7 +248,7 @@
                                 <i class="fas fa-list fa-3x text-primary mb-3"></i>
                                 <h5 class="card-title">Mis PlayLists</h5>
                                 <p class="card-text">Gestiona tus listas de reproducción favoritas.</p>
-                                <a href="{{route('sonidos.index')}}" class="btn btn-custom">Ver PlayLists</a>
+                                <a href="<?php echo e(route('sonidos.index')); ?>" class="btn btn-custom">Ver PlayLists</a>
                             </div>
                         </div>
                     </div>
@@ -269,14 +269,14 @@
                                 <i class="fas fa-robot fa-3x text-primary mb-3"></i>
                                 <h5 class="card-title">Asistente</h5>
                                 <p class="card-text">Obtén ayuda con recomendaciones musicales.</p>
-                                <a href="{{route('asistente-ia.index')}}" class="btn btn-custom">Usar Asistente</a>
+                                <a href="<?php echo e(route('asistente-ia.index')); ?>" class="btn btn-custom">Usar Asistente</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="text-center mt-4">
-                <a href="{{ route('ventana-principal.index') }}" class="btn btn-secondary">
+                <a href="<?php echo e(route('ventana-principal.index')); ?>" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Cerrar sesion
                 </a>
             </div>
@@ -324,9 +324,9 @@
             </div>
             <div class="text-center">
                 <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
-                <form action="{{ route('usuarios.destroy', $usuario->id_usuario) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');" style="display:inline;">
-    @csrf
-    @method('DELETE')
+                <form action="<?php echo e(route('usuarios.destroy', $usuario->id_usuario)); ?>" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');" style="display:inline;">
+    <?php echo csrf_field(); ?>
+    <?php echo method_field('DELETE'); ?>
     <button type="submit" class="btn btn-danger">
         <i class="fas fa-trash-alt"></i> Eliminar cuenta
     </button>
@@ -378,10 +378,10 @@
             }
         }
         const usuario = {
-           nombre: "{{ $usuario->nombre }}",
-           correo: "{{ $usuario->correo }}",
-           tipo_usuario: "{{ ucfirst($usuario->tipo_usuario) }}",
-           fecha_registro: "{{ \Carbon\Carbon::parse($usuario->fecha_registro)->format('d/m/Y') }}"
+           nombre: "<?php echo e($usuario->nombre); ?>",
+           correo: "<?php echo e($usuario->correo); ?>",
+           tipo_usuario: "<?php echo e(ucfirst($usuario->tipo_usuario)); ?>",
+           fecha_registro: "<?php echo e(\Carbon\Carbon::parse($usuario->fecha_registro)->format('d/m/Y')); ?>"
        };
 
         let perfilData = [
@@ -438,4 +438,4 @@
         function regresar(vista) { mostrarVista(vista); }
     </script>
 </body>
-</html>
+</html><?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/usuarios con cuenta/index.blade.php ENDPATH**/ ?>
