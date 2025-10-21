@@ -85,6 +85,7 @@
     </style>
 </head>
 <body class="bg-light">
+    <!--
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -142,7 +143,7 @@
                         </form>
 
                         <div class="text-center mt-3">
-                            <a href="<?php echo e(route('ventana-principal')); ?>" class="back-link">
+                            <a href="<?php echo e(route('ventana-principal.index')); ?>" class="back-link">
                                 <i class="fas fa-arrow-left me-2"></i>Volver al inicio
                             </a>
                         </div>
@@ -150,9 +151,9 @@
                 </div>
             </div>
         </div>
-    </div>
-
+    </div>-->
     <!-- Modal de confirmación -->
+     <!--
     <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -169,9 +170,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
     <!-- Modal para cambiar foto -->
+     <!--
     <div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -261,7 +263,7 @@
         });
 
         window.onload = loadProfile;
-    </script>
+    </script>-->
 </body>
 </html>
 <?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/ventana perfil/index.blade.php ENDPATH**/ ?>

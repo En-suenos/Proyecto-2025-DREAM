@@ -196,7 +196,8 @@
                 <ul class="navbar-nav ms-auto">
                     <!-- NAVEGACIÓN CORREGIDA - SIN CONFLICTOS -->
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo e(route('mi-perfil')); ?>">
+                        <!--<a class="nav-link" href="<?php echo e(route('mi-perfil')); ?>">-->
+                        <a href="#" onclick="mostrarVista('perfil')" class="nav-link">
                             <i class="fas fa-user"></i> Mi perfil
                         </a>
                     </li>
@@ -221,8 +222,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo e(route('inicio_sesion.index')); ?>">
-                            <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                        <a class="nav-link" href="<?php echo e(route('ventana-principal.index')); ?>">
+                            <i class="fas fa-sign-in-alt"></i> Cerrar sesión
                         </a>
                     </li>
                 </ul>
@@ -261,6 +262,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body text-center">

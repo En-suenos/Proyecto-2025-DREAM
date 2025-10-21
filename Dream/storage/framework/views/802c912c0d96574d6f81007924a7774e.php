@@ -43,7 +43,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="<?php echo e(route('ventana-principal')); ?>" class="btn btn-outline-light">
+            <a href="<?php echo e(route('usuario_con_cuenta.index')); ?>" class="btn btn-outline-light">
                 ← Volver al inicio
             </a>
         </div>
