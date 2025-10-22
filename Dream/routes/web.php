@@ -32,9 +32,10 @@ Route::get('/usuarios con cuenta/index', [UsuarioConCuentaController::class, 'in
 // Ruta para perfil 
 Route::get('/perfil/index', [PerfilController::class, 'index'])->name('perfil.index');
 Route::get('/mi-perfil', [PerfilController::class, 'index'])->name('mi-perfil');
+Route::put('/perfil/update', [App\Http\Controllers\Perfil\PerfilController::class, 'update'])->name('perfil.update');
 
 // Ruta para Playlists
-Route::get('/playlists/index', [PlaylistController::class, 'index'])->name('playlists.index');
+Route::get('/ventana playlista/index', [PlaylistController::class, 'index'])->name('playlists.index');
 
 //Ruta para Asistente IA
 Route::get('/asistente ia/index', [AsistenteIAController::class, 'index'])->name('asistente-ia.index');
@@ -46,5 +47,11 @@ Route::get('/ventana datos/index', [VentanaDatosController::class, 'index'])->na
 Route::get('/usuario/create', [App\Http\Controllers\Usuario\UsuarioController::class, 'create'])->name('usuario.create');
 Route::post('/usuario/store', [App\Http\Controllers\Usuario\UsuarioController::class, 'store'])->name('usuarios.store');
 Route::post('/usuario/update/{usuario}', [App\Http\Controllers\Usuario\UsuarioController::class, 'update'])->name('usuarios.update');
-
-
+//Rutas para eliminar usuario
+Route::delete('/usuario/destroy/{usuario}', [App\Http\Controllers\Usuario\UsuarioController::class, 'destroy'])
+    ->name('usuarios.destroy');
+//Ruta para sonidos
+Route::get('/ventana sonido/index', [App\Http\Controllers\Sonido\SonidoController::class, 'index'])->name('sonidos.index');
+Route::get('/ventana sonido/create', [App\Http\Controllers\Sonido\SonidoController::class, 'create'])->name('sonidos.create');
+Route::post('/ventana sonido/store', [App\Http\Controllers\Sonido\SonidoController::class, 'store'])->name('sonidos.store');
+Route::delete('/ventana sonido/{id}', [App\Http\Controllers\Sonido\SonidoController::class, 'destroy'])->name('sonidos.destroy');

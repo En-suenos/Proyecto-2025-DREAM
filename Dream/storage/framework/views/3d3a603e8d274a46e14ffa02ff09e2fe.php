@@ -196,7 +196,8 @@
                 <ul class="navbar-nav ms-auto">
                     <!-- NAVEGACIÓN CORREGIDA - SIN CONFLICTOS -->
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo e(route('mi-perfil')); ?>">
+                        <!--<a class="nav-link" href="<?php echo e(route('mi-perfil')); ?>">-->
+                        <a href="#" onclick="mostrarVista('perfil')" class="nav-link">
                             <i class="fas fa-user"></i> Mi perfil
                         </a>
                     </li>
@@ -221,8 +222,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo e(route('inicio_sesion.index')); ?>">
-                            <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                        <a class="nav-link" href="<?php echo e(route('ventana-principal.index')); ?>">
+                            <i class="fas fa-sign-in-alt"></i> Cerrar sesión
                         </a>
                     </li>
                 </ul>
@@ -247,7 +248,7 @@
                                 <i class="fas fa-list fa-3x text-primary mb-3"></i>
                                 <h5 class="card-title">Mis PlayLists</h5>
                                 <p class="card-text">Gestiona tus listas de reproducción favoritas.</p>
-                                <a href="#" onclick="mostrarVista('playlists')" class="btn btn-custom">Ver PlayLists</a>
+                                <a href="<?php echo e(route('sonidos.index')); ?>" class="btn btn-custom">Ver PlayLists</a>
                             </div>
                         </div>
                     </div>
@@ -261,13 +262,14 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body text-center">
                                 <i class="fas fa-robot fa-3x text-primary mb-3"></i>
                                 <h5 class="card-title">Asistente</h5>
                                 <p class="card-text">Obtén ayuda con recomendaciones musicales.</p>
-                                <a href="#" onclick="mostrarVista('asistente')" class="btn btn-custom">Usar Asistente</a>
+                                <a href="<?php echo e(route('asistente-ia.index')); ?>" class="btn btn-custom">Usar Asistente</a>
                             </div>
                         </div>
                     </div>
@@ -275,7 +277,7 @@
             </div>
             <div class="text-center mt-4">
                 <a href="<?php echo e(route('ventana-principal.index')); ?>" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Regresar a la ventana principal
+                    <i class="fas fa-arrow-left"></i> Cerrar sesion
                 </a>
             </div>
         </div>
@@ -299,6 +301,8 @@
                                 <li><a href="#" onclick="mostrarVista('idiomas')"><i class="fas fa-language"></i> Idiomas</a></li>
                                 <li><a href="#" onclick="mostrarVista('sonidosFavoritos')"><i class="fas fa-heart"></i> Sonidos favoritos</a></li>
                                 <li><a href="#" onclick="mostrarVista('misDatos')"><i class="fas fa-id-card"></i> Mis datos</a></li>
+                                <li><a href="<?php echo e(route('perfil.index')); ?>"><i class="fas fa-id-card"></i> Editar perfil</a></li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -321,6 +325,15 @@
             </div>
             <div class="text-center">
                 <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
+                <form action="<?php echo e(route('usuarios.destroy', $usuario->id_usuario)); ?>" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');" style="display:inline;">
+            
+                 <?php echo csrf_field(); ?>
+                 <?php echo method_field('DELETE'); ?>
+                 <button type="submit" class="btn btn-custom">
+                     <i class="fas fa-trash-alt"></i> Eliminar cuenta
+               </button>
+              </form>
+
             </div>
         </div>
 

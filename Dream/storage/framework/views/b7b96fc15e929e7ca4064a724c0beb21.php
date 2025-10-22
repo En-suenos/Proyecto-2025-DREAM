@@ -458,7 +458,7 @@
                 <span class="btn-text">Inicio de Sesión</span>
             </a>
             
-            <a href="#" class="btn btn-assistant">
+            <a href="<?php echo e(route('asistente-ia.index')); ?>" class="btn btn-assistant">
                 <i class="fas fa-robot btn-icon"></i>
                 <span class="btn-text">Asistente de Sueño</span>
             </a>

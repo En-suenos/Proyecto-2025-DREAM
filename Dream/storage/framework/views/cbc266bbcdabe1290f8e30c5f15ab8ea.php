@@ -17,7 +17,6 @@
             border: none;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
         }
         .card-body {
             padding: 2rem;
@@ -25,19 +24,13 @@
         .profile-img {
             width: 120px;
             height: 120px;
-            object-fit: cover;
             border: 4px solid #fff;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
-        }
-        .profile-img:hover {
-            transform: scale(1.05);
         }
         .form-control {
             border-radius: 10px;
             border: 1px solid #ddd;
             padding: 12px;
-            transition: border-color 0.3s, box-shadow 0.3s;
         }
         .form-control:focus {
             border-color: #667eea;
@@ -49,219 +42,142 @@
             border-radius: 25px;
             padding: 12px;
             font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
         }
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        .btn-outline-secondary {
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .btn-outline-secondary:hover {
-            background-color: #667eea;
-            border-color: #667eea;
-        }
-        .back-link {
-            color: #667eea;
-            font-weight: 500;
-        }
-        .back-link:hover {
-            color: #764ba2;
-            text-decoration: none;
         }
         .input-group-text {
             background-color: #f8f9fa;
             border: 1px solid #ddd;
             border-radius: 10px 0 0 10px;
         }
-        .invalid-feedback {
-            display: none;
-        }
-        .was-validated .form-control:invalid ~ .invalid-feedback {
-            display: block;
-        }
     </style>
 </head>
-<body class="bg-light">
+<body>
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h2 class="text-center mb-4 text-primary"><i class="fas fa-user-circle me-2"></i>Mi Perfil</h2>
-                        
                         <div class="text-center mb-4">
-                            <div class="position-relative d-inline-block">
-                                <img src="https://via.placeholder.com/150" class="rounded-circle profile-img" id="profileImg" alt="Foto de perfil">
-                                <button class="btn btn-sm btn-outline-secondary position-absolute bottom-0 end-0 rounded-circle" id="changePhotoBtn" title="Cambiar foto">
-                                    <i class="fas fa-camera"></i>
-                                </button>
+                            <div class="profile-img rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="font-size: 3rem;">
+                                <i class="fas fa-user"></i>
                             </div>
-                            <h4 id="userName" class="mt-3">Usuario Ejemplo</h4>
-                            <p class="text-muted" id="userEmail">usuario@ejemplo.com</p>
+                            <h4 class="mt-3"><?php echo e($usuario->nombre); ?></h4>
+                            <p class="text-muted"><?php echo e($usuario->correo); ?></p>
+                            <?php
+                                $tipoBadge = $usuario->tipo_usuario === 'premium' ? 'warning' : ($usuario->tipo_usuario === 'admin' ? 'danger' : 'info');
+                            ?>
+                            <span class="badge bg-<?php echo e($tipoBadge); ?>"><?php echo e(ucfirst($usuario->tipo_usuario)); ?></span>
                         </div>
 
-                        <form id="profileForm" class="needs-validation" novalidate>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="nombre" class="form-label"><i class="fas fa-user me-2"></i>Nombre</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                        <input type="text" class="form-control" id="nombre" value="Juan Pérez" required>
-                                        <div class="invalid-feedback">
-                                            Por favor, ingresa un nombre válido.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i>Email</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                        <input type="email" class="form-control" id="email" value="usuario@ejemplo.com" required>
-                                        <div class="invalid-feedback">
-                                            Por favor, ingresa un email válido.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <?php if(session('success')): ?>
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <i class="fas fa-check-circle"></i> <?php echo e(session('success')); ?>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                        <?php endif; ?>
+
+                        <?php if(session('error')): ?>
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <i class="fas fa-exclamation-circle"></i> <?php echo e(session('error')); ?>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                        <?php endif; ?>
+
+                        <?php if($errors->any()): ?>
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($error); ?></li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </ul>
+                        </div>
+                        <?php endif; ?>
+
+                        <h5 class="mb-3"><i class="fas fa-edit me-2"></i>Editar Información</h5>
+                        
+                        <form action="<?php echo e(route('perfil.update')); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
+                            <?php echo method_field('PUT'); ?>
+                            
                             <div class="mb-3">
-                                <label for="telefono" class="form-label"><i class="fas fa-phone me-2"></i>Teléfono</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                    <input type="tel" class="form-control" id="telefono" value="+1234567890" pattern="^\+?[1-9]\d{1,14}$">
-                                    <div class="invalid-feedback">
-                                        Por favor, ingresa un número de teléfono válido.
-                                    </div>
-                                </div>
+                                <label for="nombre" class="form-label">
+                                    <i class="fas fa-user me-2"></i>Nombre
+                                </label>
+                                <input type="text" class="form-control" name="nombre" value="<?php echo e(old('nombre', $usuario->nombre)); ?>" required>
                             </div>
+
+                            <div class="mb-3">
+                                <label for="correo" class="form-label">
+                                    <i class="fas fa-envelope me-2"></i>Correo Electrónico
+                                </label>
+                                <input type="email" class="form-control" name="correo" value="<?php echo e(old('correo', $usuario->correo)); ?>" required>
+                            </div>
+
+                            <hr class="my-4">
+                            
+                            <h5 class="mb-3"><i class="fas fa-key me-2"></i>Cambiar Contraseña (Opcional)</h5>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Contraseña Actual</label>
+                                <input type="password" class="form-control" name="contrasena_actual">
+                                <small class="text-muted">Dejar en blanco si no deseas cambiar la contraseña</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Nueva Contraseña</label>
+                                <input type="password" class="form-control" name="contrasena_nueva" minlength="6">
+                                <small class="text-muted">Mínimo 6 caracteres</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Confirmar Nueva Contraseña</label>
+                                <input type="password" class="form-control" name="contrasena_nueva_confirmation" minlength="6">
+                            </div>
+
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary"><i class="fas fa-save me-2"></i>Guardar Cambios</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-2"></i>Guardar Cambios
+                                </button>
                             </div>
                         </form>
 
-                        <div class="text-center mt-3">
-                            <a href="<?php echo e(route('ventana-principal')); ?>" class="back-link">
-                                <i class="fas fa-arrow-left me-2"></i>Volver al inicio
+                        <div class="text-center mt-4">
+                            <a href="<?php echo e(route('usuario_con_cuenta.index')); ?>" class="text-decoration-none">
+                                <i class="fas fa-arrow-left me-2"></i>Volver al Inicio
                             </a>
                         </div>
+                    </div>
+                </div>
+
+                <div class="card shadow mt-4">
+                    <div class="card-body">
+                        <h5><i class="fas fa-info-circle me-2"></i>Información de la Cuenta</h5>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2">
+                                <strong>Fecha de Registro:</strong> 
+                                <?php echo e(\Carbon\Carbon::parse($usuario->fecha_registro)->format('d/m/Y')); ?>
+
+                            </li>
+                            <li class="mb-2">
+                                <strong>Tipo de Usuario:</strong> 
+                                <span class="badge bg-<?php echo e($tipoBadge); ?>"><?php echo e(ucfirst($usuario->tipo_usuario)); ?></span>
+                            </li>
+                            <li class="mb-2">
+                                <strong>ID de Usuario:</strong> #<?php echo e($usuario->id_usuario); ?>
+
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal de confirmación -->
-    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmModalLabel">Confirmación</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="modalMessage"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" id="confirmBtn">Aceptar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal para cambiar foto -->
-    <div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="photoModalLabel">Cambiar Foto de Perfil</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="file" class="form-control" id="photoInput" accept="image/*">
-                    <small class="text-muted">Selecciona una imagen (máx. 5MB)</small>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="uploadBtn">Subir</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Cargar datos del perfil desde localStorage
-        function loadProfile() {
-            const profile = JSON.parse(localStorage.getItem('userProfile')) || {
-                name: 'Usuario Ejemplo',
-                email: 'usuario@ejemplo.com',
-                phone: '+1234567890',
-                photo: 'https://via.placeholder.com/150'
-            };
-            document.getElementById('userName').textContent = profile.name;
-            document.getElementById('userEmail').textContent = profile.email;
-            document.getElementById('nombre').value = profile.name;
-            document.getElementById('email').value = profile.email;
-            document.getElementById('telefono').value = profile.phone;
-            document.getElementById('profileImg').src = profile.photo;
-        }
-
-        // Guardar cambios
-        document.getElementById('profileForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (!this.checkValidity()) {
-                e.stopPropagation();
-                this.classList.add('was-validated');
-                return;
-            }
-
-            const profile = {
-                name: document.getElementById('nombre').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('telefono').value,
-                photo: document.getElementById('profileImg').src
-            };
-
-            localStorage.setItem('userProfile', JSON.stringify(profile));
-            document.getElementById('userName').textContent = profile.name;
-            document.getElementById('userEmail').textContent = profile.email;
-
-            document.getElementById('modalMessage').textContent = 'Cambios guardados exitosamente.';
-            const modal = new bootstrap.Modal(document.getElementById('confirmModal'));
-            modal.show();
-        });
-
-        // Cambiar foto
-        document.getElementById('changePhotoBtn').addEventListener('click', function() {
-            const modal = new bootstrap.Modal(document.getElementById('photoModal'));
-            modal.show();
-        });
-
-        document.getElementById('uploadBtn').addEventListener('click', function() {
-            const fileInput = document.getElementById('photoInput');
-            const file = fileInput.files[0];
-            if (file) {
-                if (file.size > 5 * 1024 * 1024) { // 5MB limit
-                    alert('La imagen es demasiado grande. Máximo 5MB.');
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('profileImg').src = e.target.result;
-                    const profile = JSON.parse(localStorage.getItem('userProfile')) || {};
-                    profile.photo = e.target.result;
-                    localStorage.setItem('userProfile', JSON.stringify(profile));
-                    bootstrap.Modal.getInstance(document.getElementById('photoModal')).hide();
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        window.onload = loadProfile;
-    </script>
 </body>
-</html>
-<?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/ventana perfil/index.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/ventana perfil/index.blade.php ENDPATH**/ ?>

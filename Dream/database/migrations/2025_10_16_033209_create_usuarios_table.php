@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('contraseña', 255);
             $table->enum('tipo_usuario', ['free', 'premium', 'admin']);
             $table->date('fecha_registro');
+            $table->softDeletes(); // Para eliminaciones lógicas
             $table->timestamps(); // Opcional: para created_at y updated_at
         });
     }

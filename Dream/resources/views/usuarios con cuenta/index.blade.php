@@ -404,7 +404,7 @@
                                 <i class="fas fa-list fa-3x text-primary mb-3"></i>
                                 <h5 class="card-title">Mis PlayLists</h5>
                                 <p class="card-text">Gestiona tus listas de reproducción favoritas.</p>
-                                <a href="#" onclick="mostrarVista('playlists')" class="btn btn-custom">Ver PlayLists</a>
+                                <a href="{{route('sonidos.index')}}" class="btn btn-custom">Ver PlayLists</a>
                             </div>
                         </div>
                     </div>
@@ -418,13 +418,14 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body text-center">
                                 <i class="fas fa-robot fa-3x text-primary mb-3"></i>
                                 <h5 class="card-title">Asistente</h5>
                                 <p class="card-text">Obtén ayuda con recomendaciones musicales.</p>
-                                <a href="#" onclick="mostrarVista('asistente')" class="btn btn-custom">Usar Asistente</a>
+                                <a href="{{route('asistente-ia.index')}}" class="btn btn-custom">Usar Asistente</a>
                             </div>
                         </div>
                     </div>
@@ -478,6 +479,15 @@
             </div>
             <div class="text-center">
                 <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
+                <form action="{{ route('usuarios.destroy', $usuario->id_usuario) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');" style="display:inline;">
+            
+                 @csrf
+                 @method('DELETE')
+                 <button type="submit" class="btn btn-custom">
+                     <i class="fas fa-trash-alt"></i> Eliminar cuenta
+               </button>
+              </form>
+
             </div>
         </div>
 
