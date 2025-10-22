@@ -32,6 +32,7 @@ Route::get('/usuarios con cuenta/index', [UsuarioConCuentaController::class, 'in
 // Ruta para perfil 
 Route::get('/perfil/index', [PerfilController::class, 'index'])->name('perfil.index');
 Route::get('/mi-perfil', [PerfilController::class, 'index'])->name('mi-perfil');
+Route::put('/perfil/update', [App\Http\Controllers\Perfil\PerfilController::class, 'update'])->name('perfil.update');
 
 // Ruta para Playlists
 Route::get('/ventana playlista/index', [PlaylistController::class, 'index'])->name('playlists.index');

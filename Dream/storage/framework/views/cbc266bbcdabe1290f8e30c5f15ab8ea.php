@@ -64,56 +64,58 @@
                             <div class="profile-img rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="font-size: 3rem;">
                                 <i class="fas fa-user"></i>
                             </div>
-                            <h4 class="mt-3">{{ $usuario->nombre }}</h4>
-                            <p class="text-muted">{{ $usuario->correo }}</p>
-                            @php
+                            <h4 class="mt-3"><?php echo e($usuario->nombre); ?></h4>
+                            <p class="text-muted"><?php echo e($usuario->correo); ?></p>
+                            <?php
                                 $tipoBadge = $usuario->tipo_usuario === 'premium' ? 'warning' : ($usuario->tipo_usuario === 'admin' ? 'danger' : 'info');
-                            @endphp
-                            <span class="badge bg-{{ $tipoBadge }}">{{ ucfirst($usuario->tipo_usuario) }}</span>
+                            ?>
+                            <span class="badge bg-<?php echo e($tipoBadge); ?>"><?php echo e(ucfirst($usuario->tipo_usuario)); ?></span>
                         </div>
 
-                        @if(session('success'))
+                        <?php if(session('success')): ?>
                         <div class="alert alert-success alert-dismissible fade show">
-                            <i class="fas fa-check-circle"></i> {{ session('success') }}
+                            <i class="fas fa-check-circle"></i> <?php echo e(session('success')); ?>
+
                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>
-                        @endif
+                        <?php endif; ?>
 
-                        @if(session('error'))
+                        <?php if(session('error')): ?>
                         <div class="alert alert-danger alert-dismissible fade show">
-                            <i class="fas fa-exclamation-circle"></i> {{ session('error') }}
+                            <i class="fas fa-exclamation-circle"></i> <?php echo e(session('error')); ?>
+
                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>
-                        @endif
+                        <?php endif; ?>
 
-                        @if($errors->any())
+                        <?php if($errors->any()): ?>
                         <div class="alert alert-danger">
                             <ul class="mb-0">
-                                @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
+                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($error); ?></li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
-                        @endif
+                        <?php endif; ?>
 
                         <h5 class="mb-3"><i class="fas fa-edit me-2"></i>Editar Información</h5>
                         
-                        <form action="{{ route('perfil.update') }}" method="POST">
-                            @csrf
-                            @method('PUT')
+                        <form action="<?php echo e(route('perfil.update')); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
+                            <?php echo method_field('PUT'); ?>
                             
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">
                                     <i class="fas fa-user me-2"></i>Nombre
                                 </label>
-                                <input type="text" class="form-control" name="nombre" value="{{ old('nombre', $usuario->nombre) }}" required>
+                                <input type="text" class="form-control" name="nombre" value="<?php echo e(old('nombre', $usuario->nombre)); ?>" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="correo" class="form-label">
                                     <i class="fas fa-envelope me-2"></i>Correo Electrónico
                                 </label>
-                                <input type="email" class="form-control" name="correo" value="{{ old('correo', $usuario->correo) }}" required>
+                                <input type="email" class="form-control" name="correo" value="<?php echo e(old('correo', $usuario->correo)); ?>" required>
                             </div>
 
                             <hr class="my-4">
@@ -145,7 +147,7 @@
                         </form>
 
                         <div class="text-center mt-4">
-                            <a href="{{ route('usuario_con_cuenta.index') }}" class="text-decoration-none">
+                            <a href="<?php echo e(route('usuario_con_cuenta.index')); ?>" class="text-decoration-none">
                                 <i class="fas fa-arrow-left me-2"></i>Volver al Inicio
                             </a>
                         </div>
@@ -158,14 +160,16 @@
                         <ul class="list-unstyled mb-0">
                             <li class="mb-2">
                                 <strong>Fecha de Registro:</strong> 
-                                {{ \Carbon\Carbon::parse($usuario->fecha_registro)->format('d/m/Y') }}
+                                <?php echo e(\Carbon\Carbon::parse($usuario->fecha_registro)->format('d/m/Y')); ?>
+
                             </li>
                             <li class="mb-2">
                                 <strong>Tipo de Usuario:</strong> 
-                                <span class="badge bg-{{ $tipoBadge }}">{{ ucfirst($usuario->tipo_usuario) }}</span>
+                                <span class="badge bg-<?php echo e($tipoBadge); ?>"><?php echo e(ucfirst($usuario->tipo_usuario)); ?></span>
                             </li>
                             <li class="mb-2">
-                                <strong>ID de Usuario:</strong> #{{ $usuario->id_usuario }}
+                                <strong>ID de Usuario:</strong> #<?php echo e($usuario->id_usuario); ?>
+
                             </li>
                         </ul>
                     </div>
@@ -176,4 +180,4 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+</html><?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\resources\views/ventana perfil/index.blade.php ENDPATH**/ ?>

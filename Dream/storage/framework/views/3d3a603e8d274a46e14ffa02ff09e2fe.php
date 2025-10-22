@@ -301,6 +301,7 @@
                                 <li><a href="#" onclick="mostrarVista('idiomas')"><i class="fas fa-language"></i> Idiomas</a></li>
                                 <li><a href="#" onclick="mostrarVista('sonidosFavoritos')"><i class="fas fa-heart"></i> Sonidos favoritos</a></li>
                                 <li><a href="#" onclick="mostrarVista('misDatos')"><i class="fas fa-id-card"></i> Mis datos</a></li>
+                                <li><a href="<?php echo e(route('perfil.index')); ?>"><i class="fas fa-id-card"></i> Editar perfil</a></li>
                                 
                             </ul>
                         </div>
@@ -325,12 +326,13 @@
             <div class="text-center">
                 <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
                 <form action="<?php echo e(route('usuarios.destroy', $usuario->id_usuario)); ?>" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');" style="display:inline;">
-    <?php echo csrf_field(); ?>
-    <?php echo method_field('DELETE'); ?>
-    <button type="submit" class="btn btn-danger">
-        <i class="fas fa-trash-alt"></i> Eliminar cuenta
-    </button>
-</form>
+            
+                 <?php echo csrf_field(); ?>
+                 <?php echo method_field('DELETE'); ?>
+                 <button type="submit" class="btn btn-custom">
+                     <i class="fas fa-trash-alt"></i> Eliminar cuenta
+               </button>
+              </form>
 
             </div>
         </div>
