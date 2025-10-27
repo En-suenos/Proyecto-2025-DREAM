@@ -6,6 +6,7 @@
     <meta name="description" content="Aplicación PlayList con múltiples vistas y autenticación.">
     <title>Vista de usuario con cuenta</title>
     
+<<<<<<< HEAD
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
@@ -126,10 +127,52 @@
             align-items: center;
             gap: 30px;
             animation: fadeInUp 1s ease-out;
+=======
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+ 
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .navbar {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #004085;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+            font-size: 1.5rem;
+        }
+        .navbar-brand:hover {
+            color: #e9ecef !important;
+        }
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #e9ecef !important;
+        }
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+>>>>>>> main
             margin-top: 30px;
             margin-bottom: 50px;
             min-height: 60vh;
         }
+<<<<<<< HEAD
 
         @keyframes fadeInUp {
             from {
@@ -176,10 +219,27 @@
             margin-bottom: 15px;
         }
 
+=======
+        .hidden {
+            display: none;
+        }
+        h2 {
+            color: #007bff;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h3 {
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+>>>>>>> main
         ul {
             list-style: none;
             padding: 0;
         }
+<<<<<<< HEAD
 
         ul li {
             margin-bottom: 10px;
@@ -187,31 +247,53 @@
 
         ul li a {
             color: #4fc3f7;
+=======
+        ul li {
+            margin-bottom: 10px;
+        }
+        ul li a {
+            color: #007bff;
+>>>>>>> main
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
         }
+<<<<<<< HEAD
 
         ul li a:hover {
             color: #29b6f6;
             text-decoration: underline;
         }
 
+=======
+        ul li a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+>>>>>>> main
         .table-container {
             margin-top: 30px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
         table {
             width: 100%;
             margin: 0;
             border-collapse: collapse;
         }
+<<<<<<< HEAD
 
         th {
             background: linear-gradient(45deg, #4fc3f7, #29b6f6);
+=======
+        th {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+>>>>>>> main
             color: white;
             padding: 15px;
             text-align: left;
@@ -219,6 +301,7 @@
             border: none;
             cursor: pointer;
             transition: background 0.3s ease;
+<<<<<<< HEAD
             position: relative;
             user-select: none;
         }
@@ -260,11 +343,34 @@
 
         .btn-custom {
             background: linear-gradient(45deg, #66bb6a, #43a047);
+=======
+        }
+        th:hover {
+            background: linear-gradient(135deg, #0056b3, #004085);
+        }
+        th i {
+            margin-left: 5px;
+        }
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+            transition: background 0.3s ease;
+        }
+        tr:hover td {
+            background-color: #f8f9fa;
+        }
+        .badge {
+            font-size: 0.85em;
+        }
+        .btn-custom {
+            background: linear-gradient(135deg, #28a745, #20c997);
+>>>>>>> main
             border: none;
             color: white;
             padding: 10px 20px;
             border-radius: 25px;
             font-weight: 600;
+<<<<<<< HEAD
             transition: all 0.4s ease;
             margin-top: 20px;
         }
@@ -275,11 +381,25 @@
             color: white;
         }
 
+=======
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+>>>>>>> main
         .avatar {
             width: 80px;
             height: 80px;
             border-radius: 50%;
+<<<<<<< HEAD
             background: linear-gradient(45deg, #4fc3f7, #29b6f6);
+=======
+            background: linear-gradient(135deg, #007bff, #0056b3);
+>>>>>>> main
             display: flex;
             align-items: center;
             justify-content: center;
@@ -288,12 +408,16 @@
             margin: 0 auto 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
         .card {
             border: none;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+<<<<<<< HEAD
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             color: #fff;
@@ -314,10 +438,26 @@
             animation: fadeIn 0.5s ease-in;
         }
 
+=======
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+>>>>>>> main
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+<<<<<<< HEAD
 
         .btn-secondary {
             background: rgba(255, 255, 255, 0.1);
@@ -355,10 +495,27 @@
             .main-content > div {
                 padding: 30px;
             }
+=======
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: white;
+>>>>>>> main
         }
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <nav class="navbar">
         <a class="navbar-brand" href="#" onclick="mostrarVista('principal')"><i class="fas fa-music"></i> PlayList</a>
         <button class="navbar-toggler" type="button" onclick="toggleNavbar()">
@@ -384,10 +541,57 @@
                 <a class="nav-link" href="#" onclick="mostrarVista('login')">
                     <i class="fas fa-sign-in-alt"></i> Iniciar sesión
                 </a>
+=======
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" onclick="mostrarVista('principal')"><i class="fas fa-music"></i> PlayList</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Mostrar menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- NAVEGACIÓN CORREGIDA - SIN CONFLICTOS -->
+                    <li class="nav-item">
+                        <!--<a class="nav-link" href="<?php echo e(route('mi-perfil')); ?>">-->
+                        <a href="#" onclick="mostrarVista('perfil')" class="nav-link">
+                            <i class="fas fa-user"></i> Mi perfil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo e(route('playlists.index')); ?>">
+                            <i class="fas fa-list"></i> PlayLists
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo e(route('asistente-ia.index')); ?>">
+                            <i class="fas fa-robot"></i> Asistente
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="mostrarVista('opciones')">
+                            <i class="fas fa-cog"></i> Opciones
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="iniciarSueno()">
+                            <i class="fas fa-moon"></i> Iniciar sueño
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo e(route('ventana-principal.index')); ?>">
+                            <i class="fas fa-sign-in-alt"></i> Cerrar sesión
+                        </a>
+                    </li>
+                </ul>
+>>>>>>> main
             </div>
         </div>
     </nav>
 
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> main
     <main class="container main-content">
         <!-- Vista Principal -->
         <div id="principal" class="fade-in">
@@ -395,7 +599,11 @@
                 <div class="avatar">
                     <i class="fas fa-music"></i>
                 </div>
+<<<<<<< HEAD
                 <h2>Bienvenido, Usuario</h2>
+=======
+                <h2>Bienvenido, <?php echo e($usuario->nombre); ?></h2>
+>>>>>>> main
                 <p>Explora tus playlists, configura tu perfil y disfruta de la música.</p>
                 <div class="row mt-4">
                     <div class="col-md-4">
@@ -432,8 +640,13 @@
                 </div>
             </div>
             <div class="text-center mt-4">
+<<<<<<< HEAD
                 <a href="#" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Regresar a la ventana principal
+=======
+                <a href="<?php echo e(route('ventana-principal.index')); ?>" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Cerrar sesion
+>>>>>>> main
                 </a>
             </div>
         </div>
@@ -453,10 +666,19 @@
                         <div class="card-body">
                             <h5><i class="fas fa-bell"></i> Opciones Rápidas</h5>
                             <ul class="mt-3">
+<<<<<<< HEAD
                                 <li><a href="#"><i class="fas fa-bell"></i> Notificaciones</a></li>
                                 <li><a href="#"><i class="fas fa-language"></i> Idiomas</a></li>
                                 <li><a href="#"><i class="fas fa-heart"></i> Sonidos favoritos</a></li>
                                 <li><a href="#"><i class="fas fa-id-card"></i> Mis datos</a></li>
+=======
+                                <li><a href="#" onclick="mostrarVista('notificaciones')"><i class="fas fa-bell"></i> Notificaciones</a></li>
+                                <li><a href="#" onclick="mostrarVista('idiomas')"><i class="fas fa-language"></i> Idiomas</a></li>
+                                <li><a href="#" onclick="mostrarVista('sonidosFavoritos')"><i class="fas fa-heart"></i> Sonidos favoritos</a></li>
+                                <li><a href="#" onclick="mostrarVista('misDatos')"><i class="fas fa-id-card"></i> Mis datos</a></li>
+                                <li><a href="<?php echo e(route('perfil.index')); ?>"><i class="fas fa-id-card"></i> Editar perfil</a></li>
+                                
+>>>>>>> main
                             </ul>
                         </div>
                     </div>
@@ -491,6 +713,7 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <!-- Vista PlayLists -->
         <div id="playlists" class="hidden fade-in">
             <div class="text-center">
@@ -658,6 +881,28 @@
             <div class="text-center mt-4">
                 <button class="btn btn-secondary" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
             </div>
+=======
+        <!-- Placeholders para otras vistas -->
+        <div id="playlists" class="hidden fade-in text-center">
+            <h2>PlayLists</h2>
+            <p>Aquí puedes gestionar tus listas de reproducción.</p>
+            <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
+        </div>
+        <div id="asistente" class="hidden fade-in text-center">
+            <h2>Asistente</h2>
+            <p>Tu asistente musical está aquí para ayudarte.</p>
+            <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
+        </div>
+        <div id="opciones" class="hidden fade-in text-center">
+            <h2>Opciones</h2>
+            <p>Configura tus preferencias de la aplicación.</p>
+            <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
+        </div>
+        <div id="login" class="hidden fade-in text-center">
+            <h2>Iniciar Sesión</h2>
+            <p>Formulario de login aquí.</p>
+            <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
+>>>>>>> main
         </div>
     </main>
 
@@ -667,6 +912,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+<<<<<<< HEAD
         function toggleNavbar() {
             const navbarCollapse = document.getElementById('navbarNav');
             navbarCollapse.classList.toggle('show');
@@ -732,10 +978,56 @@
                     <td>${dato.valor}</td>
                 `;
                 tablaBody.appendChild(fila);
+=======
+        
+        function mostrarVista(vista) {
+            document.querySelectorAll('.main-content > div').forEach(div => {
+                div.classList.add('hidden');
+                div.classList.remove('fade-in');
+            });
+            const targetDiv = document.getElementById(vista);
+            targetDiv.classList.remove('hidden');
+            setTimeout(() => targetDiv.classList.add('fade-in'), 10);
+            if (vista === 'perfil') {
+                loadPerfilTable(); 
+            }
+        }
+        const usuario = {
+           nombre: "<?php echo e($usuario->nombre); ?>",
+           correo: "<?php echo e($usuario->correo); ?>",
+           tipo_usuario: "<?php echo e(ucfirst($usuario->tipo_usuario)); ?>",
+           fecha_registro: "<?php echo e(\Carbon\Carbon::parse($usuario->fecha_registro)->format('d/m/Y')); ?>"
+       };
+
+        let perfilData = [
+            { campo: 'Nombre', valor: usuario.nombre },
+            { campo: 'Correo', valor: usuario.correo },
+            { campo: 'Tipo de Usuario', valor: usuario.tipo_usuario },
+            { campo: 'Fecha de Registro', valor: usuario.fecha_registro },
+            { campo: 'Último Acceso', valor: 'Hoy' }
+        ];
+
+        function loadPerfilTable() {
+            const tableBody = document.getElementById('perfilTableBody');
+            tableBody.innerHTML = '';  
+            perfilData.forEach(item => {
+                const row = document.createElement('tr');
+                let valorDisplay = item.valor;
+                if (item.campo === 'Último Acceso' && item.valor === 'Hoy') {
+                    valorDisplay = `<span class="badge bg-success">${item.valor}</span>`;
+                }
+                if (item.campo === 'Tipo de Usuario') {
+                    const badgeClass = item.valor === 'Premium' ? 'bg-warning' : item.valor === 'Admin' ? 'bg-danger' : 'bg-info';
+                    valorDisplay = `<span class="badge ${badgeClass}">${item.valor}</span>`;
+               }
+                row.innerHTML = `<td><i class="fas fa-info-circle text-primary"></i> ${item.campo}</td><td>${valorDisplay}</td>`;
+                tableBody.appendChild(row);
+>>>>>>> main
             });
         }
 
         function sortTable(columnIndex) {
+<<<<<<< HEAD
             const table = document.getElementById('perfilTable');
             const tbody = document.getElementById('perfilTableBody');
             const rows = Array.from(tbody.getElementsByTagName('tr'));
@@ -801,6 +1093,33 @@
             alert('Inicio de sesión simulado. En una aplicación real, esto conectaría con el backend.');
             mostrarVista('principal');
         });
+=======
+            const table = document.getElementById('perfilTable'); 
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            
+            const isAscending = table.getAttribute('data-sort') !== 'asc' || table.getAttribute('data-column') !== columnIndex.toString();
+            table.setAttribute('data-sort', isAscending ? 'asc' : 'desc');
+            table.setAttribute('data-column', columnIndex);
+            
+            rows.sort((a, b) => {
+                const aText = a.children[columnIndex].textContent.trim();
+                const bText = b.children[columnIndex].textContent.trim();
+                if (isAscending) {
+                    return aText.localeCompare(bText, 'es', { numeric: true });
+                } else {
+                    return bText.localeCompare(aText, 'es', { numeric: true });
+                }
+            });
+            
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+       
+        function mostrarLogin() { mostrarVista('login'); }
+        function iniciarSueno() { alert('Iniciando modo sueño...'); }
+        function regresar(vista) { mostrarVista(vista); }
+>>>>>>> main
     </script>
 </body>
 </html><?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\Dream\resources\views/usuarios con cuenta/index.blade.php ENDPATH**/ ?>
