@@ -1,0 +1,96 @@
+*   [33m95bc74c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain-v2[m[33m)[m fusion con main
+[31m|[m[32m\[m  
+[31m|[m * [33m581ad96[m[33m ([m[1;32mmain[m[33m)[m fusion con main-v2
+[31m|[m * [33mfa87430[m fucion con main-v2
+* [32m|[m [33mf11f8d0[m Eliminados archivos innecesarios
+* [32m|[m   [33m807dcc5[m fusion con ramaProgram-v3
+[33m|[m[34m\[m [32m\[m  
+[33m|[m * [32m|[m [33m7dca72f[m[33m ([m[1;31morigin/ramaProgram-v3[m[33m, [m[1;32mramaProgram-v3[m[33m)[m Eliminados archivos innecesarios
+[33m|[m * [32m|[m [33mbec6598[m audio agregado
+[33m|[m * [32m|[m [33mb7d6a05[m s
+[33m|[m * [32m|[m [33m997de26[m Se cargo los sonidos
+[33m|[m * [32m|[m [33m9474701[m migracion
+[33m|[m * [32m|[m [33mafdbce6[m funcion de rama 2.3
+[33m|[m [35m|[m[32m\[m[32m|[m 
+[33m|[m * [32m|[m [33md9ac5ee[m diseños agregados
+* [36m|[m [32m|[m [33m41e6cbe[m c
+[32m|[m [36m|[m[32m/[m  
+[32m|[m[32m/[m[36m|[m   
+* [36m|[m [33m4f8f0d4[m[33m ([m[1;31morigin/ramaProgram-v2.5.1[m[33m, [m[1;31morigin/ramaProgram-v2.5[m[33m, [m[1;31morigin/ramaProgram-v2.3[m[33m, [m[1;31morigin/main-v2[m[33m)[m se implemento editar datos
+* [36m|[m [33m676a95c[m se corrigio el delte
+* [36m|[m [33mf625983[m se agrego eliminar cuenta
+* [36m|[m [33mbc4c5e1[m se agrego el sonido
+* [36m|[m [33me4fc68a[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m se fusiono con la rama ramaProgram-v3
+* [36m|[m   [33m0fde419[m se fuciono con la rama ramaProgram-v3
+[1;31m|[m[1;32m\[m [36m\[m  
+[1;31m|[m * [36m|[m [33m5a47bbb[m no se modifico nada
+[1;31m|[m [36m|[m[36m/[m  
+[1;31m|[m *   [33mbaf090d[m diseño para inicio de sesion
+[1;31m|[m [1;33m|[m[1;34m\[m  
+[1;31m|[m * [1;34m|[m [33maa5c8b2[m diseño para inicio de sesion
+* [1;34m|[m [1;34m|[m [33mf63470a[m[33m ([m[1;31morigin/ramaProgram-v2.2[m[33m)[m Se aplico el asistente IA
+* [1;34m|[m [1;34m|[m   [33m98a2956[m se fuciono con la rama InterfasC
+[1;35m|[m[1;36m\[m [1;34m\[m [1;34m\[m  
+[1;35m|[m * [1;34m|[m [1;34m|[m [33m539ab31[m no se modifico nada
+* [1;36m|[m [1;34m|[m [1;34m|[m [33m80ee71e[m sin comentarios
+[1;34m|[m [1;36m|[m[1;34m_[m[1;34m|[m[1;34m/[m  
+[1;34m|[m[1;34m/[m[1;36m|[m [1;34m|[m   
+* [1;36m|[m [1;34m|[m [33m36893e1[m Perfil con datos reales del usuario
+[1;34m|[m [1;36m|[m[1;34m/[m  
+[1;34m|[m[1;34m/[m[1;36m|[m   
+* [1;36m|[m [33m7e4be2a[m corregido
+* [1;36m|[m [33m664ffae[m cambios en la ventana de usuarios con cuenta
+* [1;36m|[m [33md81687b[m fucion con la mara InterfasC
+[31m|[m[1;36m\[m[1;36m|[m 
+[31m|[m * [33me998372[m[33m ([m[1;31morigin/InterfasC[m[33m)[m Interfas si
+[31m|[m *   [33md6acedb[m Interfas si
+[31m|[m [33m|[m[34m\[m  
+[31m|[m * [34m|[m [33mf481348[m Corrección de la migración de usuarios
+* [34m|[m [34m|[m [33mc100dc0[m validacion de inicio de sision correcta
+* [34m|[m [34m|[m [33m38085ad[m[33m ([m[1;31morigin/ramaProgram-v2[m[33m)[m Validacion de inicio de sesion completada
+[34m|[m [34m|[m [34m|[m * [33ma8d97af[m[33m ([m[1;31morigin/ramaProgram-v2.1[m[33m)[m Corrección de la migración de usuarios
+[34m|[m [34m|[m[34m_[m[34m|[m[34m/[m  
+[34m|[m[34m/[m[34m|[m [34m|[m   
+* [34m|[m [34m|[m [33m376b89c[m Cambios realizados
+* [34m|[m [34m|[m [33m8da2f51[m fucion con InterfasC
+[36m|[m[34m\[m[34m|[m [34m|[m 
+[36m|[m * [34m|[m [33m2ff7717[m Corrección de la migración de usuarios
+* [1;31m|[m [34m|[m   [33mdbf2379[m fucion con ramaView2
+[1;32m|[m[1;33m\[m [1;31m\[m [34m\[m  
+[1;32m|[m * [1;31m|[m [34m|[m [33mca7bf32[m Se realizaron cambios
+[1;32m|[m [34m|[m [1;31m|[m[34m/[m  
+[1;32m|[m [34m|[m[34m/[m[1;31m|[m   
+[1;32m|[m * [1;31m|[m [33m2fb9329[m[33m ([m[1;31morigin/ramaView2[m[33m)[m 'AI'
+[1;32m|[m * [1;31m|[m [33meb3a6b3[m 'AI'
+[1;32m|[m * [1;31m|[m [33m7d456c4[m 'AI'
+* [1;33m|[m [1;31m|[m [33ma7e40a3[m modificacion 2
+* [1;33m|[m [1;31m|[m [33m4e549c2[m Se agrego un asistente
+* [1;33m|[m [1;31m|[m [33mf118b55[m Coneccion a base de datos
+* [1;33m|[m [1;31m|[m   [33m70275d7[m conexion de perfil con base de datos
+[1;34m|[m[1;35m\[m [1;33m\[m [1;31m\[m  
+[1;34m|[m * [1;33m|[m [1;31m|[m [33m944c7b0[m[33m ([m[1;31morigin/ramaView[m[33m)[m Vistas
+[1;34m|[m [1;33m|[m[1;33m/[m [1;31m/[m  
+* [1;33m|[m [1;31m|[m [33m42e69ff[m[33m ([m[1;31morigin/ramaProgram[m[33m)[m se conecto con la tabla usuario
+* [1;33m|[m [1;31m|[m [33med1aeaf[m commit 3
+[1;31m|[m [1;33m|[m[1;31m/[m  
+[1;31m|[m[1;31m/[m[1;33m|[m   
+* [1;33m|[m [33md66cd3a[m Commit 3
+* [1;33m|[m [33m1810259[m conectar base de datos on view
+* [1;33m|[m [33mdcbb7e2[m fucion con la base de datos
+[1;36m|[m[1;33m\[m[1;33m|[m 
+[1;36m|[m * [33ma0475bf[m vistas
+* [31m|[m   [33m56dbf4d[m guardando para fucionar ramas
+[32m|[m[33m\[m [31m\[m  
+[32m|[m * [31m|[m [33m617fea3[m[33m ([m[1;31morigin/BaseDatos[m[33m)[m Corrección de la migración de usuarios
+[32m|[m * [31m|[m [33mff99601[m Corrección de la migración de usuarios
+* [33m|[m [31m|[m [33m8a5a2b1[m Fucion con la base de datos
+[33m|[m[33m/[m [31m/[m  
+* [31m|[m [33m3b699c6[m Corrección de la migración de usuarios
+* [31m|[m [33mf86cebe[m Corrección de la migración de usuarios
+* [31m|[m [33m720e5dd[m Se creo la tabla usuario
+* [31m|[m [33md46f14a[m Modelos y Controladores creados
+* [31m|[m [33m60fb6f0[m Modelos y Controladores creados
+[31m|[m[31m/[m  
+* [33m5317425[m[33m ([m[1;31morigin/ramaBaseDatos[m[33m)[m Proyecto
+* [33m67139f9[m primer commit
+* [33m3f351ce[m primer commit
