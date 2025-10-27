@@ -197,7 +197,6 @@
         });
     });
 
-    // Reproducir todos los sonidos
     // Reproducir todos los sonidos secuencialmente
 document.getElementById('playAllBtn').addEventListener('click', function() {
     // Detener todos los sonidos primero
