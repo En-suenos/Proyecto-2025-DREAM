@@ -236,8 +236,8 @@
     <main class="container main-content">
         <div id="misDatos" class="hidden">
             <h2>Ingrese sus datos</h2>
-            <form action="{{route('usuarios.store')}}" method="POST" id="formDatos">
-                @csrf
+            <form action="<?php echo e(route('usuarios.store')); ?>" method="POST" id="formDatos">
+                <?php echo csrf_field(); ?>
                 <!--Para registro de datos de usuario-->
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
@@ -259,7 +259,7 @@
                     <button type="submit" class="btn btn-primary">
                         Guardar
                     </button>
-                    <a href="{{route('inicio_sesion.index')}}" class="btn btn-secondary">Regresa</a>
+                    <a href="<?php echo e(route('inicio_sesion.index')); ?>" class="btn btn-secondary">Regresa</a>
                 </div>
             </form>
         </div>
@@ -278,7 +278,7 @@
                 mensaje.innerHTML = '¡Inicio de sesión exitoso! Redirigiendo...';
                 mensaje.style.display = 'block';
                 setTimeout(() => {
-                    window.location.href = '{{route('ventana-principal.index')}}'; // Redirigir a la app principal 
+                    window.location.href = '<?php echo e(route('ventana-principal.index')); ?>'; // Redirigir a la app principal 
                 }, 2000);
             } else {
                 mensaje.className = 'alert alert-danger alert-custom';
@@ -292,7 +292,7 @@
         }
 
         function volverApp() {
-            window.location.href ="{{route('ventana-principal.index')}}"; // Redirigir a la app principal (ajusta la ruta)
+            window.location.href ="<?php echo e(route('ventana-principal.index')); ?>"; // Redirigir a la app principal (ajusta la ruta)
         }
 
         document.getElementById('formLogin').addEventListener('submit', function(e) {
@@ -303,3 +303,4 @@
 
 </body>
 </html>
+<?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\Dream\resources\views/ventana de datos/index.blade.php ENDPATH**/ ?>

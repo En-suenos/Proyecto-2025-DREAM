@@ -3,131 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Nuevo Sonido</title>
+    <title>Biblioteca de Sonidos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            color: white;
+        }
+        .sound-list {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        .sound-item {
+            background: white;
+            color: #333;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.2s;
+        }
+        .sound-item:hover {
+            transform: translateY(-2px);
+        }
+        .audio-player {
+            width: 100%;
+        }
+        .btn-play {
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .card {
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .form-label {
-            font-weight: 600;
-        }
-
-        .btn-custom {
-            background-color: #667eea;
-            color: white;
-            transition: background 0.3s, transform 0.2s;
-        }
-
-        .btn-custom:hover {
-            background-color: #5a67d8;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-2px);
-        }
-
-        .text-gradient {
-            background: linear-gradient(45deg, #6b73ff, #000dff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .back-link {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card bg-light p-4">
-                    <h2 class="text-center mb-4 text-gradient">
-                        <i class="fas fa-plus-circle"></i> Agregar Nuevo Sonido
-                    </h2>
+<div class="container py-5">
+    <h1 class="text-center mb-4">
+        <i class="fas fa-music me-2"></i>Biblioteca de Sonidos
+    </h1>
 
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul class="mb-0">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    <form action="{{ route('sonidos.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label">
-                                <i class="fas fa-music me-1"></i> Nombre del sonido
-                            </label>
-                            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ejemplo: Lluvia suave" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="categoria" class="form-label">
-                                <i class="fas fa-layer-group me-1"></i> Categoría
-                            </label>
-                            <select name="categoria" id="categoria" class="form-select" required>
-                                <option value="">-- Selecciona una categoría --</option>
-                                <option value="naturaleza">🌿 Naturaleza</option>
-                                <option value="meditacion">🧘‍♀️ Meditación</option>
-                                <option value="urbano">🏙️ Urbano</option>
-                                <option value="blanco">⚪ Ruido Blanco</option>
-                                <option value="instrumental">🎻 Instrumental</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="archivo_audio" class="form-label">
-                                <i class="fas fa-file-audio me-1"></i> Archivo de audio (mp3, wav, ogg)
-                            </label>
-                            <input type="file" name="archivo_audio" id="archivo_audio" class="form-control" accept=".mp3,.wav,.ogg" required>
-                        </div>
-
-                        <div class="d-flex justify-content-between">
-                            <a href="{{ route('sonidos.index') }}" class="btn btn-secondary">
-                                <i class="fas fa-arrow-left"></i> Cancelar
-                            </a>
-                            <button type="submit" class="btn btn-custom">
-                                <i class="fas fa-save"></i> Guardar Sonido
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="text-center mt-4">
-                    <a href="{{ route('usuario_con_cuenta.index') }}" class="back-link">
-                        <i class="fas fa-home"></i> Volver al inicio
-                    </a>
-                </div>
-            </div>
+    @if(session('success'))
+        <div class="alert alert-success text-center">
+            {{ session('success') }}
         </div>
+    @endif
+
+    <!-- Formulario para subir audio -->
+    <!-- <div class="card bg-light text-dark mb-4">
+        <div class="card-body">
+            <h5><i class="fas fa-upload me-2"></i>Subir nuevo audio</h5>
+            <form action="{{ route('subir.audio') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <label for="audio" class="form-label">Selecciona un archivo de audio:</label>
+                <input type="file" name="audio" accept="audio/*" class="form-control mb-3" required>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-cloud-upload-alt me-1"></i> Subir
+                </button>
+            </form>
+        </div>
+    </div> -->
+
+    <!-- Lista de sonidos -->
+    <div class="sound-list">
+        <h4 class="text-center mb-4"><i class="fas fa-list-ul me-2"></i>Lista de sonidos disponibles</h4>
+
+        @if(count($archivos) > 0)
+            @foreach($archivos as $archivo)
+                <div class="sound-item">
+                    <span><i class="fas fa-file-audio me-2 text-primary"></i>{{ $archivo }}</span>
+                    <audio class="audio-player" controls>
+                        <source src="{{ asset('audio/' . $archivo) }}" type="audio/mpeg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                </div>
+            @endforeach
+        @else
+            <div class="alert alert-info text-center mb-0">
+                <i class="fas fa-info-circle"></i> No hay sonidos disponibles. Sube uno para comenzar.
+            </div>
+        @endif
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Botón volver -->
+    <div class="text-center mt-4">
+        <a href="{{ route('usuario_con_cuenta.index') }}" class="btn btn-outline-light">
+            <i class="fas fa-arrow-left me-2"></i>Volver al inicio
+        </a>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Obtener todos los elementos de audio
+    const audioPlayers = document.querySelectorAll('.audio-player');
+    
+    // Agregar evento a cada reproductor
+    audioPlayers.forEach(player => {
+        player.addEventListener('play', function() {
+            // Pausar todos los demás audios cuando uno comienza a reproducirse
+            audioPlayers.forEach(otherPlayer => {
+                if (otherPlayer !== player && !otherPlayer.paused) {
+                    otherPlayer.pause();
+                    otherPlayer.currentTime = 0; // Reiniciar al principio
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

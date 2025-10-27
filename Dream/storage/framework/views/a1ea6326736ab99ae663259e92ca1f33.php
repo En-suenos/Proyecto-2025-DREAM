@@ -1,11 +1,10 @@
-<!--ventana de datos-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aplicación PlayList con múltiples vistas y autenticación.">
-    <title>Aplicación PlayList</title>
+    <meta name="description" content="Página de Inicio de Sesión para la Aplicación Reproductor de Música.">
+    <title>Inicio de Sesión</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -88,7 +87,7 @@
             }
         }
 
-        #misDatos {
+        .login-container {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -104,7 +103,7 @@
             50% { transform: translateY(-5px); }
         }
 
-        h2 {
+        .login-container h2 {
             color: #4fc3f7;
             text-align: center;
             margin-bottom: 30px;
@@ -128,6 +127,7 @@
             padding: 15px;
             transition: all 0.4s ease;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 15px;
         }
 
         .form-control:focus {
@@ -145,12 +145,13 @@
             background: linear-gradient(45deg, #4fc3f7, #29b6f6);
             border: none;
             border-radius: 25px;
-            padding: 15px 50px;
+            padding: 15px;
             font-weight: 600;
             color: #ffffff;
             transition: all 0.4s ease;
             box-shadow: 0 5px 15px rgba(79, 195, 247, 0.3);
             font-size: 1.2rem;
+            width: 100%;
         }
 
         .btn-primary:hover {
@@ -158,56 +159,21 @@
             box-shadow: 0 10px 25px rgba(79, 195, 247, 0.4);
         }
 
-        .btn-secondary {
+        .alert-custom {
+            margin-top: 15px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            padding: 15px 50px;
-            font-weight: 600;
             color: #fff;
-            transition: all 0.4s ease;
-            font-size: 1.2rem;
+            border-radius: 15px;
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px) scale(1.05);
-            border-color: #4fc3f7;
+        .text-center a {
+            color: #4fc3f7;
+            text-decoration: none;
         }
 
-        .d-flex {
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-
-        .mb-3 {
-            margin-bottom: 25px;
-        }
-
-        table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-
-        th {
-            background-color: rgba(255, 255, 255, 0.8);
-            cursor: pointer;
-            color: #2c3e50;
-        }
-
-        .table-container {
-            overflow-x: auto;
-        }
-
-        .hidden {
-            display: block !important;
+        .text-center a:hover {
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
@@ -216,9 +182,8 @@
                 padding: 0 20px;
             }
             
-            .btn {
-                padding: 12px 30px;
-                font-size: 1rem;
+            .login-container {
+                padding: 30px;
             }
         }
     </style>
@@ -234,72 +199,45 @@
     </nav>
 
     <main class="container main-content">
-        <div id="misDatos" class="hidden">
-            <h2>Ingrese sus datos</h2>
-            <form action="{{route('usuarios.store')}}" method="POST" id="formDatos">
-                @csrf
-                <!--Para registro de datos de usuario-->
+        <div class="login-container">
+            <h2>Iniciar Sesión</h2>
+            <form action="<?php echo e(route('inicio_sesion.login')); ?>" method="POST" id="formLogin">
+                <?php echo csrf_field(); ?>
                 <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
-                </div>
-                <div class="mb-3">
-                    <label for="correo" class="form-label">Correo</label>
-                    <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo" required>
+                    <label for="correoLogin" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="correoLogin" name="correoLogin" placeholder="Correo" required>
                 </div>
                 <div class="mb-3">
-                    <label for="contrasena" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="contrasena" name="contraseña" placeholder="Contraseña" required>
+                    <label for="contrasenaLogin" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="contrasenaLogin" name="contrasenaLogin" placeholder="Contraseña" required>
                 </div>
-                <div class="mb-3">
-                    <label for="fecha_registro" class="form-label">Fecha registro</label>
-                    <input type="date" class="form-control" id="fecha_registro" name="fecha_registro" placeholder="fecha_registro" required>
-                </div>
-                <div class="d-flex">
-                    <button type="submit" class="btn btn-primary">
-                        Guardar
-                    </button>
-                    <a href="{{route('inicio_sesion.index')}}" class="btn btn-secondary">Regresa</a>
-                </div>
+                <button type="submit" class="btn btn-primary">Ingresar</button>
             </form>
+            
+            <?php if(session('error')): ?>
+                <div class="alert alert-danger alert-custom">
+                    <?php echo e(session('error')); ?>
+
+                </div>
+            <?php endif; ?>
+
+            <?php if(session('success')): ?>
+                <div class="alert alert-success alert-custom">
+                    <?php echo e(session('success')); ?>
+
+                </div>
+            <?php endif; ?>
+
+            <p class="text-center mt-3">
+                ¿No tienes cuenta? <a href="<?php echo e(route('ventana datos.index')); ?>">Regístrate aquí</a>
+            </p>
+            <p class="text-center">
+                <a href="<?php echo e(route('ventana-principal.index')); ?>">Volver a la aplicación</a>
+            </p>
         </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function validarLogin() {
-            const correo = document.getElementById('correoLogin').value;
-            const contrasena = document.getElementById('contrasenaLogin').value;
-            const mensaje = document.getElementById('mensajeLogin');
-            
-            if (correo && contrasena) {
-                localStorage.setItem('usuario', correo);
-                mensaje.className = 'alert alert-success alert-custom';
-                mensaje.innerHTML = '¡Inicio de sesión exitoso! Redirigiendo...';
-                mensaje.style.display = 'block';
-                setTimeout(() => {
-                    window.location.href = '{{route('ventana-principal.index')}}'; // Redirigir a la app principal 
-                }, 2000);
-            } else {
-                mensaje.className = 'alert alert-danger alert-custom';
-                mensaje.innerHTML = 'Por favor, completa todos los campos.';
-                mensaje.style.display = 'block';
-            }
-        }
-
-        function mostrarRegistro() {
-            alert('Funcionalidad de registro no implementada aún.'); // Placeholder
-        }
-
-        function volverApp() {
-            window.location.href ="{{route('ventana-principal.index')}}"; // Redirigir a la app principal (ajusta la ruta)
-        }
-
-        document.getElementById('formLogin').addEventListener('submit', function(e) {
-            e.preventDefault();
-            validarLogin();
-        });
-    </script>
-
 </body>
 </html>
+<?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\Dream\resources\views/inicio sesion/index.blade.php ENDPATH**/ ?>
