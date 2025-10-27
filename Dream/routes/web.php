@@ -8,6 +8,7 @@ use App\Http\Controllers\UsuarioConCuenta\UsuarioConCuentaController;
 use App\Http\Controllers\Playlist\PlaylistController;
 use App\Http\Controllers\AsistenteIA\AsistenteIAController;
 use App\Http\Controllers\VentanaDatos\VentanaDatosController;
+use App\Http\Controllers\Sonido\SonidoController;
 
 //use Illuminate\Http\
 
@@ -51,7 +52,10 @@ Route::post('/usuario/update/{usuario}', [App\Http\Controllers\Usuario\UsuarioCo
 Route::delete('/usuario/destroy/{usuario}', [App\Http\Controllers\Usuario\UsuarioController::class, 'destroy'])
     ->name('usuarios.destroy');
 //Ruta para sonidos
-Route::get('/ventana sonido/index', [App\Http\Controllers\Sonido\SonidoController::class, 'index'])->name('sonidos.index');
-Route::get('/ventana sonido/create', [App\Http\Controllers\Sonido\SonidoController::class, 'create'])->name('sonidos.create');
-Route::post('/ventana sonido/store', [App\Http\Controllers\Sonido\SonidoController::class, 'store'])->name('sonidos.store');
-Route::delete('/ventana sonido/{id}', [App\Http\Controllers\Sonido\SonidoController::class, 'destroy'])->name('sonidos.destroy');
+// Route::get('/ventana sonido/index', [App\Http\Controllers\Sonido\SonidoController::class, 'index'])->name('sonidos.index');
+// Route::get('/ventana sonido/create', [App\Http\Controllers\Sonido\SonidoController::class, 'create'])->name('sonidos.create');
+// Route::post('/ventana sonido/store', [App\Http\Controllers\Sonido\SonidoController::class, 'store'])->name('sonidos.store');
+// Route::delete('/ventana sonido/{id}', [App\Http\Controllers\Sonido\SonidoController::class, 'destroy'])->name('sonidos.destroy');
+
+Route::get('/ventana sonido/index', [SonidoController::class, 'index'])->name('sonidos.index');
+Route::post('/subir-audio', [SonidoController::class, 'subirAudio'])->name('subir.audio');
