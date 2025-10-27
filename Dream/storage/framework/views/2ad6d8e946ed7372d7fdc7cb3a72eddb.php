@@ -369,10 +369,10 @@
                 <a class="nav-link" href="#" onclick="mostrarVista('perfil')">
                     <i class="fas fa-user"></i> Mi perfil
                 </a>
-                <a class="nav-link" href="#" onclick="mostrarVista('playlists')">
+                <a class="nav-link" href="<?php echo e(route('playlists.index')); ?>">
                     <i class="fas fa-list"></i> PlayLists
                 </a>
-                <a class="nav-link" href="#" onclick="mostrarVista('asistente')">
+                <a class="nav-link" href="<?php echo e(route('asistente-ia.index')); ?>">
                     <i class="fas fa-robot"></i> Asistente
                 </a>
                 <a class="nav-link" href="#" onclick="mostrarVista('opciones')">
@@ -381,8 +381,8 @@
                 <a class="nav-link" href="#" onclick="iniciarSueno()">
                     <i class="fas fa-moon"></i> Iniciar sueño
                 </a>
-                <a class="nav-link" href="#" onclick="mostrarVista('login')">
-                    <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                <a class="nav-link" href="<?php echo e(route('ventana-principal.index')); ?>">
+                    <i class="fas fa-sign-in-alt"></i> Cerrar sesión
                 </a>
             </div>
         </div>
@@ -395,7 +395,7 @@
                 <div class="avatar">
                     <i class="fas fa-music"></i>
                 </div>
-                <h2>Bienvenido, Usuario</h2>
+                <h2>Bienvenido, <?php echo e($usuario->nombre); ?></h2>
                 <p>Explora tus playlists, configura tu perfil y disfruta de la música.</p>
                 <div class="row mt-4">
                     <div class="col-md-4">
@@ -432,8 +432,8 @@
                 </div>
             </div>
             <div class="text-center mt-4">
-                <a href="#" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Regresar a la ventana principal
+                <a href="<?php echo e(route('ventana-principal.index')); ?>" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Cerrar sesión
                 </a>
             </div>
         </div>
@@ -453,10 +453,11 @@
                         <div class="card-body">
                             <h5><i class="fas fa-bell"></i> Opciones Rápidas</h5>
                             <ul class="mt-3">
-                                <li><a href="#"><i class="fas fa-bell"></i> Notificaciones</a></li>
-                                <li><a href="#"><i class="fas fa-language"></i> Idiomas</a></li>
-                                <li><a href="#"><i class="fas fa-heart"></i> Sonidos favoritos</a></li>
-                                <li><a href="#"><i class="fas fa-id-card"></i> Mis datos</a></li>
+                                <li><a href="#" onclick="mostrarVista('notificaciones')"><i class="fas fa-bell"></i> Notificaciones</a></li>
+                                <li><a href="#" onclick="mostrarVista('idiomas')"><i class="fas fa-language"></i> Idiomas</a></li>
+                                <li><a href="#" onclick="mostrarVista('sonidosFavoritos')"><i class="fas fa-heart"></i> Sonidos favoritos</a></li>
+                                <li><a href="#" onclick="mostrarVista('misDatos')"><i class="fas fa-id-card"></i> Mis datos</a></li>
+                                <li><a href="<?php echo e(route('perfil.index')); ?>"><i class="fas fa-id-card"></i> Editar perfil</a></li>
                             </ul>
                         </div>
                     </div>
@@ -480,184 +481,35 @@
             <div class="text-center">
                 <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
                 <form action="<?php echo e(route('usuarios.destroy', $usuario->id_usuario)); ?>" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');" style="display:inline;">
-            
-                 <?php echo csrf_field(); ?>
-                 <?php echo method_field('DELETE'); ?>
-                 <button type="submit" class="btn btn-custom">
-                     <i class="fas fa-trash-alt"></i> Eliminar cuenta
-               </button>
-              </form>
-
+                    <?php echo csrf_field(); ?>
+                    <?php echo method_field('DELETE'); ?>
+                    <button type="submit" class="btn btn-custom">
+                        <i class="fas fa-trash-alt"></i> Eliminar cuenta
+                    </button>
+                </form>
             </div>
         </div>
 
-        <!-- Vista PlayLists -->
-        <div id="playlists" class="hidden fade-in">
-            <div class="text-center">
-                <h2>Mis PlayLists</h2>
-                <p>Gestiona todas tus listas de reproducción.</p>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-sun fa-2x text-warning mb-3"></i>
-                            <h5>Relajación Matutina</h5>
-                            <p>12 canciones</p>
-                            <button class="btn btn-sm btn-custom">Reproducir</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-moon fa-2x text-info mb-3"></i>
-                            <h5>Sueño Profundo</h5>
-                            <p>8 canciones</p>
-                            <button class="btn btn-sm btn-custom">Reproducir</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-water fa-2x text-primary mb-3"></i>
-                            <h5>Sonidos de Naturaleza</h5>
-                            <p>15 canciones</p>
-                            <button class="btn btn-sm btn-custom">Reproducir</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-4">
-                <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
-            </div>
+        <!-- Placeholders para otras vistas -->
+        <div id="playlists" class="hidden fade-in text-center">
+            <h2>PlayLists</h2>
+            <p>Aquí puedes gestionar tus listas de reproducción.</p>
+            <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
         </div>
-
-        <!-- Vista Asistente -->
-        <div id="asistente" class="hidden fade-in">
-            <div class="text-center">
-                <div class="avatar">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <h2>Asistente Musical</h2>
-                <p>¿En qué puedo ayudarte hoy?</p>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5><i class="fas fa-lightbulb"></i> Recomendaciones</h5>
-                            <p>Obtén recomendaciones personalizadas basadas en tu estado de ánimo.</p>
-                            <button class="btn btn-custom btn-sm">Solicitar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5><i class="fas fa-plus-circle"></i> Nueva PlayList</h5>
-                            <p>Crea una nueva lista de reproducción automáticamente.</p>
-                            <button class="btn btn-custom btn-sm">Crear</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-4">
-                <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
-            </div>
+        <div id="asistente" class="hidden fade-in text-center">
+            <h2>Asistente</h2>
+            <p>Tu asistente musical está aquí para ayudarte.</p>
+            <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
         </div>
-
-        <!-- Vista Opciones -->
-        <div id="opciones" class="hidden fade-in">
-            <div class="text-center">
-                <h2>Opciones</h2>
-                <p>Configura tu experiencia en la aplicación.</p>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5><i class="fas fa-volume-up"></i> Audio</h5>
-                            <div class="form-group">
-                                <label>Volumen general</label>
-                                <input type="range" class="form-range" min="0" max="100" value="75">
-                            </div>
-                            <div class="form-group mt-3">
-                                <label>Calidad de audio</label>
-                                <select class="form-select">
-                                    <option>Alta</option>
-                                    <option>Media</option>
-                                    <option>Baja</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5><i class="fas fa-palette"></i> Apariencia</h5>
-                            <div class="form-group">
-                                <label>Tema</label>
-                                <select class="form-select">
-                                    <option>Oscuro</option>
-                                    <option>Claro</option>
-                                    <option>Automático</option>
-                                </select>
-                            </div>
-                            <div class="form-group mt-3">
-                                <label>Idioma</label>
-                                <select class="form-select">
-                                    <option>Español</option>
-                                    <option>Inglés</option>
-                                    <option>Francés</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-4">
-                <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
-            </div>
+        <div id="opciones" class="hidden fade-in text-center">
+            <h2>Opciones</h2>
+            <p>Configura tus preferencias de la aplicación.</p>
+            <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
         </div>
-
-        <!-- Vista Login -->
-        <div id="login" class="hidden fade-in">
-            <div class="text-center">
-                <div class="avatar">
-                    <i class="fas fa-sign-in-alt"></i>
-                </div>
-                <h2>Iniciar Sesión</h2>
-                <p>Accede a tu cuenta para continuar.</p>
-            </div>
-            <div class="row justify-content-center mt-4">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <form>
-                                <div class="form-group mb-3">
-                                    <label>Email</label>
-                                    <input type="email" class="form-control" placeholder="tu@email.com">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label>Contraseña</label>
-                                    <input type="password" class="form-control" placeholder="Tu contraseña">
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input type="checkbox" class="form-check-input" id="remember">
-                                    <label class="form-check-label" for="remember">Recordarme</label>
-                                </div>
-                                <button type="submit" class="btn btn-custom w-100">Iniciar Sesión</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-4">
-                <button class="btn btn-secondary" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
-            </div>
+        <div id="login" class="hidden fade-in text-center">
+            <h2>Iniciar Sesión</h2>
+            <p>Formulario de login aquí.</p>
+            <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
         </div>
     </main>
 
@@ -671,114 +523,78 @@
             const navbarCollapse = document.getElementById('navbarNav');
             navbarCollapse.classList.toggle('show');
         }
-
-        function mostrarVista(vistaId) {
-            // Ocultar todas las vistas
-            const vistas = document.querySelectorAll('.main-content > div');
-            vistas.forEach(vista => {
-                vista.classList.add('hidden');
+        
+        function mostrarVista(vista) {
+            document.querySelectorAll('.main-content > div').forEach(div => {
+                div.classList.add('hidden');
+                div.classList.remove('fade-in');
             });
-
-            // Mostrar la vista seleccionada
-            const vistaSeleccionada = document.getElementById(vistaId);
-            if (vistaSeleccionada) {
-                vistaSeleccionada.classList.remove('hidden');
-                vistaSeleccionada.classList.add('fade-in');
-            }
-
-            // Cerrar el menú móvil si está abierto
-            const navbarCollapse = document.getElementById('navbarNav');
-            navbarCollapse.classList.remove('show');
-
-            // Si es la vista de perfil, cargar los datos
-            if (vistaId === 'perfil') {
-                cargarDatosPerfil();
+            const targetDiv = document.getElementById(vista);
+            targetDiv.classList.remove('hidden');
+            setTimeout(() => targetDiv.classList.add('fade-in'), 10);
+            if (vista === 'perfil') {
+                loadPerfilTable(); 
             }
         }
+        
+        const usuario = {
+           nombre: "<?php echo e($usuario->nombre); ?>",
+           correo: "<?php echo e($usuario->correo); ?>",
+           tipo_usuario: "<?php echo e(ucfirst($usuario->tipo_usuario)); ?>",
+           fecha_registro: "<?php echo e(\Carbon\Carbon::parse($usuario->fecha_registro)->format('d/m/Y')); ?>"
+        };
 
-        function regresar(vistaId) {
-            mostrarVista(vistaId);
-        }
+        let perfilData = [
+            { campo: 'Nombre', valor: usuario.nombre },
+            { campo: 'Correo', valor: usuario.correo },
+            { campo: 'Tipo de Usuario', valor: usuario.tipo_usuario },
+            { campo: 'Fecha de Registro', valor: usuario.fecha_registro },
+            { campo: 'Último Acceso', valor: 'Hoy' }
+        ];
 
-        function iniciarSueno() {
-            alert('Modo sueño activado. Reproduciendo sonidos relajantes...');
-            // Aquí iría la lógica para iniciar el modo sueño
-        }
-
-        function cargarDatosPerfil() {
-            const tablaBody = document.getElementById('perfilTableBody');
-            if (!tablaBody) return;
-
-            // Datos de ejemplo
-            const datosPerfil = [
-                { campo: 'Nombre', valor: 'Juan Pérez' },
-                { campo: 'Email', valor: 'juan.perez@email.com' },
-                { campo: 'Miembro desde', valor: 'Enero 2024' },
-                { campo: 'PlayLists creadas', valor: '5' },
-                { campo: 'Preferencias musicales', valor: 'Relajación, Naturaleza' },
-                { campo: 'Idioma', valor: 'Español' },
-                { campo: 'Notificaciones', valor: 'Activadas' },
-                { campo: 'Tipo de cuenta', valor: 'Premium' }
-            ];
-
-            // Limpiar tabla
-            tablaBody.innerHTML = '';
-
-            // Llenar tabla con datos
-            datosPerfil.forEach(dato => {
-                const fila = document.createElement('tr');
-                fila.innerHTML = `
-                    <td><strong>${dato.campo}</strong></td>
-                    <td>${dato.valor}</td>
-                `;
-                tablaBody.appendChild(fila);
+        function loadPerfilTable() {
+            const tableBody = document.getElementById('perfilTableBody');
+            tableBody.innerHTML = '';  
+            perfilData.forEach(item => {
+                const row = document.createElement('tr');
+                let valorDisplay = item.valor;
+                if (item.campo === 'Último Acceso' && item.valor === 'Hoy') {
+                    valorDisplay = `<span class="badge bg-success">${item.valor}</span>`;
+                }
+                if (item.campo === 'Tipo de Usuario') {
+                    const badgeClass = item.valor === 'Premium' ? 'bg-warning' : item.valor === 'Admin' ? 'bg-danger' : 'bg-info';
+                    valorDisplay = `<span class="badge ${badgeClass}">${item.valor}</span>`;
+               }
+                row.innerHTML = `<td><i class="fas fa-info-circle text-primary"></i> ${item.campo}</td><td>${valorDisplay}</td>`;
+                tableBody.appendChild(row);
             });
         }
 
         function sortTable(columnIndex) {
-            const table = document.getElementById('perfilTable');
-            const tbody = document.getElementById('perfilTableBody');
-            const rows = Array.from(tbody.getElementsByTagName('tr'));
-            const headers = table.getElementsByTagName('th');
-
-            // Determinar dirección de ordenamiento
-            const isAscending = !headers[columnIndex].classList.contains('asc');
+            const table = document.getElementById('perfilTable'); 
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
             
-            // Remover clases de todos los headers
-            Array.from(headers).forEach(header => {
-                header.classList.remove('asc', 'desc');
-            });
-
-            // Agregar clase al header actual
-            headers[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
-
-            // Ordenar filas
+            const isAscending = table.getAttribute('data-sort') !== 'asc' || table.getAttribute('data-column') !== columnIndex.toString();
+            table.setAttribute('data-sort', isAscending ? 'asc' : 'desc');
+            table.setAttribute('data-column', columnIndex);
+            
             rows.sort((a, b) => {
-                const aValue = a.getElementsByTagName('td')[columnIndex].textContent;
-                const bValue = b.getElementsByTagName('td')[columnIndex].textContent;
-                
-                if (columnIndex === 1) { // Columna de valor (podría contener números)
-                    const aNum = parseInt(aValue);
-                    const bNum = parseInt(bValue);
-                    if (!isNaN(aNum) && !isNaN(bNum)) {
-                        return isAscending ? aNum - bNum : bNum - aNum;
-                    }
+                const aText = a.children[columnIndex].textContent.trim();
+                const bText = b.children[columnIndex].textContent.trim();
+                if (isAscending) {
+                    return aText.localeCompare(bText, 'es', { numeric: true });
+                } else {
+                    return bText.localeCompare(aText, 'es', { numeric: true });
                 }
-                
-                return isAscending 
-                    ? aValue.localeCompare(bValue) 
-                    : bValue.localeCompare(aValue);
             });
-
-            // Reinsertar filas ordenadas
+            
             rows.forEach(row => tbody.appendChild(row));
         }
 
-        // Inicializar la vista principal al cargar la página
-        document.addEventListener('DOMContentLoaded', function() {
-            mostrarVista('principal');
-        });
-
+        function iniciarSueno() { alert('Iniciando modo sueño...'); }
+        function regresar(vista) { mostrarVista(vista); }
+        
         // Cerrar menú móvil al hacer clic fuera de él
         document.addEventListener('click', function(event) {
             const navbar = document.querySelector('.navbar');
@@ -793,13 +609,6 @@
         // Prevenir que los clics dentro del menú lo cierren
         document.getElementById('navbarNav').addEventListener('click', function(event) {
             event.stopPropagation();
-        });
-
-        // Manejar el envío del formulario de login
-        document.querySelector('#login form')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Inicio de sesión simulado. En una aplicación real, esto conectaría con el backend.');
-            mostrarVista('principal');
         });
     </script>
 </body>
