@@ -58,7 +58,7 @@
     @endif
 
     <!-- Formulario para subir audio -->
-    <div class="card bg-light text-dark mb-4">
+    <!-- <div class="card bg-light text-dark mb-4">
         <div class="card-body">
             <h5><i class="fas fa-upload me-2"></i>Subir nuevo audio</h5>
             <form action="{{ route('subir.audio') }}" method="POST" enctype="multipart/form-data">
@@ -70,7 +70,7 @@
                 </button>
             </form>
         </div>
-    </div>
+    </div> -->
 
     <!-- Lista de sonidos -->
     <div class="sound-list">
