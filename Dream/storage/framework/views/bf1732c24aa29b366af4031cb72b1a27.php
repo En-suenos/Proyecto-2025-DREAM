@@ -259,11 +259,7 @@
                     <button type="submit" class="btn btn-primary">
                         Guardar
                     </button>
-<<<<<<< HEAD
                     <a href="<?php echo e(route('inicio_sesion.index')); ?>" class="btn btn-secondary">Regresa</a>
-=======
-                    <a href="<?php echo e(route('inicio_sesion.index')); ?>" class="btn btn-secondary">Regresa al perfil</a>
->>>>>>> main
                 </div>
             </form>
         </div>

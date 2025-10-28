@@ -5,6 +5,7 @@ namespace App\Http\Controllers\InicioSesion;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 class InicioSesionController extends Controller
@@ -29,13 +30,29 @@ class InicioSesionController extends Controller
         $usuario = Usuario::where('correo', $correo)->first();
 
         // Verificar si el usuario existe y la contraseña es correcta
-        if ($usuario && password_verify($contrasena, $usuario->contraseña)) {
+        if ($usuario && Hash::check($contrasena, $usuario->contraseña)) {
             // Usuario encontrado y contraseña válida
-            session(['usuario_id' => $usuario->id_usuario, 'usuario_correo' => $usuario->correo]);
-            return Redirect::route('usuario_con_cuenta.index')->with('success', 'Inicio de sesión exitoso');
+            session([
+                'usuario_id' => $usuario->id_usuario, 
+                'usuario_nombre' => $usuario->nombre,
+                'usuario_correo' => $usuario->correo
+            ]);
+            
+            return Redirect::route('usuario_con_cuenta.index')
+                ->with('success', 'Inicio de sesión exitoso');
         } else {
             // Usuario no encontrado o contraseña incorrecta
-            return Redirect::route('ventana datos.index')->with('error', 'Credenciales incorrectas. Por favor, crea una cuenta.');
+            return Redirect::route('inicio_sesion.index')
+                ->with('error', 'Credenciales incorrectas. Por favor, verifica tus datos.');
         }
     }
+
+    public function logout()
+{
+    // Limpiar la sesión
+    session()->forget(['usuario_id', 'usuario_nombre', 'usuario_correo']);
+    
+    return Redirect::route('ventana-principal.index')
+        ->with('success', 'Sesión cerrada correctamente');
+}
 }

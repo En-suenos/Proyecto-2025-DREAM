@@ -21,4 +21,12 @@ class Sonido extends Model
         'duracion' => 'double',
         'activo' => 'boolean'
     ];
+
+    // Relación con playlists
+    public function playlists()
+    {
+        return $this->belongsToMany(Playlist::class, 'playlist_sonido')
+                    ->withPivot('volumen', 'orden')
+                    ->withTimestamps();
+    }
 }
