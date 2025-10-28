@@ -59,3 +59,8 @@ Route::delete('/usuario/destroy/{usuario}', [App\Http\Controllers\Usuario\Usuari
 
 Route::get('/ventana sonido/index', [SonidoController::class, 'index'])->name('sonidos.index');
 Route::post('/subir-audio', [SonidoController::class, 'subirAudio'])->name('subir.audio');
+
+// Rutas de perfil
+Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil.index');
+Route::put('/perfil/update', [PerfilController::class, 'update'])->name('perfil.update');
+Route::delete('/perfil/eliminar-imagen', [PerfilController::class, 'eliminarImagen'])->name('perfil.eliminar-imagen');
