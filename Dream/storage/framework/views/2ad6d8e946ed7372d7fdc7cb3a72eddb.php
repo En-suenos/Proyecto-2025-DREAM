@@ -480,55 +480,126 @@
         <!-- Resto del código se mantiene igual -->
         <!-- Vista Perfil -->
         <div id="perfil" class="hidden fade-in">
-            <div class="text-center">
-                <div class="avatar">
-                    <i class="fas fa-user"></i>
+    <div class="text-center">
+        <div class="avatar">
+            <i class="fas fa-user"></i>
+        </div>
+        <h2>Mi Perfil</h2>
+        <p>Administra tu información personal y preferencias.</p>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5><i class="fas fa-bell"></i> Opciones Rápidas</h5>
+                    <ul class="mt-3">
+                        <li><a href="#" onclick="mostrarVista('notificaciones')"><i class="fas fa-bell"></i> Notificaciones</a></li>
+                        <li><a href="#" onclick="mostrarVista('idiomas')"><i class="fas fa-language"></i> Idiomas</a></li>
+                        <li><a href="#" onclick="mostrarVista('sonidosFavoritos')"><i class="fas fa-heart"></i> Sonidos favoritos</a></li>
+                        <li><a href="#" onclick="mostrarVista('misDatos')"><i class="fas fa-id-card"></i> Mis datos</a></li>
+                        <li><a href="<?php echo e(route('perfil.index')); ?>"><i class="fas fa-id-card"></i> Editar perfil</a></li>
+                        <!-- Botón para mostrar sonidos disponibles -->
+                        <li>
+                            <button type="button" class="btn btn-outline-primary btn-sm w-100 text-start" onclick="toggleSonidosDisponibles()">
+                                <i class="fas fa-music"></i> Sonidos disponibles
+                                <i class="fas fa-chevron-down float-end mt-1"></i>
+                            </button>
+                            <div id="listaSonidos" class="mt-2" style="display: none;">
+                                <div class="card">
+                                    <div class="card-body p-2">
+                                        <h6 class="card-title">Sonidos disponibles:</h6>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Notificación estándar
+                                                <button class="btn btn-sm btn-outline-success" onclick="reproducirSonido('standard')">
+                                                    <i class="fas fa-play"></i>
+                                                </button>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Alarma
+                                                <button class="btn btn-sm btn-outline-success" onclick="reproducirSonido('alarm')">
+                                                    <i class="fas fa-play"></i>
+                                                </button>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Campana
+                                                <button class="btn btn-sm btn-outline-success" onclick="reproducirSonido('bell')">
+                                                    <i class="fas fa-play"></i>
+                                                </button>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Chime
+                                                <button class="btn btn-sm btn-outline-success" onclick="reproducirSonido('chime')">
+                                                    <i class="fas fa-play"></i>
+                                                </button>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Notificación suave
+                                                <button class="btn btn-sm btn-outline-success" onclick="reproducirSonido('soft')">
+                                                    <i class="fas fa-play"></i>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <h2>Mi Perfil</h2>
-                <p>Administra tu información personal y preferencias.</p>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5><i class="fas fa-bell"></i> Opciones Rápidas</h5>
-                            <ul class="mt-3">
-                                <li><a href="#" onclick="mostrarVista('notificaciones')"><i class="fas fa-bell"></i> Notificaciones</a></li>
-                                <li><a href="#" onclick="mostrarVista('idiomas')"><i class="fas fa-language"></i> Idiomas</a></li>
-                                <li><a href="#" onclick="mostrarVista('sonidosFavoritos')"><i class="fas fa-heart"></i> Sonidos favoritos</a></li>
-                                <li><a href="#" onclick="mostrarVista('misDatos')"><i class="fas fa-id-card"></i> Mis datos</a></li>
-                                <li><a href="<?php echo e(route('perfil.index')); ?>"><i class="fas fa-id-card"></i> Editar perfil</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="table-container">
-                        <h3><i class="fas fa-table"></i> Detalles de tu Cuenta</h3>
-                        <table id="perfilTable" class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th onclick="sortTable(0)">Campo <i class="fas fa-sort"></i></th>
-                                    <th onclick="sortTable(1)">Valor <i class="fas fa-sort"></i></th>
-                                </tr>
-                            </thead>
-                            <tbody id="perfilTableBody">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center">
-                <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
-                <form action="<?php echo e(route('usuarios.destroy', $usuario->id_usuario)); ?>" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');" style="display:inline;">
-                    <?php echo csrf_field(); ?>
-                    <?php echo method_field('DELETE'); ?>
-                    <button type="submit" class="btn btn-custom">
-                        <i class="fas fa-trash-alt"></i> Eliminar cuenta
-                    </button>
-                </form>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="table-container">
+                <h3><i class="fas fa-table"></i> Detalles de tu Cuenta</h3>
+                <table id="perfilTable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">Campo <i class="fas fa-sort"></i></th>
+                            <th onclick="sortTable(1)">Valor <i class="fas fa-sort"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody id="perfilTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
+        <form action="<?php echo e(route('usuarios.destroy', $usuario->id_usuario)); ?>" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');" style="display:inline;">
+            <?php echo csrf_field(); ?>
+            <?php echo method_field('DELETE'); ?>
+            <button type="submit" class="btn btn-custom">
+                <i class="fas fa-trash-alt"></i> Eliminar cuenta
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Función para mostrar/ocultar la lista de sonidos
+    function toggleSonidosDisponibles() {
+        const listaSonidos = document.getElementById('listaSonidos');
+        const icono = document.querySelector('#listaSonidos').previousElementSibling.querySelector('.fa-chevron-down');
+        
+        if (listaSonidos.style.display === 'none') {
+            listaSonidos.style.display = 'block';
+            icono.classList.remove('fa-chevron-down');
+            icono.classList.add('fa-chevron-up');
+        } else {
+            listaSonidos.style.display = 'none';
+            icono.classList.remove('fa-chevron-up');
+            icono.classList.add('fa-chevron-down');
+        }
+    }
+    
+    // Función para reproducir sonidos (simulación)
+    function reproducirSonido(tipo) {
+        // En una implementación real, aquí se reproduciría el sonido
+        console.log(`Reproduciendo sonido: ${tipo}`);
+        alert(`Reproduciendo sonido: ${tipo}`);
+    }
+</script>
 
         <!-- Placeholders para otras vistas -->
         <div id="playlists" class="hidden fade-in text-center">
