@@ -499,7 +499,7 @@
                         <li><a href="#" onclick="mostrarVista('misDatos')"><i class="fas fa-id-card"></i> Mis datos</a></li>
                         <li><a href="{{route('perfil.index')}}"><i class="fas fa-id-card"></i> Editar perfil</a></li>
                         <!-- Botón para mostrar sonidos disponibles -->
-                        <li>
+                        <!-- <li>
                             <button type="button" class="btn btn-outline-primary btn-sm w-100 text-start" onclick="toggleSonidosDisponibles()">
                                 <i class="fas fa-music"></i> Sonidos disponibles
                                 <i class="fas fa-chevron-down float-end mt-1"></i>
@@ -543,7 +543,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
