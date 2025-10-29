@@ -9,14 +9,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->id('id_usuario'); // Equivale a auto_increment primary key
+            $table->id('id_usuario'); // auto_increment primary key
             $table->string('nombre', 100);
             $table->string('correo', 150)->unique();
             $table->string('contraseña', 255);
             $table->enum('tipo_usuario', ['free', 'premium', 'admin']);
             $table->date('fecha_registro');
-            $table->softDeletes(); // Para eliminaciones lógicas
-            $table->timestamps(); // Opcional: para created_at y updated_at
+            $table->softDeletes(); // Para eliminaciones
+            $table->timestamps(); // Para created_at 
         });
     }
 
@@ -25,3 +25,4 @@ return new class extends Migration
         Schema::dropIfExists('usuarios');
     }
 };
+
