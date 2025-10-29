@@ -301,13 +301,13 @@
     if (!confirm('¿Estás seguro de quitar este sonido de la playlist?')) return;
     
     // CORREGIDO: Usar la ruta correcta para eliminar sonido individual
-    fetch(`/playlists/${playlistId}/quitar-sonido/${sonidoId}`, {
-    method: 'DELETE',
-    headers: {
-        'X-CSRF-TOKEN': '<?php echo e(csrf_token()); ?>',
-        'Content-Type': 'application/json'
-    }
-})
+    fetch(`/playlists/${playlistId}/sonidos/${sonidoId}`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': '<?php echo e(csrf_token()); ?>',
+            'Content-Type': 'application/json'
+        }
+    })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
