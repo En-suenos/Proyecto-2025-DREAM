@@ -10,13 +10,17 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
             min-height: 100vh;
+            color: #fff;
         }
         .card {
             border: none;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         .card-body {
             padding: 2rem;
@@ -29,28 +33,61 @@
         }
         .form-control {
             border-radius: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
         }
         .form-control:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+            border-color: rgba(79, 195, 247, 0.5);
+            box-shadow: 0 0 0 0.2rem rgba(79, 195, 247, 0.25);
+        }
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(45deg, #4fc3f7, #29b6f6);
             border: none;
             border-radius: 25px;
             padding: 12px;
             font-weight: 600;
+            color: #ffffff;
         }
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(79, 195, 247, 0.3);
         }
         .input-group-text {
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 10px 0 0 10px;
+            color: #fff;
+        }
+        .text-muted {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+        .badge {
+            background: rgba(79, 195, 247, 0.2);
+            color: #4fc3f7;
+        }
+        .alert-success {
+            background: rgba(79, 195, 247, 0.2);
+            border-color: rgba(79, 195, 247, 0.3);
+            color: #4fc3f7;
+        }
+        .alert-danger {
+            background: rgba(255, 0, 0, 0.2);
+            border-color: rgba(255, 0, 0, 0.3);
+            color: #ffcccc;
+        }
+        h4, h5 {
+            color: #4fc3f7;
+        }
+        .text-decoration-none {
+            color: #4fc3f7;
+        }
+        .text-decoration-none:hover {
+            color: #29b6f6;
         }
     </style>
 </head>
