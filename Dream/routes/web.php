@@ -81,3 +81,7 @@ Route::get('/ventana sonido/index', [SonidoController::class, 'index'])->name('s
 Route::post('/subir-audio', [SonidoController::class, 'subirAudio'])->name('subir.audio');
 
 
+// Rutas de perfil
+Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil.index');
+Route::put('/perfil/update', [PerfilController::class, 'update'])->name('perfil.update');
+Route::delete('/perfil/eliminar-imagen', [PerfilController::class, 'eliminarImagen'])->name('perfil.eliminar-imagen');

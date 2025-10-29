@@ -381,4 +381,4 @@
     </script>
 
 </body>
-</html><?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\Dream\resources\views/ventana de datos/index.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\laragon\www\sueñito\Dream\resources\views/ventana de datos/index.blade.php ENDPATH**/ ?>
