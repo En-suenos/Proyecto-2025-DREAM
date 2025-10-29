@@ -9,7 +9,7 @@ class Usuario extends Model
 {
     use SoftDeletes;
     protected $table = 'usuarios';
-    protected $primaryKey = 'id_usuario'; // ✅ ESTO ES LO QUE FALTA
+    protected $primaryKey = 'id_usuario';
     
     protected $fillable = [
         'nombre',
