@@ -268,7 +268,7 @@
             </div>
 
             <div class="text-center mt-4">
-                <a href="{{ route('usuario_con_cuenta.index') }}" class="btn btn-outline-light">
+                <a href="<?php echo e(route('usuario_con_cuenta.index')); ?>" class="btn btn-outline-light">
                     ← Volver al inicio
                 </a>
             </div>
@@ -284,3 +284,4 @@
     </script>
 </body>
 </html>
+<?php /**PATH C:\laragon\www\carpeta principal\Proyecto-2025-DREAM\Dream\resources\views/ventana playlista/index.blade.php ENDPATH**/ ?>
