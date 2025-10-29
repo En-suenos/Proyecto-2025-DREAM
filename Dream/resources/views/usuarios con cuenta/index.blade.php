@@ -658,7 +658,7 @@
             
             // Lista de sonidos disponibles (ajusta estas rutas según tu estructura en Laravel)
             const sonidos = [
-                "{{ asset('audio/Sonido-3.mp3') }}",
+                "{{ asset('audio/Sonido-7.mp3') }}",
                 "{{ asset('audio/Sonido-4.mp3') }}",
                 "{{ asset('audio/Sonido-5.mp3') }}",
                 "{{ asset('audio/Sonido-6.mp3') }}"
