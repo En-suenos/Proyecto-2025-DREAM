@@ -176,6 +176,33 @@
             text-decoration: underline;
         }
 
+        /* Estilos para el campo de contraseña con ojito */
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 10;
+            padding: 5px;
+        }
+
+        .toggle-password:hover {
+            color: #4fc3f7;
+        }
+
+        .form-control.password-input {
+            padding-right: 50px;
+        }
+
         @media (max-width: 768px) {
             .main-content {
                 max-width: 100%;
@@ -209,7 +236,12 @@
                 </div>
                 <div class="mb-3">
                     <label for="contrasenaLogin" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="contrasenaLogin" name="contrasenaLogin" placeholder="Contraseña" required>
+                    <div class="password-container">
+                        <input type="password" class="form-control password-input" id="contrasenaLogin" name="contrasenaLogin" placeholder="Contraseña" required>
+                        <button type="button" class="toggle-password" id="togglePassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Ingresar</button>
             </form>
@@ -236,5 +268,49 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('contrasenaLogin');
+            const eyeIcon = togglePassword.querySelector('i');
+            
+            // Evento cuando se presiona el botón (mouse down)
+            togglePassword.addEventListener('mousedown', function() {
+                passwordInput.setAttribute('type', 'text');
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            });
+            
+            // Evento cuando se suelta el botón (mouse up)
+            togglePassword.addEventListener('mouseup', function() {
+                passwordInput.setAttribute('type', 'password');
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            });
+            
+            // Evento cuando el mouse sale del botón (para casos donde se suelta fuera)
+            togglePassword.addEventListener('mouseleave', function() {
+                passwordInput.setAttribute('type', 'password');
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            });
+            
+            // Para dispositivos táctiles
+            togglePassword.addEventListener('touchstart', function(e) {
+                e.preventDefault(); // Prevenir comportamiento por defecto
+                passwordInput.setAttribute('type', 'text');
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            });
+            
+            togglePassword.addEventListener('touchend', function(e) {
+                e.preventDefault(); // Prevenir comportamiento por defecto
+                passwordInput.setAttribute('type', 'password');
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            });
+        });
+    </script>
 </body>
 </html>

@@ -346,70 +346,6 @@
             text-decoration: underline;
         }
 
-        /* Estilos mejorados para el botón de Iniciar Sueño */
-        .btn-sueno {
-            background: linear-gradient(45deg, #9C27B0, #673AB7);
-            border: none;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.5s ease;
-            margin-top: 20px;
-            box-shadow: 0 5px 20px rgba(156, 39, 176, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-sueno:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(156, 39, 176, 0.6);
-            color: white;
-        }
-
-        .btn-sueno::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .btn-sueno:hover::before {
-            left: 100%;
-        }
-
-        .btn-sueno i {
-            margin-right: 10px;
-            animation: twinkle 2s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .card-sueno {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, rgba(156, 39, 176, 0.2), rgba(103, 58, 183, 0.2));
-            backdrop-filter: blur(15px);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
-        }
-
-        .card-sueno:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(156, 39, 176, 0.3);
-        }
-
         @media (max-width: 768px) {
             .main-content {
                 max-width: 100%;
@@ -423,27 +359,27 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#"><i class="fas fa-moon"></i> Dreams</a>
+    <nav class="navbar">
+        <a class="navbar-brand" href="#" onclick="mostrarVista('principal')"><i class="fas fa-music"></i> PlayList</a>
         <button class="navbar-toggler" type="button" onclick="toggleNavbar()">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-collapse" id="navbarNav">
-            <div class="navbar-nav navbar-nav ms-auto">
+            <div class="navbar-nav">
                 <a class="nav-link" href="#" onclick="mostrarVista('perfil')">
                     <i class="fas fa-user"></i> Mi perfil
                 </a>
-                <a class="nav-link" href="<?php echo e(route('sonidos.index')); ?>">
-                    <i class="fas fa-list"></i> Sonidos
-                </a>
-                <a class="nav-link" href="<?php echo e(route('playlists.index')); ?>" onclick="playlists()">
-                    <i class="fas fa-list"></i> Playlists
+                <a class="nav-link" href="<?php echo e(route('playlists.index')); ?>">
+                    <i class="fas fa-list"></i> PlayLists
                 </a>
                 <a class="nav-link" href="<?php echo e(route('asistente-ia.index')); ?>">
                     <i class="fas fa-robot"></i> Asistente
                 </a>
                 <a class="nav-link" href="#" onclick="mostrarVista('opciones')">
                     <i class="fas fa-cog"></i> Opciones
+                </a>
+                <a class="nav-link" href="#" onclick="iniciarSueno()">
+                    <i class="fas fa-moon"></i> Iniciar sueño
                 </a>
                 <a class="nav-link" href="<?php echo e(route('ventana-principal.index')); ?>">
                     <i class="fas fa-sign-in-alt"></i> Cerrar sesión
@@ -461,145 +397,98 @@
                 </div>
                 <h2>Bienvenido, <?php echo e($usuario->nombre); ?></h2>
                 <p>Explora tus playlists, configura tu perfil y disfruta de la música.</p>
-                <div class="row mt-4 justify-content-center">
-                    <div class="col-md-6">
-                        <div class="card card-sueno">
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="card">
                             <div class="card-body text-center">
-                                <i class="fas fa-moon fa-3x text-warning mb-3"></i>
-                                <p class="card-text fs-5">😴 “Dormir no es perder el tiempo, es regalarle al cuerpo la energía y la claridad que necesita para seguir soñando despierto.” 🌌</p>
-                                <button onclick="iniciarModoSueno()" class="btn btn-sueno">
-                                    <i class="fas fa-play-circle"></i> Iniciar Sueño
-                                </button>
+                                <i class="fas fa-list fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Mis PlayLists</h5>
+                                <p class="card-text">Gestiona tus listas de reproducción favoritas.</p>
+                                <a href="<?php echo e(route('sonidos.index')); ?>" class="btn btn-custom">Ver PlayLists</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="fas fa-user fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Mi Perfil</h5>
+                                <p class="card-text">Configura tu información personal.</p>
+                                <a href="#" onclick="mostrarVista('perfil')" class="btn btn-custom">Ir al Perfil</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="fas fa-robot fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Asistente</h5>
+                                <p class="card-text">Obtén ayuda con recomendaciones musicales.</p>
+                                <a href="<?php echo e(route('asistente-ia.index')); ?>" class="btn btn-custom">Usar Asistente</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="text-center mt-4">
+                <a href="<?php echo e(route('ventana-principal.index')); ?>" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Cerrar sesión
+                </a>
+            </div>
         </div>
 
-        <!-- Resto del código se mantiene igual -->
         <!-- Vista Perfil -->
         <div id="perfil" class="hidden fade-in">
-    <div class="text-center">
-        <div class="avatar">
-            <i class="fas fa-user"></i>
-        </div>
-        <h2>Mi Perfil</h2>
-        <p>Administra tu información personal y preferencias.</p>
-    </div>
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5><i class="fas fa-bell"></i> Opciones Rápidas</h5>
-                    <ul class="mt-3">
-                        <li><a href="#" onclick="mostrarVista('notificaciones')"><i class="fas fa-bell"></i> Notificaciones</a></li>
-                        <li><a href="#" onclick="mostrarVista('idiomas')"><i class="fas fa-language"></i> Idiomas</a></li>
-                        <li><a href="#" onclick="mostrarVista('sonidosFavoritos')"><i class="fas fa-heart"></i> Sonidos favoritos</a></li>
-                        <li><a href="#" onclick="mostrarVista('misDatos')"><i class="fas fa-id-card"></i> Mis datos</a></li>
-                        <li><a href="<?php echo e(route('perfil.index')); ?>"><i class="fas fa-id-card"></i> Editar perfil</a></li>
-                        <!-- Botón para mostrar sonidos disponibles -->
-                        <li>
-                            <button type="button" class="btn btn-outline-primary btn-sm w-100 text-start" onclick="toggleSonidosDisponibles()">
-                                <i class="fas fa-music"></i> Sonidos disponibles
-                                <i class="fas fa-chevron-down float-end mt-1"></i>
-                            </button>
-                            <div id="listaSonidos" class="mt-2" style="display: none;">
-                                <div class="card">
-                                    <div class="card-body p-2">
-                                        <h6 class="card-title">Sonidos disponibles:</h6>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Notificación estándar
-                                                <button class="btn btn-sm btn-outline-success" onclick="reproducirSonido('standard')">
-                                                    <i class="fas fa-play"></i>
-                                                </button>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Alarma
-                                                <button class="btn btn-sm btn-outline-success" onclick="reproducirSonido('alarm')">
-                                                    <i class="fas fa-play"></i>
-                                                </button>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Campana
-                                                <button class="btn btn-sm btn-outline-success" onclick="reproducirSonido('bell')">
-                                                    <i class="fas fa-play"></i>
-                                                </button>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Chime
-                                                <button class="btn btn-sm btn-outline-success" onclick="reproducirSonido('chime')">
-                                                    <i class="fas fa-play"></i>
-                                                </button>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                Notificación suave
-                                                <button class="btn btn-sm btn-outline-success" onclick="reproducirSonido('soft')">
-                                                    <i class="fas fa-play"></i>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+            <div class="text-center">
+                <div class="avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h2>Mi Perfil</h2>
+                <p>Administra tu información personal y preferencias.</p>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5><i class="fas fa-bell"></i> Opciones Rápidas</h5>
+                            <ul class="mt-3">
+                                <li><a href="#" onclick="mostrarVista('notificaciones')"><i class="fas fa-bell"></i> Notificaciones</a></li>
+                                <li><a href="#" onclick="mostrarVista('idiomas')"><i class="fas fa-language"></i> Idiomas</a></li>
+                                <li><a href="#" onclick="mostrarVista('sonidosFavoritos')"><i class="fas fa-heart"></i> Sonidos favoritos</a></li>
+                                <li><a href="#" onclick="mostrarVista('misDatos')"><i class="fas fa-id-card"></i> Mis datos</a></li>
+                                <li><a href="<?php echo e(route('perfil.index')); ?>"><i class="fas fa-id-card"></i> Editar perfil</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="table-container">
+                        <h3><i class="fas fa-table"></i> Detalles de tu Cuenta</h3>
+                        <table id="perfilTable" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th onclick="sortTable(0)">Campo <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTable(1)">Valor <i class="fas fa-sort"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody id="perfilTableBody">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="table-container">
-                <h3><i class="fas fa-table"></i> Detalles de tu Cuenta</h3>
-                <table id="perfilTable" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th onclick="sortTable(0)">Campo <i class="fas fa-sort"></i></th>
-                            <th onclick="sortTable(1)">Valor <i class="fas fa-sort"></i></th>
-                        </tr>
-                    </thead>
-                    <tbody id="perfilTableBody">
-                    </tbody>
-                </table>
+            <div class="text-center">
+                <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
+                <form action="<?php echo e(route('usuarios.destroy', $usuario->id_usuario)); ?>" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');" style="display:inline;">
+                    <?php echo csrf_field(); ?>
+                    <?php echo method_field('DELETE'); ?>
+                    <button type="submit" class="btn btn-custom">
+                        <i class="fas fa-trash-alt"></i> Eliminar cuenta
+                    </button>
+                </form>
             </div>
         </div>
-    </div>
-    <div class="text-center">
-        <button class="btn btn-custom" onclick="regresar('principal')"><i class="fas fa-arrow-left"></i> Regresar</button>
-        <form action="<?php echo e(route('usuarios.destroy', $usuario->id_usuario)); ?>" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');" style="display:inline;">
-            <?php echo csrf_field(); ?>
-            <?php echo method_field('DELETE'); ?>
-            <button type="submit" class="btn btn-custom">
-                <i class="fas fa-trash-alt"></i> Eliminar cuenta
-            </button>
-        </form>
-    </div>
-</div>
-
-<script>
-    // Función para mostrar/ocultar la lista de sonidos
-    function toggleSonidosDisponibles() {
-        const listaSonidos = document.getElementById('listaSonidos');
-        const icono = document.querySelector('#listaSonidos').previousElementSibling.querySelector('.fa-chevron-down');
-        
-        if (listaSonidos.style.display === 'none') {
-            listaSonidos.style.display = 'block';
-            icono.classList.remove('fa-chevron-down');
-            icono.classList.add('fa-chevron-up');
-        } else {
-            listaSonidos.style.display = 'none';
-            icono.classList.remove('fa-chevron-up');
-            icono.classList.add('fa-chevron-down');
-        }
-    }
-    
-    // Función para reproducir sonidos (simulación)
-    function reproducirSonido(tipo) {
-        // En una implementación real, aquí se reproduciría el sonido
-        console.log(`Reproduciendo sonido: ${tipo}`);
-        alert(`Reproduciendo sonido: ${tipo}`);
-    }
-</script>
 
         <!-- Placeholders para otras vistas -->
         <div id="playlists" class="hidden fade-in text-center">
@@ -623,7 +512,6 @@
             <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
         </div>
     </main>
-    
 
     <div class="footer">
         <p>&copy; 2024 Aplicación PlayList. Todos los derechos reservados. | <a href="#" class="text-decoration-none">Política de Privacidad</a></p>
@@ -704,6 +592,7 @@
             rows.forEach(row => tbody.appendChild(row));
         }
 
+        function iniciarSueno() { alert('Iniciando modo sueño...'); }
         function regresar(vista) { mostrarVista(vista); }
         
         // Cerrar menú móvil al hacer clic fuera de él
@@ -721,107 +610,6 @@
         document.getElementById('navbarNav').addEventListener('click', function(event) {
             event.stopPropagation();
         });
-
-        // Función para reproducir sonidos al iniciar modo sueño
-        function iniciarModoSueno() {
-            // Crear elemento de audio
-            const audio = new Audio();
-            
-            // Lista de sonidos disponibles (ajusta estas rutas según tu estructura en Laravel)
-            const sonidos = [
-                "<?php echo e(asset('audio/Sonido-7.mp3')); ?>",
-                "<?php echo e(asset('audio/Sonido-4.mp3')); ?>",
-                "<?php echo e(asset('audio/Sonido-5.mp3')); ?>",
-                "<?php echo e(asset('audio/Sonido-6.mp3')); ?>"
-            ];
-            
-            // Seleccionar un sonido aleatorio
-            const sonidoAleatorio = sonidos[Math.floor(Math.random() * sonidos.length)];
-            
-            // Configurar el audio
-            audio.src = sonidoAleatorio;
-            audio.loop = true;
-            audio.volume = 0.10;
-            
-            // Reproducir el sonido
-            audio.play().then(() => {
-                console.log('Reproduciendo sonido relajante...');
-                
-                // Mostrar mensaje de confirmación
-                const boton = document.querySelector('.btn-sueno');
-                const icono = boton.querySelector('i');
-                const texto = boton.querySelector('span') || document.createElement('span');
-                
-                // Cambiar el botón a estado de reproducción
-                icono.className = 'fas fa-pause-circle';
-                texto.textContent = ' Detener Sueño';
-                if (!boton.querySelector('span')) {
-                    boton.appendChild(texto);
-                }
-                
-                // Cambiar la función del botón para detener
-                boton.onclick = function() {
-                    detenerModoSueno(audio, boton);
-                };
-                
-                // Mostrar notificación
-                mostrarNotificacion('Modo sueño activado', 'Sonidos relajantes reproduciéndose...');
-                
-            }).catch(error => {
-                console.error('Error al reproducir el sonido:', error);
-                alert('No se pudo reproducir el sonido. Verifica que los archivos de audio estén disponibles.');
-            });
-        }
-
-        function detenerModoSueno(audio, boton) {
-            // Detener la reproducción
-            audio.pause();
-            audio.currentTime = 0;
-            
-            // Restaurar el botón a su estado original
-            const icono = boton.querySelector('i');
-            const texto = boton.querySelector('span');
-            
-            icono.className = 'fas fa-play-circle';
-            texto.textContent = ' Iniciar Sueño';
-            
-            // Restaurar la función original
-            boton.onclick = function() {
-                iniciarModoSueno();
-            };
-            
-            // Mostrar notificación
-            mostrarNotificacion('Modo sueño desactivado', 'Sonidos detenidos');
-        }
-
-        function mostrarNotificacion(titulo, mensaje) {
-            // Crear elemento de notificación
-            const notificacion = document.createElement('div');
-            notificacion.className = 'alert alert-info position-fixed';
-            notificacion.style.cssText = `
-                top: 100px;
-                right: 20px;
-                z-index: 1050;
-                min-width: 300px;
-                background: rgba(255, 255, 255, 0.9);
-                color: #333;
-                border: none;
-                border-radius: 10px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            `;
-            notificacion.innerHTML = `
-                <strong>${titulo}</strong><br>
-                ${mensaje}
-            `;
-            
-            // Agregar al documento
-            document.body.appendChild(notificacion);
-            
-            // Remover después de 3 segundos
-            setTimeout(() => {
-                notificacion.remove();
-            }, 3000);
-        }
-  </script>
+    </script>
 </body>
-</html><?php /**PATH C:\laragon\www\carpeta principal\Proyecto-2025-DREAM\Dream\resources\views/usuarios con cuenta/index.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\laragon\www\sueñito\Dream\resources\views/usuarios con cuenta/index.blade.php ENDPATH**/ ?>

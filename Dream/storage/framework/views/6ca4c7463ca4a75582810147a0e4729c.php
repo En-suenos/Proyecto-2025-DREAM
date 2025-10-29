@@ -148,11 +148,12 @@
         <i class="fas fa-music me-2"></i>Biblioteca de Sonidos
     </h1>
 
-    @if(session('success'))
+    <?php if(session('success')): ?>
         <div class="alert alert-success text-center">
-            {{ session('success') }}
+            <?php echo e(session('success')); ?>
+
         </div>
-    @endif
+    <?php endif; ?>
 
     <!-- Controles globales -->
     <div class="controls-global">
@@ -177,9 +178,9 @@
             <i class="fas fa-list-ul me-2"></i>Lista de sonidos disponibles
         </button>
         <div class="collapse" id="soundListCollapse">
-            @if(count($archivos) > 0)
-                @foreach($archivos as $index => $archivo)
-                    <div class="sound-item" data-sound-index="{{ $index }}">
+            <?php if(count($archivos) > 0): ?>
+                <?php $__currentLoopData = $archivos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $archivo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="sound-item" data-sound-index="<?php echo e($index); ?>">
                         <!-- Botón Play/Pause -->
                         <button class="btn btn-primary btn-play play-btn">
                             <i class="fas fa-play"></i>
@@ -188,7 +189,7 @@
                         <!-- Información del sonido -->
                         <div class="sound-info">
                             <i class="fas fa-file-audio text-primary"></i>
-                            <span class="fw-bold">{{ $archivo }}</span>
+                            <span class="fw-bold"><?php echo e($archivo); ?></span>
                         </div>
 
                         <!-- Control de volumen -->
@@ -199,21 +200,21 @@
 
                         <!-- Audio oculto -->
                         <audio class="audio-player d-none" preload="metadata">
-                            <source src="{{ asset('audio/' . $archivo) }}" type="audio/mpeg">
+                            <source src="<?php echo e(asset('audio/' . $archivo)); ?>" type="audio/mpeg">
                         </audio>
                     </div>
-                @endforeach
-            @else
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php else: ?>
                 <div class="alert alert-info text-center mb-0">
                     <i class="fas fa-info-circle"></i> No hay sonidos disponibles. Sube uno para comenzar.
                 </div>
-            @endif
+            <?php endif; ?>
         </div>
     </div>
 
     <!-- Botón volver -->
     <div class="text-center mt-4">
-        <a href="{{ route('usuario_con_cuenta.index') }}" class="btn btn-outline-light">
+        <a href="<?php echo e(route('usuario_con_cuenta.index')); ?>" class="btn btn-outline-light">
             <i class="fas fa-arrow-left me-2"></i>Volver al inicio
         </a>
     </div>
@@ -344,3 +345,4 @@
 </script>
 </body>
 </html>
+<?php /**PATH C:\laragon\www\carpeta principal\Proyecto-2025-DREAM\Dream\resources\views/ventana sonido/index.blade.php ENDPATH**/ ?>

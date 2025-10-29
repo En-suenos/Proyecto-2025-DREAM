@@ -180,4 +180,4 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html><?php /**PATH C:\laragon\www\carpeta principal\Proyecto-2025-DREAM\Dream\resources\views/ventana perfil/index.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\laragon\www\sueñito\Dream\resources\views/ventana perfil/index.blade.php ENDPATH**/ ?>
