@@ -226,6 +226,7 @@
 
         function agregarSonidoVisualmente(sonidoData, nombre, archivo) {
             const listaSonidos = document.getElementById('lista-sonidos');
+            const playlistId = document.querySelector('[data-playlist-id]').getAttribute('data-playlist-id');
             
             // Si no hay sonidos, remover el mensaje de "no hay sonidos"
             const alertaVacio = document.getElementById('mensaje-vacio');
@@ -244,7 +245,7 @@
                             <input class="form-check-input toggle-sonido" 
                                    type="checkbox" 
                                    checked
-                                   data-playlist-id="{{ $playlist->id }}"
+                                   data-playlist-id="${playlistId}"
                                    data-sonido-id="${sonidoData.id}">
                         </div>
                         <div>
@@ -257,11 +258,11 @@
                             <i class="fas fa-volume-up text-muted me-2"></i>
                             <input type="range" class="form-range volume-slider" 
                                    min="0" max="100" value="80"
-                                   data-playlist-id="{{ $playlist->id }}"
+                                   data-playlist-id="${playlistId}"
                                    data-sonido-id="${sonidoData.id}">
                         </div>
                         <button class="btn btn-sm btn-outline-danger quitar-sonido" 
-                                data-playlist-id="{{ $playlist->id }}"
+                                data-playlist-id="${playlistId}"
                                 data-sonido-id="${sonidoData.id}"
                                 data-sonido-archivo="${archivo}">
                             <i class="fas fa-trash"></i>

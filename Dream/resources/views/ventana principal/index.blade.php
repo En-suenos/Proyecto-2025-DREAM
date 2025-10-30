@@ -422,7 +422,7 @@
                     </div>
 
                     <button class="btn btn-primary w-200 mb-3 buttons-container" onclick="iniciarModoSueno()">
-                        <i class="fas fa-moon me-2"></i>Iniciar sueño
+                        <i class="fas fa-moon me-2"></i>Iniciar
                     </button>
 
                     <!--
@@ -458,7 +458,7 @@
                 <span class="btn-text">Inicio de Sesión</span>
             </a>
             
-            <!-- <a href="{{route('asistente-ia.index')}}" class="btn btn-assistant">
+            <a href="{{route('asistente-ia.index')}}" class="btn btn-assistant">
                 <i class="fas fa-robot btn-icon"></i>
                 <span class="btn-text">Asistente de Sueño</span>
             </a>
@@ -466,7 +466,7 @@
             <a href="#" class="btn btn-playlist">
                 <i class="fas fa-music btn-icon"></i>
                 <span class="btn-text">Playlist Relajante</span>
-            </a> -->
+            </a>
             
             <a href="#" class="btn btn-notification">
                 <i class="fas fa-bell btn-icon"></i>
@@ -556,76 +556,25 @@
             }
         }
 
-        // // Función para reproducir sonidos al iniciar modo sueño
-        // function iniciarModoSueno() {
-        //     // Crear elemento de audio
-        //     const audio = new Audio();
-            
-        //     // Lista de sonidos disponibles (ajusta estas rutas según tu estructura en Laravel)
-        //     const sonidos = [
-        //         "{{ asset('audio/Sonido-3.mp3') }}",
-        //         "{{ asset('audio/Sonido-4.mp3') }}",
-        //         "{{ asset('audio/Sonido-5.mp3') }}",
-        //         "{{ asset('audio/Sonido-6.mp3') }}"
-        //     ];
-            
-        //     // Seleccionar un sonido aleatorio
-        //     const sonidoAleatorio = sonidos[Math.floor(Math.random() * sonidos.length)];
-            
-        //     // Configurar el audio
-        //     audio.src = sonidoAleatorio;
-        //     audio.loop = true;
-        //     audio.volume = 0.10;
-            
-        //     // Reproducir el sonido
-        //     audio.play().then(() => {
-        //         console.log('Reproduciendo sonido relajante...');
-                
-        //         // Mostrar mensaje de confirmación
-        //         const boton = document.querySelector('.btn-sueno');
-        //         const icono = boton.querySelector('i');
-        //         const texto = boton.querySelector('span') || document.createElement('span');
-                
-        //         // Cambiar el botón a estado de reproducción
-        //         icono.className = 'fas fa-pause-circle';
-        //         texto.textContent = ' Detener Sueño';
-        //         if (!boton.querySelector('span')) {
-        //             boton.appendChild(texto);
-        //         }
-                
-        //         // Cambiar la función del botón para detener
-        //         boton.onclick = function() {
-        //             detenerModoSueno(audio, boton);
-        //         };
-                
-        //         // Mostrar notificación
-        //         mostrarNotificacion('Modo sueño activado', 'Sonidos relajantes reproduciéndose...');
-                
-        //     }).catch(error => {
-        //         console.error('Error al reproducir el sonido:', error);
-        //         alert('No se pudo reproducir el sonido. Verifica que los archivos de audio estén disponibles.');
-        //     });
-        // }
+        function iniciarModoSueno() {
+            alert('Iniciando modo sueño... Reproduciendo sonidos relajantes.');
+            // Lógica adicional: reproducir una secuencia de sonidos o redirigir
+        }
 
-        // function detenerModoSueno(audio, boton) {
-        //     // Detener la reproducción
-        //     audio.pause();
-        //     audio.currentTime = 0;
-            
-        //     // Restaurar el botón a su estado original
-        //     const icono = boton.querySelector('i');
-        //     const texto = boton.querySelector('span');
-            
-        //     icono.className = 'fas fa-play-circle';
-        //     texto.textContent = ' Iniciar Sueño';
-            
-        //     // Restaurar la función original
-        //     boton.onclick = function() {
-        //         iniciarModoSueno();
-        //     };
-            
-        //     // Mostrar notificación
-        //     mostrarNotificacion('Modo sueño desactivado', 'Sonidos detenidos');
+        function cambiarIdioma() {
+            const idioma = document.getElementById('idiomaSelect').value;
+            if (idioma === 'en') {
+                // Simular cambio a inglés (cambiar textos clave)
+                document.querySelector('h1').innerHTML = '<i class="fas fa-headphones me-2"></i>SoundScape';
+                document.querySelector('.badge').innerHTML = '<i class="fas fa-user-clock me-1"></i> Not logged in';
+                // Agrega más cambios si es necesario
+                alert('Idioma cambiado a Inglés (simulado).');
+            } else {
+                // Volver a español
+                document.querySelector('h1').innerHTML = '<i class="fas fa-headphones me-2"></i>SoundScape';
+                document.querySelector('.badge').innerHTML = '<i class="fas fa-user-clock me-1"></i> Sin iniciar sesión';
+                alert('Idioma cambiado a Español.');
+            }
         }
 
 
@@ -729,100 +678,6 @@
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Evita valores negativos
     });
     </script>
-
-    <script>
-    // Función para reproducir sonidos al iniciar modo sueño
-    function iniciarModoSueno() {
-        // Crear elemento de audio
-        const audio = new Audio();
-        
-        // Lista de sonidos disponibles
-        const sonidos = [
-            "{{ asset('audio/Sonido-7.mp3') }}",
-            "{{ asset('audio/Sonido-4.mp3') }}",
-            "{{ asset('audio/Sonido-5.mp3') }}",
-            "{{ asset('audio/Sonido-6.mp3') }}"
-        ];
-        
-        // Seleccionar un sonido aleatorio
-        const sonidoAleatorio = sonidos[Math.floor(Math.random() * sonidos.length)];
-        
-        // Configurar el audio
-        audio.src = sonidoAleatorio;
-        audio.loop = true;
-        audio.volume = 0.10;
-        
-        // Reproducir el sonido
-        audio.play().then(() => {
-            console.log('Reproduciendo sonido relajante...');
-            
-            // Mostrar mensaje de confirmación
-            const boton = document.querySelector('.btn-primary');
-            const icono = boton.querySelector('i');
-            
-            // Cambiar el botón a estado de reproducción
-            boton.innerHTML = '<i class="fas fa-pause-circle me-2"></i>Detener Sueño';
-            
-            // Cambiar la función del botón para detener
-            boton.onclick = function() {
-                detenerModoSueno(audio, boton);
-            };
-            
-            // Mostrar notificación
-            mostrarNotificacion('Modo sueño activado', 'Sonidos relajantes reproduciéndose...');
-            
-        }).catch(error => {
-            console.error('Error al reproducir el sonido:', error);
-            alert('No se pudo reproducir el sonido. Verifica que los archivos de audio estén disponibles.');
-        });
-    }
-
-    function detenerModoSueno(audio, boton) {
-        // Detener la reproducción
-        audio.pause();
-        audio.currentTime = 0;
-        
-        // Restaurar el botón a su estado original
-        boton.innerHTML = '<i class="fas fa-moon me-2"></i>Iniciar Sueño';
-        
-        // Restaurar la función original
-        boton.onclick = function() {
-            iniciarModoSueno();
-        };
-        
-        // Mostrar notificación
-        mostrarNotificacion('Modo sueño desactivado', 'Sonidos detenidos');
-    }
-
-    function mostrarNotificacion(titulo, mensaje) {
-        // Crear elemento de notificación
-        const notificacion = document.createElement('div');
-        notificacion.className = 'alert alert-info position-fixed';
-        notificacion.style.cssText = `
-            top: 100px;
-            right: 20px;
-            z-index: 1050;
-            min-width: 300px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        `;
-        notificacion.innerHTML = `
-            <strong>${titulo}</strong><br>
-            ${mensaje}
-        `;
-        
-        // Agregar al documento
-        document.body.appendChild(notificacion);
-        
-        // Remover después de 3 segundos
-        setTimeout(() => {
-            notificacion.remove();
-        }, 3000);
-    }
-</script>
 
 </body>
 </html>

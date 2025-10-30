@@ -104,35 +104,46 @@ class PlaylistController extends Controller
     }
 
     // Métodos para gestionar sonidos en playlists específicas
+    // Retornar JSON
     public function agregarSonido(Request $request, Playlist $playlist)
     {
-        // Verificar que el usuario sea el propietario
         if (!$this->esPropietario($playlist)) {
-            abort(403, 'No tienes permiso para modificar esta playlist.');
+            return response()->json(['success' => false, 'message' => 'No autorizado'], 403);
         }
 
         $request->validate([
             'sonido_archivo' => 'required|string'
         ]);
 
-        if ($playlist->agregarSonido($request->sonido_archivo)) {
-            return back()->with('success', 'Sonido agregado a la playlist.');
+        $sonido = $playlist->agregarSonido($request->sonido_archivo);
+        
+        if ($sonido) {
+            return response()->json([
+                'success' => true,
+                'sonido' => $sonido
+            ]);
         } else {
-            return back()->with('error', 'El sonido no existe o ya está en la playlist.');
+            return response()->json([
+                'success' => false,
+                'message' => 'El sonido no existe o ya está en la playlist.'
+            ], 400);
         }
     }
 
+    //Retornar JSON
     public function quitarSonido(Playlist $playlist, $sonidoId)
     {
-        // Verificar que el usuario sea el propietario
         if (!$this->esPropietario($playlist)) {
-            abort(403, 'No tienes permiso para modificar esta playlist.');
+            return response()->json(['success' => false, 'message' => 'No autorizado'], 403);
         }
 
         if ($playlist->quitarSonido($sonidoId)) {
-            return back()->with('success', 'Sonido removido de la playlist.');
+            return response()->json(['success' => true]);
         } else {
-            return back()->with('error', 'Error al remover el sonido.');
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al remover el sonido.'
+            ], 400);
         }
     }
 
