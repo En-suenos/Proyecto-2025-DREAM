@@ -42,7 +42,7 @@ Route::resource('playlists', PlaylistController::class);
 Route::post('/playlists/{playlist}/agregar-sonido', [PlaylistController::class, 'agregarSonido'])
     ->name('playlists.agregar-sonido');
 
-Route::delete('/playlists/{playlist}/quitar-sonido/{sonidoId}', [PlaylistController::class, 'quitarSonido'])
+Route::delete('/playlists/{playlist}/sonidos/{sonidoId}', [PlaylistController::class, 'quitarSonido'])
     ->name('playlists.quitar-sonido');
 
 Route::put('/playlists/{playlist}/actualizar-volumen/{sonidoId}', [PlaylistController::class, 'actualizarVolumen'])
@@ -71,6 +71,7 @@ Route::post('/usuario/update/{usuario}', [App\Http\Controllers\Usuario\UsuarioCo
 //Rutas para eliminar usuario
 Route::delete('/usuario/destroy/{usuario}', [App\Http\Controllers\Usuario\UsuarioController::class, 'destroy'])
     ->name('usuarios.destroy');
+
 //Ruta para sonidos
 // Route::get('/ventana sonido/index', [App\Http\Controllers\Sonido\SonidoController::class, 'index'])->name('sonidos.index');
 // Route::get('/ventana sonido/create', [App\Http\Controllers\Sonido\SonidoController::class, 'create'])->name('sonidos.create');
