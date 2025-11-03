@@ -64,3 +64,8 @@ Route::post('/subir-audio', [SonidoController::class, 'subirAudio'])->name('subi
 Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil.index');
 Route::put('/perfil/update', [PerfilController::class, 'update'])->name('perfil.update');
 Route::delete('/perfil/eliminar-imagen', [PerfilController::class, 'eliminarImagen'])->name('perfil.eliminar-imagen');
+// Recuperación de contraseña
+Route::get('/forgot-password', [App\Http\Controllers\PasswordResetController::class, 'showForgotPassword'])->name('password.forgot');
+Route::post('/forgot-password', [App\Http\Controllers\PasswordResetController::class, 'sendResetLink'])->name('password.email');
+Route::get('/reset-password/{token}', [App\Http\Controllers\PasswordResetController::class, 'showResetForm'])->name('password.reset.form');
+Route::post('/reset-password', [App\Http\Controllers\PasswordResetController::class, 'resetPassword'])->name('password.update');
