@@ -228,7 +228,7 @@
     <main class="container main-content">
         <div class="login-container">
             <h2>Iniciar Sesión</h2>
-            <form action="{{ route('inicio_sesion.login') }}" method="POST" id="formLogin">
+            <form action="{{ route('usuario-cuenta.index') }}" method="POST" id="formLogin">
                 @csrf
                 <div class="mb-3">
                     <label for="correoLogin" class="form-label">Correo Electrónico</label>
@@ -259,7 +259,7 @@
             @endif
 
             <p class="text-center mt-3">
-                ¿No tienes cuenta? <a href="{{ route('ventana datos.index') }}">Regístrate aquí</a>
+                ¿No tienes cuenta? <a href="{{ route('ventana-datos.index') }}">Regístrate aquí</a>
             </p>
             <p class="text-center">
                 <a href="{{ route('ventana-principal.index') }}">Volver a la aplicación</a>

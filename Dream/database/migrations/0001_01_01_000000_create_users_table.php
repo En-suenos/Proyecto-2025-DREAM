@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('nombre', 100);
             $table->string('correo', 150)->unique();
             $table->string('contraseña', 255);
-            $table->enum('tipo_usuario', ['free', 'premium', 'admin']);
-            $table->date('fecha_registro');
             $table->timestamps(); // Opcional: para created_at y updated_at
         });
 

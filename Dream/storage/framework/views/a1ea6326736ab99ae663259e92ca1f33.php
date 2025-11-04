@@ -228,7 +228,7 @@
     <main class="container main-content">
         <div class="login-container">
             <h2>Iniciar Sesión</h2>
-            <form action="<?php echo e(route('inicio_sesion.login')); ?>" method="POST" id="formLogin">
+            <form action="<?php echo e(route('usuario-cuenta.index')); ?>" method="POST" id="formLogin">
                 <?php echo csrf_field(); ?>
                 <div class="mb-3">
                     <label for="correoLogin" class="form-label">Correo Electrónico</label>
@@ -261,7 +261,7 @@
             <?php endif; ?>
 
             <p class="text-center mt-3">
-                ¿No tienes cuenta? <a href="<?php echo e(route('ventana datos.index')); ?>">Regístrate aquí</a>
+                ¿No tienes cuenta? <a href="<?php echo e(route('ventana-datos.index')); ?>">Regístrate aquí</a>
             </p>
             <p class="text-center">
                 <a href="<?php echo e(route('ventana-principal.index')); ?>">Volver a la aplicación</a>

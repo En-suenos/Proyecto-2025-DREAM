@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
+    <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']); ?>
     <style>
         * {
             margin: 0;
@@ -423,7 +424,8 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <div id="ventana_usuario_cuenta"> </div>
+    <!-- <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#"><i class="fas fa-moon"></i> Dreams</a>
         <button class="navbar-toggler" type="button" onclick="toggleNavbar()">
             <span class="navbar-toggler-icon"></span>
@@ -453,7 +455,7 @@
     </nav>
 
     <main class="container main-content">
-        <!-- Vista Principal -->
+        Vista Principal
         <div id="principal" class="fade-in">
             <div class="text-center">
                 <div class="avatar">
@@ -479,7 +481,7 @@
 
         <!-- Resto del código se mantiene igual -->
         <!-- Vista Perfil -->
-        <div id="perfil" class="hidden fade-in">
+        <!-- <div id="perfil" class="hidden fade-in">
     <div class="text-center">
         <div class="avatar">
             <i class="fas fa-user"></i>
@@ -497,7 +499,7 @@
                         <li><a href="#" onclick="mostrarVista('idiomas')"><i class="fas fa-language"></i> Idiomas</a></li>
                         <li><a href="#" onclick="mostrarVista('sonidosFavoritos')"><i class="fas fa-heart"></i> Sonidos favoritos</a></li>
                         <li><a href="#" onclick="mostrarVista('misDatos')"><i class="fas fa-id-card"></i> Mis datos</a></li>
-                        <li><a href="<?php echo e(route('perfil.index')); ?>"><i class="fas fa-id-card"></i> Editar perfil</a></li>
+                        <li><a href="<?php echo e(route('perfil.index')); ?>"><i class="fas fa-id-card"></i> Editar perfil</a></li> -->
                         <!-- Botón para mostrar sonidos disponibles -->
                         <!-- <li>
                             <button type="button" class="btn btn-outline-primary btn-sm w-100 text-start" onclick="toggleSonidosDisponibles()">
@@ -574,9 +576,9 @@
             </button>
         </form>
     </div>
-</div>
+</div> -->
 
-<script>
+<!-- <script>
     // Función para mostrar/ocultar la lista de sonidos
     function toggleSonidosDisponibles() {
         const listaSonidos = document.getElementById('listaSonidos');
@@ -599,10 +601,10 @@
         console.log(`Reproduciendo sonido: ${tipo}`);
         alert(`Reproduciendo sonido: ${tipo}`);
     }
-</script>
+</script> -->
 
         <!-- Placeholders para otras vistas -->
-        <div id="playlists" class="hidden fade-in text-center">
+        <!-- <div id="playlists" class="hidden fade-in text-center">
             <h2>PlayLists</h2>
             <p>Aquí puedes gestionar tus listas de reproducción.</p>
             <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
@@ -622,10 +624,10 @@
             <p>Formulario de login aquí.</p>
             <button class="btn btn-custom" onclick="regresar('principal')">Regresar</button>
         </div>
-    </main>
+    </main> -->
     
 
-    <div class="footer">
+    <!-- <div class="footer">
         <p>&copy; 2024 Aplicación PlayList. Todos los derechos reservados. | <a href="#" class="text-decoration-none">Política de Privacidad</a></p>
     </div>
 
@@ -733,8 +735,8 @@
                 "<?php echo e(asset('audio/Sonido-4.mp3')); ?>",
                 "<?php echo e(asset('audio/Sonido-5.mp3')); ?>",
                 "<?php echo e(asset('audio/Sonido-6.mp3')); ?>"
-            ];
-            
+            ]; -->
+<!--             
             // Seleccionar un sonido aleatorio
             const sonidoAleatorio = sonidos[Math.floor(Math.random() * sonidos.length)];
             
@@ -821,7 +823,7 @@
             setTimeout(() => {
                 notificacion.remove();
             }, 3000);
-        }
-  </script>
+        } -->
+  <!-- </script> -->
 </body>
 </html><?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Dream\Dream\resources\views/usuarios con cuenta/index.blade.php ENDPATH**/ ?>
