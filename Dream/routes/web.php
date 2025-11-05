@@ -17,13 +17,13 @@ use App\Http\Controllers\InicioSesion\InicioSesionInertiaController;
 use App\Http\Controllers\UsuarioConCuenta\UsuarioConCuentaController;
 
 Route::get('/', function () {
-    // return Inertia::render('Welcome', [
+    // return Inertia::render('VentanaInicio/VentanaInicio', [
     //     'canLogin' => Route::has('login'),
     //     // 'canRegister' => Route::has('register'),
     //     // 'laravelVersion' => Application::VERSION,
     //     // 'phpVersion' => PHP_VERSION,
     // ]);
-    return view('ventana principal/index');
+    return view('ventana principal.index');
 });
 
 Route::get('/registro', function () {

@@ -1,16 +1,18 @@
 <template>
-  <div class="text-center p-5">
-    <h1 class="text-3xl text-blue-600 font-bold">¡Hola desde Vue en Laravel! 🎉</h1>
-    <button @click="contador++" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 animate-bounce">
-      Has hecho clic {{ contador }} veces
-    </button>
-  </div>
+    <div id="app">
+        <h1>Mi App Vue + Laravel</h1>
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return { contador: 0 };
-  },
-};
+    name: 'App'
+}
 </script>
+
+<style>
+ #app{
+  color:red;
+}
+</style>

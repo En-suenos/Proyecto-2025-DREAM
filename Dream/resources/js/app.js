@@ -7,7 +7,7 @@ import { createApp, h } from 'vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
 import App from './App.vue'; 
-import Ventana_usuario_cuenta from './Pages/VentanaPrincipal-2/Ventana_usuario_cuenta.vue';
+import VentanaInicio from './Pages/VentanaInicio/VentanaInicio.vue';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -30,5 +30,5 @@ createInertiaApp({
 });
 
 createApp(App).mount('#app');
-// Montar Vue en un div con id="ventana_usuario_cuenta"
-createApp(Ventana_usuario_cuenta).mount('#ventana_usuario_cuenta');
+// Montar Vue en un div con id="ventana_principal"
+createApp(VentanaInicio).mount('#ventanaInicio');
