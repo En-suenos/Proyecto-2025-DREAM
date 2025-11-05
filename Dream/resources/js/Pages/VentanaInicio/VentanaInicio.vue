@@ -237,7 +237,7 @@ export default {
 </script>
 
 <style scoped>
-/* Aquí puedes agregar estilos específicos del componente Vue */
+/*Estilos específicos del componente Vue */
 #app {
     color: rgb(185, 174, 20);
 }
