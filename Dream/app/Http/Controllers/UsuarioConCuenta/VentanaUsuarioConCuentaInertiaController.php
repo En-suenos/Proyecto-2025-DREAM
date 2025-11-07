@@ -5,8 +5,9 @@ namespace App\Http\Controllers\UsuarioConCuenta;
 // use App\Models\Usuario;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
-class UsuarioConCuentaInertiaController extends Controller
+class VentanaUsuarioConCuentaInertiaController extends Controller
 {
     //
     public function index(Request $request){
