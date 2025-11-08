@@ -19,7 +19,7 @@ import { Head, useForm } from '@inertiajs/vue3';
             <br>
             <a href="sonido">Sonidos</a>
             <br>
-            <a href="#">PlayList</a>
+            <a href="playlist">PlayList</a>
             <br>
             <a href="#"></a>
         </div>

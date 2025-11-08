@@ -5,7 +5,7 @@ use App\Http\Controllers\Perfil\PerfilInertiaController;
 use App\Http\Controllers\VentanaPrincipal\VentanaPrincipalInertiaController;
 use App\Http\Controllers\RegistroCuenta\RegistroCuentaInertiaController;
 use App\Http\Controllers\Sonido\SonidoInertiaController;
-
+use App\Http\Controllers\PlayList\PlaylistInertiaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -35,5 +35,6 @@ Route::resource('/perfil', PerfilInertiaController::class);
 Route::resource('/inicio', VentanaPrincipalInertiaController::class);
 Route::resource('/registro', RegistroCuentaInertiaController::class);
 Route::resource('/sonido', SonidoInertiaController::class);
+Route::resource('/playlist', PlaylistInertiaController::class);
 
 require __DIR__.'/auth.php';
