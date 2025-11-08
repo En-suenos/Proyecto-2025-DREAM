@@ -13,7 +13,7 @@ class Playlist extends Model
         'nombre', 
         'descripcion',
         'sonidos',
-        'id_usuario' // Cambiado a id_usuario
+        'id' // Cambiado a id_usuario
     ];
 
     protected $casts = [
@@ -23,7 +23,7 @@ class Playlist extends Model
     // Relación con el usuario (corregida)
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'id_usuario', 'id_usuario');
+        return $this->belongsTo(Usuario::class);
     }
 
     // Obtener sonidos disponibles localmente

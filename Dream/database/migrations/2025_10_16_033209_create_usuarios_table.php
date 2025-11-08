@@ -9,12 +9,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->id('id_usuario'); // auto_increment primary key
+            $table->id(); // auto_increment primary key
             $table->string('nombre', 100);
             $table->string('correo', 150)->unique();
             $table->string('contraseña', 255);
-            $table->enum('tipo_usuario', ['free', 'premium', 'admin']);
-            $table->date('fecha_registro');
+            $table->string('nombre_cuenta', 200)->unique();
+            $table->enum('tipo_usuario', ['free', 'premium', 'admin'])->default('free');
             $table->softDeletes(); // Para eliminaciones
             $table->timestamps(); // Para created_at 
         });

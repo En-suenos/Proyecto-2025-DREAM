@@ -41,7 +41,7 @@ const showingNavigationDropdown = ref(false);
                                 </NavLink>
 
                                 <NavLink
-                                    :href="route('inicio.index')"
+                                    :href="route('ConCuenta.index')"
                                 >
                                     Inicio
                                 </NavLink>

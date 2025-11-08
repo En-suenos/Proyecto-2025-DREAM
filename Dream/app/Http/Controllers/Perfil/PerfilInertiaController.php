@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-
+use App\Models\Usuario; 
 class PerfilInertiaController extends Controller
 {
     //
@@ -17,4 +17,6 @@ class PerfilInertiaController extends Controller
             'usuarios'=>$usuarios
         ]);
     }
+
+    
 }

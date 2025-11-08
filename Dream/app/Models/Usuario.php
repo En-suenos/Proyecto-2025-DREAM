@@ -17,8 +17,8 @@ class Usuario extends Model
         'nombre',
         'correo',
         'contraseña',
+        'nombre_cuenta',
         'tipo_usuario',
-        'fecha_registro',
         'imagen'
     ];
     
@@ -29,7 +29,7 @@ class Usuario extends Model
     // Relación con playlists
     public function playlists()
     {
-        return $this->hasMany(Playlist::class, 'id_usuario', 'id_usuario');
+        return $this->hasMany(Playlist::class, 'id');
     }
 
     // Método para obtener la contraseña (laravel espera 'password')
