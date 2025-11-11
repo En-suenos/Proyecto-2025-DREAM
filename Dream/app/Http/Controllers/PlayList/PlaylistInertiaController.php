@@ -12,12 +12,7 @@ use Illuminate\Support\Facades\Log;
 
 class PlaylistInertiaController extends Controller
 {
-<<<<<<< HEAD
-    //
-    // Muestra la lista de playlists 
-=======
     // Muestra la lista de playlists del usuario autenticado
->>>>>>> integracionVue-4g
     public function index(Request $request)
     {
         try {

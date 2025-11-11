@@ -1,47 +1,25 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-<<<<<<< HEAD
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
-=======
-import { Head } from '@inertiajs/vue3';
->>>>>>> integracionVue-4g
 </script>
 
 <template>
     <Head title="VentanaCuenta" />
 
     <AuthenticatedLayout>
-<<<<<<< HEAD
-        <h1 class="text-4xl font-extrabold text-blue-500 p-4 mb-4">
-            Welcome to Dream
-            
-        </h1>
-        <br>
-        <div class="mt-3 space-y-1">
-            <Link
-                :href="route('logout')"
-                method="post"
-                as="button"
-            >
-                Log Out
-            </Link>
-        </div>
-        <!-- Para el menu -->
-        <br>
         
-        <div >
-            <a href="perfil">Mi perfil</a>
-            <br>
-            <a href="sonido">Sonidos</a>
-            <br>
-            <a href="playlist">PlayList</a>
-            <br>
-            <a href="#"></a>
-        </div>
-=======
+        
         <div class="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 flex flex-col items-center justify-center p-6 pt-24">
-            
+            <div class="bg-blue-500 text-white py-2 px-4 rounded shadow-md hover:shadow-lg">
+                <Link
+                    :href="route('logout')"
+                    method="post"
+                    as="button"
+                >
+                    Cerrar sesion
+                </Link>
+            </div>
             <!-- Encabezado -->
             <div class="text-center mb-8">
                 <h1 class="text-5xl font-extrabold text-white mb-2 drop-shadow-lg">
@@ -49,7 +27,6 @@ import { Head } from '@inertiajs/vue3';
                 </h1>
                 <p class="text-gray-300 text-lg">Tu espacio personal para controlar tus sonidos y sueños.</p>
             </div>
->>>>>>> integracionVue-4g
 
             <!-- Contenedor principal -->
             <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl w-full max-w-4xl flex overflow-hidden shadow-2xl">
