@@ -6,13 +6,14 @@ use App\Http\Controllers\VentanaPrincipal\VentanaPrincipalInertiaController;
 use App\Http\Controllers\RegistroCuenta\RegistroCuentaInertiaController;
 use App\Http\Controllers\Sonido\SonidoInertiaController;
 use App\Http\Controllers\PlayList\PlaylistInertiaController;
+use App\Https\Controller\InicioSesion\InicioSesionInertiaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render('Inicio/Index', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,

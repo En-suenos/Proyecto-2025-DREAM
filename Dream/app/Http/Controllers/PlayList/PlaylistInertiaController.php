@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class PlaylistInertiaController extends Controller
 {
     //
-    // Muestra la lista de playlists (opcional, no modificado)
+    // Muestra la lista de playlists 
     public function index(Request $request)
     {
         return Inertia::render('Playlist/Index', []);

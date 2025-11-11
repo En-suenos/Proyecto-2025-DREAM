@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 
 </script>
 
@@ -10,7 +10,18 @@ import { Head, useForm } from '@inertiajs/vue3';
     <AuthenticatedLayout>
         <h1 class="text-4xl font-extrabold text-blue-500 p-4 mb-4">
             Welcome to Dream
+            
         </h1>
+        <br>
+        <div class="mt-3 space-y-1">
+            <Link
+                :href="route('logout')"
+                method="post"
+                as="button"
+            >
+                Log Out
+            </Link>
+        </div>
         <!-- Para el menu -->
         <br>
         
