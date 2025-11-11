@@ -15,7 +15,7 @@ const formulario = useForm({
     descripcion: '',
     // 'sonidos' contendrá un array de los nombres de archivo seleccionados (strings)
     sonidos: [], 
-    id_usuario: '', // Asumo que este campo se llenará con el ID del usuario autenticado en el backend o aquí.
+    
 });
 // Selección de Sonidos
 // Verifica si un sonido ya ha sido seleccionado para la playlist.
