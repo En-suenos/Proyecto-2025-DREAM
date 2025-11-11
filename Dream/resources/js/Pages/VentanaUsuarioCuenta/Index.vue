@@ -1,5 +1,6 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+// import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import LayoutLimplio from '@/Layouts/LayoutLimpio.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 </script>
@@ -7,7 +8,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 <template>
     <Head title="VentanaCuenta" />
 
-    <AuthenticatedLayout>
+    <LayoutLimplio>
         <h1 class="text-4xl font-extrabold text-blue-500 p-4 mb-4">
             Welcome to Dream
             
@@ -41,5 +42,5 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
                 Iniciar Sueño 
             </button>
         </div>
-    </AuthenticatedLayout>
+    </LayoutLimplio>
 </template>

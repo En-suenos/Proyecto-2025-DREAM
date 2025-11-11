@@ -1,5 +1,6 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+// import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import LayoutLimplio from '@/Layouts/LayoutLimpio.vue';
 import { Head, Link} from '@inertiajs/vue3';
 
 </script>
@@ -7,7 +8,7 @@ import { Head, Link} from '@inertiajs/vue3';
 <template>
     <Head title="Playlist" />
 
-    <AuthenticatedLayout>
+    <LayoutLimplio>
         <h2>
             Tus Playlist
         </h2>
@@ -19,5 +20,5 @@ import { Head, Link} from '@inertiajs/vue3';
             </div>
         </div>
         
-    </AuthenticatedLayout>
+    </LayoutLimplio>
 </template>

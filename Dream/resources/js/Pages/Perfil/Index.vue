@@ -1,5 +1,6 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+// import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import LayoutLimplio from '@/Layouts/LayoutLimpio.vue';
 import { Head, useForm, Link } from '@inertiajs/vue3';
 
 // const props = defineProps({
@@ -13,7 +14,7 @@ import { Head, useForm, Link } from '@inertiajs/vue3';
 <template>
     <Head title="Perfil" />
 
-    <AuthenticatedLayout>
+    <LayoutLimplio>
         <h1>
             Mi Perfil
         </h1>
@@ -28,5 +29,5 @@ import { Head, useForm, Link } from '@inertiajs/vue3';
                 Regresar
             </Link>
         </div>
-    </AuthenticatedLayout>
+    </LayoutLimplio>
 </template>
