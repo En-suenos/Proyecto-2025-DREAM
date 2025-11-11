@@ -33,12 +33,12 @@ const submit = () => {
     <GuestLayout>
         <Head title="Log in" />
 
-        <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
+        <div v-if="status" class="min-h-screen bg-gradient-to-tl from-indigo-950 via-purple-950 to-blue-950 flex items-center justify-center overflow-hidden relative ">
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
-            <div>
+        <form @submit.prevent="submit" class="bg-gradient-to-br from-indigo-900/30 to-indigo-800/20 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border border-indigo-300/20 relative overflow-hidden">
+            <div >
                 <InputLabel for="email" value="Email" />
 
                 <TextInput
