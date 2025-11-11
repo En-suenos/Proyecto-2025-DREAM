@@ -21,9 +21,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('VentanaUsuarioCuenta/Index');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -37,7 +37,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/playlists/{playlist}', [PlaylistInertiaController::class, 'show'])->name('playlist.show');
 }); // ← ESTE CIERRA EL PRIMER GRUPO AUTH
 
-// Otras rutas resource (si las necesitas)
+Route::get('/Principal', function () {
+    return Inertia::render('VentanaUsuarioCuenta/Index');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::resource('/ConCuenta', VentanaUsuarioConCuentaInertiaController::class);
 Route::resource('/perfil', PerfilInertiaController::class);
 Route::resource('/inicio', VentanaPrincipalInertiaController::class);
