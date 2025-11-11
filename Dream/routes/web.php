@@ -29,13 +29,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+    
+    // Rutas específicas para playlist - SIN grupo auth anidado
+    Route::get('/playlists', [PlaylistInertiaController::class, 'index'])->name('playlist.index');
+    Route::get('/playlists/create', [PlaylistInertiaController::class, 'create'])->name('playlist.create');
+    Route::post('/playlists', [PlaylistInertiaController::class, 'store'])->name('playlist.store');
+    Route::get('/playlists/{playlist}', [PlaylistInertiaController::class, 'show'])->name('playlist.show');
+}); // ← ESTE CIERRA EL PRIMER GRUPO AUTH
 
+// Otras rutas resource (si las necesitas)
 Route::resource('/ConCuenta', VentanaUsuarioConCuentaInertiaController::class);
 Route::resource('/perfil', PerfilInertiaController::class);
 Route::resource('/inicio', VentanaPrincipalInertiaController::class);
 Route::resource('/registro', RegistroCuentaInertiaController::class);
 Route::resource('/sonido', SonidoInertiaController::class);
-Route::resource('/playlist', PlaylistInertiaController::class);
+
+// COMENTA temporalmente esta línea si existe para evitar conflictos:
+// Route::resource('/playlist', PlaylistInertiaController::class);
 
 require __DIR__.'/auth.php';

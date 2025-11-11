@@ -1,30 +1,20 @@
-<?php
+use Illuminate\Support\Facades\Auth;
+use App\Models\Playlist;
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-return new class extends Migration
+public function store(Request $request)
 {
-    public function up(): void
-    {
-        Schema::create('playlists', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->text('descripcion')->nullable();
-            $table->json('sonidos')->nullable();
-            $table->unsignedBigInteger('id_usuario'); 
-            $table->timestamps();
+    $request->validate([
+        'nombre' => 'required|string|max:255',
+        'descripcion' => 'nullable|string',
+        'sonidos' => 'nullable|array',
+    ]);
 
-            // Foreign key 
-            // $table->foreign('id')
-            //       ->on('usuarios')
-            //       ->onDelete('cascade');
-        });
-    }
+    Playlist::create([
+        'nombre' => $request->nombre,
+        'descripcion' => $request->descripcion,
+        'sonidos' => json_encode($request->sonidos),
+        'id_usuario' => Auth::id(), // ✅ toma el usuario actual
+    ]);
 
-    public function down(): void
-    {
-        Schema::dropIfExists('playlists');
-    }
-};
+    return response()->json(['message' => 'Playlist creada correctamente']);
+}
