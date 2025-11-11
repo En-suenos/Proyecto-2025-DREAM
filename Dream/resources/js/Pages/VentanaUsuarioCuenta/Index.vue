@@ -1,5 +1,6 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+// import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import LayoutLimplio from '@/Layouts/LayoutLimpio.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 </script>
@@ -7,7 +8,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 <template>
     <Head title="VentanaCuenta" />
 
-    <AuthenticatedLayout>
+    <LayoutLimplio>
         
         
         <div class="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 flex flex-col items-center justify-center p-6 pt-24">
@@ -85,7 +86,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
                 </main>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </LayoutLimplio>
 </template>
 
 <style scoped>

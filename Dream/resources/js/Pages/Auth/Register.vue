@@ -24,7 +24,7 @@ const submit = () => {
     <GuestLayout>
         <Head title="Register" />
 
-        <form @submit.prevent="submit">
+        <form @submit.prevent="submit" class="bg-gradient-to-br from-indigo-900/30 to-indigo-800/20 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border border-indigo-300/20 relative overflow-hidden">
             <div>
                 <InputLabel for="name" value="Name" />
 

@@ -1,5 +1,6 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+// import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import LayoutLimplio from '@/Layouts/LayoutLimpio.vue';
 import { Head, useForm, Link } from '@inertiajs/vue3';
 
 defineProps({
@@ -18,7 +19,7 @@ const getAudioUrl = (filename) => {
 <template>
     <Head title="VentanaCuenta" />
 
-    <AuthenticatedLayout>
+    <LayoutLimplio>
         <h1 class="text-4xl font-extrabold text-blue-500 p-4 mb-4">
             Sonidos
         </h1>
@@ -56,5 +57,5 @@ const getAudioUrl = (filename) => {
              </div>
             
         </div>
-    </AuthenticatedLayout>
+    </LayoutLimplio>
 </template>

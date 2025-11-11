@@ -1,6 +1,7 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
+// import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import LayoutLimplio from '@/Layouts/LayoutLimpio.vue';
+import { Head, Link} from '@inertiajs/vue3';
 
 // Define props SIN el validador estricto
 defineProps({
@@ -21,7 +22,7 @@ const contarSonidos = (playlist) => {
 <template>
     <Head title="Mis Playlists" />
 
-    <AuthenticatedLayout>
+    <LayoutLimplio>
         <div class="min-h-screen bg-gray-900 p-4 md:p-8">
             <!-- Debug info temporal -->
             <div class="text-xs text-gray-400 mb-4 p-2 bg-gray-800 rounded">
@@ -132,5 +133,5 @@ const contarSonidos = (playlist) => {
             </div>
         </div>
         
-    </AuthenticatedLayout>
+    </LayoutLimplio>
 </template>

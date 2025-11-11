@@ -1,5 +1,6 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+// import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import LayoutLimplio from '@/Layouts/LayoutLimpio.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 const props = defineProps({
@@ -65,7 +66,7 @@ const createPlaylist = () => {
 <template>
     <Head title="Create Playlist" />
 
-    <AuthenticatedLayout>
+    <LayoutLimplio>
         <div class="max-w-6xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
             <h1 class="text-4xl font-extrabold text-indigo-700 mb-8">
                 Crear Nueva Playlist
@@ -175,7 +176,7 @@ const createPlaylist = () => {
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </LayoutLimplio>
 </template>
 
 <style scoped>
