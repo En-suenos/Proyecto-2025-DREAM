@@ -1,62 +1,63 @@
 <script setup>
-// import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import LayoutLimplio from '@/Layouts/LayoutLimpio.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, useForm, Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
+
+// Props
 const props = defineProps({
     sonidosDisponibles: {
         type: Array,
         default: () => []
     }
 });
-// Estado local para mostrar/ocultar el formulario de creación
+
+// Estado reactivo
 const showForm = ref(true);
 const formulario = useForm({
     nombre: '',
     descripcion: '',
-    // 'sonidos' contendrá un array de los nombres de archivo seleccionados (strings)
-    sonidos: [], 
-    
+    sonidos: [],
 });
-// Selección de Sonidos
-// Verifica si un sonido ya ha sido seleccionado para la playlist.
+
+// Datos de navegación
+const navItems = ref([
+    { id: 1, href: '/perfil', icon: 'fas fa-user', text: 'Perfil' },
+    { id: 2, href: '/sonido', icon: 'fas fa-music', text: 'Sonidos' },
+    { id: 3, href: '/playlists', icon: 'fas fa-list', text: 'Playlist' },
+    { id: 4, href: '#', icon: 'fas fa-robot', text: 'Asistente' },
+    { id: 5, href: '#', icon: 'fas fa-cog', text: 'Opciones' }
+]);
+
+// Verifica si un sonido ya ha sido seleccionado
 const isSelected = (archivo) => {
     return formulario.sonidos.includes(archivo);
-}; 
-// Añade o quita un sonido del array 'formulario.sonidos'.
+};
+
+// Añade o quita un sonido
 const toggleSoundSelection = (sound) => {
     const archivo = sound.archivo;
-    
+
     if (isSelected(archivo)) {
-        // Quitar
         formulario.sonidos = formulario.sonidos.filter(a => a !== archivo);
     } else {
-        // Añadir
-        // Almacenamos el nombre del archivo para enviarlo a Laravel
         formulario.sonidos.push(archivo);
     }
-}; 
-
+};
 
 // Envío del Formulario
-
 const createPlaylist = () => {
     const url = route('playlist.store');
 
-    // Muestra los datos que se enviarán 
     console.log("Enviando Playlist:", formulario.data());
 
     formulario.post(url, {
         onSuccess: (response) => {
-            
             formulario.reset();
-            
             console.log('¡Playlist creada exitosamente!');
             showForm.value = false;
         },
         onError: (errors) => {
             console.error("Errores:", errors);
-            // Implementar un modal o notificación de error aquí en lugar de alert()
             console.error('Error al crear la playlist. Revisa la consola.');
         }
     });
@@ -64,126 +65,87 @@ const createPlaylist = () => {
 </script>
 
 <template>
-    <Head title="Create Playlist" />
+    <Head title="Crear Playlist - DreamApp" />
 
     <LayoutLimplio>
-        <div class="max-w-6xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-extrabold text-indigo-700 mb-8">
-                Crear Nueva Playlist
-            </h1>
-
-            <div class="flex flex-col md:flex-row gap-8">
-                
-                <!-- Columna de Formulario y Botón de Toggle -->
-                <div class="w-full md:w-1/3 space-y-4">
-                    <!-- Botón de Toggle -->
-                    <div class="bg-white p-6 rounded-xl shadow-lg border border-indigo-100">
-                        <button 
-                            @click="showForm = !showForm"
-                            class="w-full text-lg font-bold py-3 px-4 rounded-lg transition duration-200"
-                            :class="showForm ? 'bg-red-500 text-white hover:bg-red-600' : 'bg-indigo-500 text-white hover:bg-indigo-600'"
-                        >
-                            {{ showForm ? 'Ocultar Formulario' : 'Crear nueva Playlist' }}
-                        </button>
-                    </div>
-
-                    <!-- Formulario de Creación (se muestra condicionalmente) -->
-                    <Transition name="fade">
-                        <form v-if="showForm" @submit.prevent="createPlaylist" class="bg-white p-6 rounded-xl shadow-lg space-y-4 border border-indigo-100">
-                            <h3 class="text-2xl font-semibold text-gray-800 border-b pb-2 mb-4">Detalles</h3>
-                            
-                            <div>
-                                <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre de la Playlist</label>
-                                <input 
-                                    id="nombre"
-                                    type="text" 
-                                    v-model="formulario.nombre" 
-                                    required
-                                    class="w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                                    :class="{ 'border-red-500': formulario.errors.nombre }"
-                                >
-                                <div v-if="formulario.errors.nombre" class="text-red-500 text-xs mt-1">{{ formulario.errors.nombre }}</div>
-                            </div>
-                            
-                            <div>
-                                <label for="descripcion" class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
-                                <textarea 
-                                    id="descripcion"
-                                    v-model="formulario.descripcion"
-                                    rows="3"
-                                    class="w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                                    :class="{ 'border-red-500': formulario.errors.descripcion }"
-                                ></textarea>
-                                <div v-if="formulario.errors.descripcion" class="text-red-500 text-xs mt-1">{{ formulario.errors.descripcion }}</div>
-                            </div>
-
-                            <div class="pt-4">
-                                <button 
-                                    type="submit" 
-                                    :disabled="formulario.processing"
-                                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-4 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
-                                >
-                                    {{ formulario.processing ? 'Guardando...' : 'Crear Playlist' }}
-                                </button>
-                                <div v-if="formulario.errors.sonidos" class="text-red-500 text-xs mt-3 text-center">
-                                    {{ formulario.errors.sonidos }}
-                                </div>
-                            </div>
-                        </form>
-                    </Transition>
+        <div class="min-h-screen bg-gray-900 p-6">
+            <!-- Contenido principal simplificado para testing -->
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-bold text-white mb-4">Crear Nueva Playlist</h1>
+                    <p class="text-gray-300">Selecciona los sonidos para tu playlist</p>
                 </div>
 
-                <!-- Columna de Selección de Sonidos -->
-                <div class="w-full md:w-2/3 bg-white p-6 rounded-xl shadow-lg border border-indigo-100">
-                    <h3 class="text-2xl font-semibold text-gray-800 border-b pb-2 mb-4">
-                        Seleccionar Sonidos ({{ formulario.sonidos.length }} Añadidos)
-                    </h3>
-                    
-                    <div class="max-h-96 overflow-y-auto space-y-2 pr-2">
-                        <div 
-                            v-for="(sound) in props.sonidosDisponibles"
-                            :key="sound.archivo"
-                            @click="toggleSoundSelection(sound)"
-                            class="flex items-center justify-between p-3 rounded-lg cursor-pointer transition duration-150 border"
-                            :class="[
-                                isSelected(sound.archivo) 
-                                    ? 'bg-indigo-50 border-indigo-500 shadow-sm' 
-                                    : 'bg-white hover:bg-gray-50 border-gray-200'
-                            ]"
-                        >
-                            <div class="flex items-center space-x-3">
-                                <svg class="w-6 h-6" :class="isSelected(sound.archivo) ? 'text-indigo-600' : 'text-gray-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v14M9 19h12M9 19c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2zm12-2c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2z"></path>
-                                </svg>
-                                <span class="font-medium" :class="isSelected(sound.archivo) ? 'text-indigo-800' : 'text-gray-700'">
-                                    {{ sound.nombre }}
-                                </span>
-                            </div>
+                <div class="flex flex-col md:flex-row gap-8">
+                    <!-- Formulario -->
+                    <div class="w-full md:w-1/3">
+                        <div class="bg-gray-800 rounded-lg p-6">
+                            <h2 class="text-xl font-semibold text-white mb-4">Detalles de la Playlist</h2>
 
-                            <span class="p-1 rounded-full text-xs font-semibold"
-                                :class="isSelected(sound.archivo) 
-                                    ? 'bg-indigo-600 text-white' 
-                                    : 'bg-gray-200 text-gray-700'"
-                            >
-                                {{ isSelected(sound.archivo) ? 'AÑADIDO' : 'AÑADIR' }}
-                            </span>
+                            <form @submit.prevent="createPlaylist" class="space-y-4">
+                                <div>
+                                    <label class="block text-gray-300 mb-2">Nombre</label>
+                                    <input
+                                        v-model="formulario.nombre"
+                                        type="text"
+                                        class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white"
+                                        placeholder="Mi playlist"
+                                    >
+                                </div>
+
+                                <div>
+                                    <label class="block text-gray-300 mb-2">Descripción</label>
+                                    <textarea
+                                        v-model="formulario.descripcion"
+                                        class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white"
+                                        rows="3"
+                                        placeholder="Descripción de la playlist"
+                                    ></textarea>
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                >
+                                    Crear Playlist
+                                </button>
+                            </form>
                         </div>
                     </div>
-                    
-                    <div v-if="props.sonidosDisponibles.length === 0" class="text-center p-8 text-gray-500">
-                        No se encontraron archivos de audio en la carpeta `public/audio`.
+
+                    <!-- Lista de sonidos -->
+                    <div class="w-full md:w-2/3">
+                        <div class="bg-gray-800 rounded-lg p-6">
+                            <h2 class="text-xl font-semibold text-white mb-4">
+                                Sonidos Disponibles ({{ formulario.sonidos.length }} seleccionados)
+                            </h2>
+
+                            <div class="space-y-2 max-h-96 overflow-y-auto">
+                                <div
+                                    v-for="sound in sonidosDisponibles"
+                                    :key="sound.archivo"
+                                    @click="toggleSoundSelection(sound)"
+                                    class="flex items-center justify-between p-3 bg-gray-700 rounded cursor-pointer hover:bg-gray-600"
+                                    :class="{ 'bg-blue-600': isSelected(sound.archivo) }"
+                                >
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-gray-600 rounded flex items-center justify-center">
+                                            <i class="fas fa-music text-white"></i>
+                                        </div>
+                                        <span class="text-white">{{ sound.nombre }}</span>
+                                    </div>
+
+                                    <span class="text-sm px-2 py-1 rounded"
+                                        :class="isSelected(sound.archivo) ? 'bg-green-500 text-white' : 'bg-gray-600 text-gray-300'"
+                                    >
+                                        {{ isSelected(sound.archivo) ? 'SELECCIONADO' : 'SELECCIONAR' }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </LayoutLimplio>
 </template>
-
-<style scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-.fade-enter-from, .fade-leave-to {
-  opacity: 0;
-}
-</style>
