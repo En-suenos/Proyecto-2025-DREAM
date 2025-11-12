@@ -15,8 +15,7 @@ class PlaylistSonido extends Model
         'playlist_id',
         'nombre_sonido',
         'ruta_sonido',
-        'volumen',
-        'orden'
+        'id_usuario',
     ];
 
     // Relación con la playlist
