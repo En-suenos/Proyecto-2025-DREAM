@@ -20,6 +20,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
                 >
                     Cerrar sesion
                 </Link>
+                
             </div>
             <!-- Encabezado -->
             <div class="text-center mb-8">
@@ -43,7 +44,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
                             <a href="sonido" class="flex items-center hover:bg-white/20 px-3 py-2 rounded transition duration-300">
                                 <i class="fas fa-music mr-2"></i> Sonidos
                             </a>
-                            <a href="playlists" class="flex items-center hover:bg-white/20 px-3 py-2 rounded transition duration-300">
+                            <!-- <a href="playlists" class="flex items-center hover:bg-white/20 px-3 py-2 rounded transition duration-300">
                                 <i class="fas fa-list mr-2"></i> Playlist
                             </a>
                             <a href="#" class="flex items-center hover:bg-white/20 px-3 py-2 rounded transition duration-300">
@@ -51,7 +52,12 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
                             </a>
                             <a href="#" class="flex items-center hover:bg-white/20 px-3 py-2 rounded transition duration-300">
                                 <i class="fas fa-cog mr-2"></i> Opciones
-                            </a>
+                            </a> -->
+                            <a 
+                            href="/usuarios/reporte/pdf" 
+                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            PDF
+                        </a>
                         </nav>
                     </div>
                     <div class="text-sm text-center opacity-75">

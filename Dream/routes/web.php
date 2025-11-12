@@ -8,6 +8,7 @@ use App\Http\Controllers\Sonido\SonidoInertiaController;
 use App\Http\Controllers\PlayList\PlaylistInertiaController;
 use App\Https\Controller\InicioSesion\InicioSesionInertiaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Usuario\UsuarioReporteController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -46,8 +47,8 @@ Route::resource('/perfil', PerfilInertiaController::class);
 Route::resource('/inicio', VentanaPrincipalInertiaController::class);
 Route::resource('/registro', RegistroCuentaInertiaController::class);
 Route::resource('/sonido', SonidoInertiaController::class);
+Route::get('/usuarios/reporte/pdf', [UsuarioReporteController::class, 'index'])->name('usuarios.reporte.pdf');
 
-// COMENTA temporalmente esta línea si existe para evitar conflictos:
 // Route::resource('/playlist', PlaylistInertiaController::class);
 
 require __DIR__.'/auth.php';
