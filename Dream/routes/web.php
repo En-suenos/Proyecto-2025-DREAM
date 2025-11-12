@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
     // Rutas específicas para playlist - SIN grupo auth anidado
     Route::get('/playlists', [PlaylistInertiaController::class, 'index'])->name('playlist.index');
     Route::get('/playlists/create', [PlaylistInertiaController::class, 'create'])->name('playlist.create');
