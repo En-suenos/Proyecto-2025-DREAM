@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->text('descripcion')->nullable();
             $table->json('sonidos')->nullable();
-            $table->unsignedBigInteger('id_usuario'); 
+            $table->unsignedBigInteger('id_usuario')->notnull(); 
             $table->timestamps();
 
             // Foreign key 

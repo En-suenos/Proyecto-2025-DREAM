@@ -13,7 +13,7 @@ class Playlist extends Model
         'nombre', 
         'descripcion',
         'sonidos',
-        'id' 
+        'id_usuario' 
     ];
 
     protected $casts = [
