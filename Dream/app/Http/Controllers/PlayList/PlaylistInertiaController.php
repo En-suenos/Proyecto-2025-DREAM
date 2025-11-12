@@ -116,7 +116,7 @@ class PlaylistInertiaController extends Controller
             Log::info("Playlist creada exitosamente ID: {$playlist->id}");
 
             // 3. Redireccionar con mensaje
-            return Redirect::route('playlist.index')
+            return Redirect::route('Playlist.Index')
                 ->with('success', 'Playlist creada con éxito.');
 
         } catch (\Exception $e) {
