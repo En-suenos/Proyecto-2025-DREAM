@@ -31,7 +31,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
       <div class="cloud cloud-3"></div>
 
       <!-- Botón de cierre de sesión -->
-      <div class="bg-blue-600/80 text-white py-2 px-4 rounded-full shadow-lg hover:shadow-xl mb-4 relative z-10 transition-all duration-300 hover:scale-105">
+      <!-- <div class="bg-blue-600/80 text-white py-2 px-4 rounded-full shadow-lg hover:shadow-xl mb-4 relative z-10 transition-all duration-300 hover:scale-105">
         <Link :href="route('logout')" method="post" as="button" class="flex items-center">
           <i class="fas fa-sign-out-alt mr-2"></i>
           Cerrar sesión
@@ -44,21 +44,42 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
           class="bg-blue-600/80 text-white py-2 px-4 rounded-full shadow-lg hover:shadow-xl mb-4 relative z-10 transition-all duration-300 hover:scale-105">
           PDF
       </a>
-      </div>
-      
+      </div> -->
       
       <!-- Barra de navegación superior animada -->
       <nav class="nav-bar">
         <div class="nav-container">
+          <!-- Ítems del menú -->
           <div class="nav-item" v-for="item in navItems" :key="item.id">
             <a :href="item.href" class="nav-link">
               <i :class="item.icon" class="nav-icon"></i>
               <span class="nav-text">{{ item.text }}</span>
               <div class="nav-dot"></div>
             </a>
-          </div>
         </div>
+        <div class="nav-actions">
+            <a 
+              href="/usuarios/reporte/pdf" 
+              class="nav-btn"
+            >
+              <i class="fas fa-file-pdf mr-2"></i> PDF
+            </a>
+        
+            <Link 
+              :href="route('logout')" 
+              method="post" 
+              as="button" 
+              class="nav-btn logout-btn"
+            >
+              <i class="fas fa-sign-out-alt mr-2"></i> Salir
+            </Link>
+        </div>
+      </div>
+      
+        <!-- Botones de acción (PDF y Cerrar sesión) -->
+        
       </nav>
+
 
       <!-- Encabezado -->
       <div class="text-center mb-8 relative z-10 mt-16">
@@ -434,6 +455,47 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
     0 15px 35px rgba(59, 130, 246, 0.4),
     0 5px 15px rgba(59, 130, 246, 0.3);
 }
+/* 🔹 Contenedor de botones adicionales (lado derecho del nav) */
+.nav-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-left: 20px;
+}
+
+/* 🔹 Estilo general de botones */
+.nav-btn {
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.25), rgba(147, 51, 234, 0.25));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.nav-btn:hover {
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.6), rgba(147, 51, 234, 0.6));
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+/* 🔹 Botón de cerrar sesión con tono rojo */
+.logout-btn {
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.3), rgba(220, 38, 38, 0.3));
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.logout-btn:hover {
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.8), rgba(220, 38, 38, 0.8));
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);
+}
+
 </style>
 
 <script>
