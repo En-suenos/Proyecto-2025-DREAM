@@ -72,6 +72,8 @@ defineProps({
                                     </svg>
                                     Register
                                 </Link>
+
+                                
                             </template>
                         </nav>
                     </header>
@@ -113,6 +115,21 @@ defineProps({
                             </svg>
                             Sleep Analysis
                         </div>
+                    </div>
+
+                    <!-- Seccion de administrador -->
+                    <br>
+                    <div>
+                        <Link
+                        v-if="canRegister"
+                        :href="route('admin.register')"
+                        class="px-6 py-3 mx-2 text-base font-medium text-indigo-100 bg-gradient-to-r from-indigo-700/60 to-purple-700/60 rounded-full hover:from-indigo-600/70 hover:to-purple-600/70 transition-all duration-300 shadow-lg hover:shadow-indigo-500/25 hover:scale-105 flex items-center gap-2"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+                        </svg>
+                        Iniciar sesion como administrador
+                    </Link>
                     </div>
                 </div>
             </div>

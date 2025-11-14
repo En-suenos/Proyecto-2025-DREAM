@@ -49,6 +49,25 @@ Route::resource('/registro', RegistroCuentaInertiaController::class);
 Route::resource('/sonido', SonidoInertiaController::class);
 Route::get('/usuarios/reporte/pdf', [UsuarioReporteController::class, 'index'])->name('usuarios.reporte.pdf');
 
+// ---------------------------------------------------- administrador routes ----------------------------------------------------
+use App\Http\Controllers\Administrador\AdministradorAuthController;
+
+// Formularios (GET)
+Route::get('/admin/register', [AdministradorAuthController::class, 'showRegister'])->name('admin.register');
+Route::get('/admin/login',    [AdministradorAuthController::class, 'showLogin'])->name('admin.login');
+
+// Acciones (POST)
+Route::post('/admin/register', [AdministradorAuthController::class, 'register'])->name('admin.register.store');
+Route::post('/admin/login',    [AdministradorAuthController::class, 'login'])->name('admin.login.store');
+
+// Logout
+Route::post('/admin/logout', [AdministradorAuthController::class, 'logout'])->name('admin.logout');
+
+// Dashboard protegido (ejemplo)
+// Route::get('/admin/dashboard', function () {
+//     return Inertia\Inertia::render('AdministradorAutenticacion/Dashboard');
+// })->middleware('auth:administrador')->name('admin.dashboard');
+
 // Route::resource('/playlist', PlaylistInertiaController::class);
 
 require __DIR__.'/auth.php';

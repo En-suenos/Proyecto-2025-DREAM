@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        
+        // entidad agregada para autenticacion de administradores
+        'administrador' => [
+            'driver' => 'session',
+            'provider' => 'administradores',
+        ],
     ],
 
     /*
@@ -69,6 +75,12 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        // provider para administradores
+        'administradores' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Administrador::class,
+        ],
     ],
 
     /*
