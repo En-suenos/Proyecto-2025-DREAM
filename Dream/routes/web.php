@@ -47,7 +47,15 @@ Route::resource('/inicio', VentanaPrincipalInertiaController::class);
 Route::resource('/registro', RegistroCuentaInertiaController::class);
 Route::resource('/sonido', SonidoInertiaController::class);
 
-// COMENTA temporalmente esta línea si existe para evitar conflictos:
-// Route::resource('/playlist', PlaylistInertiaController::class);
+Route::get('/audio/{filename}', function ($filename) {
+    $path = public_path('audio/' . $filename);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+});
+
 
 require __DIR__.'/auth.php';

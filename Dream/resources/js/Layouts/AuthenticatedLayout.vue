@@ -6,6 +6,7 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
+import PlayerGlobal from '@/Components/PlayerGlobal.vue';
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -201,4 +202,5 @@ const showingNavigationDropdown = ref(false);
             </main>
         </div>
     </div>
+    <PlayerGlobal />
 </template>
