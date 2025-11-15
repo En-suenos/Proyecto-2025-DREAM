@@ -119,17 +119,16 @@ defineProps({
 
                     <!-- Seccion de administrador -->
                     <br>
-                    <div>
-                        <Link
-                        v-if="canRegister"
-                        :href="route('admin.login')"
-                        class="px-6 py-3 mx-2 text-base font-medium text-indigo-100 bg-gradient-to-r from-indigo-700/60 to-purple-700/60 rounded-full hover:from-indigo-600/70 hover:to-purple-600/70 transition-all duration-300 shadow-lg hover:shadow-indigo-500/25 hover:scale-105 flex items-center gap-2"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
-                        </svg>
-                        Iniciar sesion como administrador
-                    </Link>
+                    <div class="mt-8">
+                        <Link 
+                            :href="route('admin.login')" 
+                            class="inline-flex items-center gap-2 px-6 py-3 text-base font-medium text-yellow-100 bg-gradient-to-r from-yellow-600/70 to-orange-600/70 rounded-full hover:from-yellow-500/80 hover:to-orange-500/80 transition-all duration-300 shadow-lg hover:shadow-yellow-500/25 hover:scale-105"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+                            </svg>
+                            Acceso Administrador
+                        </Link>
                     </div>
                 </div>
             </div>

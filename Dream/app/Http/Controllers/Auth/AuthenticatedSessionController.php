@@ -29,6 +29,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // IMPORTANTE: Cerrar sesión de admin si existe
+        if (Auth::guard('administrador')->check()) {
+            Auth::guard('administrador')->logout();
+        }
+
         $request->authenticate();
 
         $request->session()->regenerate();
