@@ -1,5 +1,5 @@
 <script setup>
-import { useForm } from '@inertiajs/vue3';
+import { useForm, Link } from '@inertiajs/vue3';
 
 const form = useForm({
   email: '',
@@ -10,6 +10,22 @@ const form = useForm({
 const submit = () => {
   form.post(route('admin.login.store'));
 };
+defineProps({
+    canLogin: {
+        type: Boolean,
+    },
+    canRegister: {
+        type: Boolean,
+    },
+    laravelVersion: {
+        type: String,
+        required: true,
+    },
+    phpVersion: {
+        type: String,
+        required: true,
+    },
+});
 </script>
 
 <template>
@@ -43,7 +59,13 @@ const submit = () => {
         <div v-if="form.props && form.props.flash && form.props.flash.error" class="text-red-600 mt-2">
           {{ form.props.flash.error }}
         </div>
+
+        
       </form>
+      <div>
+        <Link :href="route('admin.dashboard')">Registrate</Link>
+      <a ></a>
+    </div>
     </div>
   </div>
 </template>

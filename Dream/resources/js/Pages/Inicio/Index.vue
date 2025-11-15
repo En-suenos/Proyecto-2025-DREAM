@@ -122,7 +122,7 @@ defineProps({
                     <div>
                         <Link
                         v-if="canRegister"
-                        :href="route('admin.register')"
+                        :href="route('admin.login')"
                         class="px-6 py-3 mx-2 text-base font-medium text-indigo-100 bg-gradient-to-r from-indigo-700/60 to-purple-700/60 rounded-full hover:from-indigo-600/70 hover:to-purple-600/70 transition-all duration-300 shadow-lg hover:shadow-indigo-500/25 hover:scale-105 flex items-center gap-2"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

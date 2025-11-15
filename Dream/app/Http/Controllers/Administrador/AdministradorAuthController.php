@@ -38,7 +38,7 @@ class AdministradorAuthController extends Controller
         Auth::guard('administrador')->login($admin);
         $request->session()->regenerate();
 
-        return redirect()->intended('/admin/dashboard');
+        return redirect()->intended('AdministradorAutenticacion/dashboard');
     }
 
     // Muestra el formulario de login (Inertia)
@@ -68,7 +68,7 @@ class AdministradorAuthController extends Controller
         Auth::guard('administrador')->login($admin);
         $request->session()->regenerate();
 
-        return redirect()->intended('/admin/dashboard');
+        return redirect()->intended('/admin/principal');
     }
 
     // Logout

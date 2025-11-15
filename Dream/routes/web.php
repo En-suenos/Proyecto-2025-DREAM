@@ -64,9 +64,13 @@ Route::post('/admin/login',    [AdministradorAuthController::class, 'login'])->n
 Route::post('/admin/logout', [AdministradorAuthController::class, 'logout'])->name('admin.logout');
 
 // Dashboard protegido (ejemplo)
-// Route::get('/admin/dashboard', function () {
-//     return Inertia\Inertia::render('AdministradorAutenticacion/Dashboard');
-// })->middleware('auth:administrador')->name('admin.dashboard');
+Route::get('/admin/dashboard', function () {
+    return Inertia::render('AdministradorAutenticacion/Register');
+})->middleware('auth:administrador')->name('admin.dashboard');
+
+Route::get('/admin/principal', function () {
+    return Inertia::render('Principal/Index');
+})->middleware('auth:administrador')->name('admin.inicio');
 
 // Route::resource('/playlist', PlaylistInertiaController::class);
 
