@@ -13,10 +13,10 @@ return new class extends Migration
             $table->string('nombre');
             $table->text('descripcion')->nullable();
             $table->json('sonidos')->nullable();
-            $table->unsignedBigInteger('id_usuario');
+            $table->foreignId('id_usuario')->constrained('users');
             $table->timestamps();
 
-            $table->foreign('id_usuario')->references('id')->on('usuarios')->onDelete('cascade');
+            // $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
