@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sonido extends Model
 {
+    use SoftDeletes;
+    
     protected $table = 'sonidos';
     protected $primaryKey = 'id_sonido';
 
