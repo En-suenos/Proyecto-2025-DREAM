@@ -58,12 +58,12 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
             </a>
         </div>
         <div class="nav-actions">
-            <a 
+            <!-- <a 
               href="/usuarios/reporte/pdf" 
               class="nav-btn"
             >
               <i class="fas fa-file-pdf mr-2"></i> PDF
-            </a>
+            </a> -->
         
             <Link 
               :href="route('logout')" 

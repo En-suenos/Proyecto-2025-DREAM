@@ -88,8 +88,9 @@
 
     <!-- Datos del reporte -->
     <div class="meta">
-        <b>Generado el:</b> {{ date('d/m/Y H:i') }} <br>
-        <b>ID de Reporte:</b> USR-{{ date('Ymd-His') }}
+        <b>Generado el:</b> <?php echo e(date('d/m/Y H:i')); ?> <br>
+        <b>ID de Reporte:</b> USR-<?php echo e(date('Ymd-His')); ?>
+
     </div>
 
     <!-- Tabla de usuarios -->
@@ -106,30 +107,33 @@
         </thead>
 
         <tbody>
-            @foreach($usuarios as $index => $usuario)
+            <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $usuario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr>
-                <td>{{ $index + 1 }}</td>
+                <td><?php echo e($index + 1); ?></td>
 
                 <td>
                     <div class="user-cell">
                         <div class="avatar">
-                            {{ strtoupper(substr($usuario->name, 0, 1)) }}
+                            <?php echo e(strtoupper(substr($usuario->name, 0, 1))); ?>
+
                         </div>
-                        {{ $usuario->name }}
+                        <?php echo e($usuario->name); ?>
+
                     </div>
                 </td>
 
-                <td>{{ $usuario->email }}</td>
+                <td><?php echo e($usuario->email); ?></td>
 
                 <td>
-                    {{ $usuario->created_at ? $usuario->created_at->format('d/m/Y') : 'N/A' }}
+                    <?php echo e($usuario->created_at ? $usuario->created_at->format('d/m/Y') : 'N/A'); ?>
+
                 </td>
 
                 <td>Activo</td>
 
-                <td>#{{ $usuario->id }}</td>
+                <td>#<?php echo e($usuario->id); ?></td>
             </tr>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </tbody>
     </table>
 
@@ -141,3 +145,4 @@
 
 </body>
 </html>
+<?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Proyecto-2025-DREAM\Dream\resources\views/usuario/pdf/index.blade.php ENDPATH**/ ?>

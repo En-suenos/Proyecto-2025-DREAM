@@ -66,12 +66,18 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
                         <h2 class="text-2xl font-semibold mb-6 border-b border-white/30 pb-2">Menú</h2>
                         <nav class="space-y-4">
                             <Link :href="route('usuario.index')" > <i class="fas fa-user mr-2"></i>Ver usuarios</Link>
-                            <a href="sonido" class="flex items-center hover:bg-white/20 px-3 py-2 rounded transition duration-300">
-                                <i class="fas fa-music mr-2"></i> Ver sonidos
-                            </a>
-                            <a href="playlists" class="flex items-center hover:bg-white/20 px-3 py-2 rounded transition duration-300">
-                                <i class="fas fa-list mr-2"></i> Generar reporte
-                            </a>
+                            <br>
+                            <Link :href="route('adminSonidos.index')" > <i class="fas fa-music mr-2"></i>Ver sonidos</Link>
+                            <br>
+                            <div class="nav-actions">
+                              <a 
+                            href="/usuarios/reporte/pdf" 
+                            class="nav-btn"
+                          >
+                            <i class="fas fa-file-pdf mr-2"></i> PDF
+                          </a>
+                            </div>
+                            
                         </nav>
                     </div>
                 </aside>

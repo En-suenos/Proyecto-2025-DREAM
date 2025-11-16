@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Usuario\UsuarioReporteController;
 use App\Http\Controllers\Administrador\AdministradorAuthController;
 use App\Http\Controllers\Usuario\UsuarioInertiaController;
+use App\Http\Controllers\AdminSonidos\AdminSonidoInertiaController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -46,6 +47,8 @@ Route::resource('/perfil', PerfilInertiaController::class);
 Route::resource('/inicio', VentanaPrincipalInertiaController::class);
 Route::resource('/registro', RegistroCuentaInertiaController::class);
 Route::resource('/sonido', SonidoInertiaController::class);
+Route::resource('/adminSonidos', AdminSonidoInertiaController::class);
+Route::get('/adminSonidos/delete', [AdminSonidoInertiaController::class, 'delete'])->name('adminSonidos.delete');
 Route::get('/usuarios/reporte/pdf', [UsuarioReporteController::class, 'index'])->name('usuarios.reporte.pdf');
 
 Route::resource('/lista/usuario', UsuarioInertiaController::class);
