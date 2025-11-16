@@ -26,6 +26,7 @@ const navItems = [
             <div class="stars2"></div>
             <div class="stars3"></div>
 
+<<<<<<< HEAD
             <!-- Contenido principal -->
             <div class="min-h-screen relative z-10 text-white p-6">
                 <div class="max-w-7xl mx-auto">
@@ -120,6 +121,117 @@ const navItems = [
             </div>
         </div>
     </LayoutLimpio>
+=======
+      <!-- Botón de cierre de sesión -->
+      <!-- <div class="bg-blue-600/80 text-white py-2 px-4 rounded-full shadow-lg hover:shadow-xl mb-4 relative z-10 transition-all duration-300 hover:scale-105">
+        <Link :href="route('logout')" method="post" as="button" class="flex items-center">
+          <i class="fas fa-sign-out-alt mr-2"></i>
+          Cerrar sesión
+        </Link>
+        
+      </div>
+      <div >
+          <a 
+          href="/usuarios/reporte/pdf" 
+          class="bg-blue-600/80 text-white py-2 px-4 rounded-full shadow-lg hover:shadow-xl mb-4 relative z-10 transition-all duration-300 hover:scale-105">
+          PDF
+      </a>
+      </div> -->
+      
+      <!-- Barra de navegación superior animada -->
+      <nav class="nav-bar">
+        <div class="nav-container">
+          <!-- Ítems del menú -->
+          <div class="nav-item" v-for="item in navItems" :key="item.id">
+            <a :href="item.href" class="nav-link">
+              <i :class="item.icon" class="nav-icon"></i>
+              <span class="nav-text">{{ item.text }}</span>
+              <div class="nav-dot"></div>
+            </a>
+        </div>
+        <div class="nav-actions">
+            <!-- <a 
+              href="/usuarios/reporte/pdf" 
+              class="nav-btn"
+            >
+              <i class="fas fa-file-pdf mr-2"></i> PDF
+            </a> -->
+        
+            <Link 
+              :href="route('logout')" 
+              method="post" 
+              as="button" 
+              class="nav-btn logout-btn"
+            >
+              <i class="fas fa-sign-out-alt mr-2"></i> Salir
+            </Link>
+        </div>
+      </div>
+      
+        <!-- Botones de acción (PDF y Cerrar sesión) -->
+        
+      </nav>
+
+
+      <!-- Encabezado -->
+      <div class="text-center mb-8 relative z-10 mt-16">
+        <h1 class="text-5xl font-extrabold text-white mb-2 drop-shadow-lg">
+          Bienvenido <span class="text-blue-300">Sueños</span>
+        </h1>
+        <p class="text-gray-200 text-lg">
+          Tu espacio personal para controlar tus sonidos y sueños.
+        </p>
+      </div>
+
+      <!-- Contenedor principal -->
+      <div
+        class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl w-full max-w-4xl flex flex-col overflow-hidden shadow-2xl relative z-10"
+      >
+        <!-- Contenido principal -->
+        <main class="flex-1 p-10 flex flex-col items-center justify-center">
+          <div class="text-center">
+            <div
+              class="avatar w-20 h-20 rounded-full bg-gradient-to-br from-blue-400/20 to-purple-500/20 border border-white/10 flex items-center justify-center text-white text-2xl mx-auto mb-4 shadow-lg"
+            >
+              <i class="fas fa-music text-blue-300"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">Control de Sueño</h3>
+            <p class="text-gray-200 mb-6">
+              Explora tus playlists, configura tu perfil y disfruta de la música.
+            </p>
+
+            <!-- Tarjeta de sueño -->
+            <div
+              class="card-sueno bg-gradient-to-br from-blue-500/10 to-purple-600/10 backdrop-blur-sm border border-white/5 rounded-2xl p-8 mb-6 shadow-2xl max-w-md mx-auto transition-all duration-500 hover:translate-y-[-8px] hover:shadow-3xl"
+            >
+              <div class="card-body text-center">
+                <i class="fas fa-moon fa-2x text-yellow-200 mb-4 drop-shadow-lg"></i>
+                <p class="card-text text-white text-lg mb-6 leading-relaxed">
+                  😴 "Dormir no es perder el tiempo, es regalarle al cuerpo la energía y la claridad
+                  que necesita para seguir soñando despierto." 🌌
+                </p>
+
+                <!-- Botón principal -->
+                <button
+                  class="btn-sueno bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-10 rounded-full shadow-2xl transform transition-all duration-500 relative overflow-hidden group"
+                >
+                  <i class="fas fa-play-circle mr-3 group-hover:scale-110 transition-transform duration-300"></i> 
+                  Iniciar Sueño
+                  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Footer con copyright -->
+        <footer class="bg-gradient-to-b from-slate-800/50 to-slate-900/50 text-white p-4 text-center border-t border-white/5">
+          <div class="text-sm opacity-80">© 2025 DreamApp - Donde los sueños cobran vida</div>
+        </footer>
+      </div>
+    </div>
+  </LayoutLimplio>
+>>>>>>> ramaTrabajo-de-main-v6
 </template>
 
 <style scoped>
@@ -433,4 +545,45 @@ const navItems = [
 .max-w-2xl {
     max-width: 42rem;
 }
+/* 🔹 Contenedor de botones adicionales (lado derecho del nav) */
+.nav-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-left: 20px;
+}
+
+/* 🔹 Estilo general de botones */
+.nav-btn {
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.25), rgba(147, 51, 234, 0.25));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.nav-btn:hover {
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.6), rgba(147, 51, 234, 0.6));
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+/* 🔹 Botón de cerrar sesión con tono rojo */
+.logout-btn {
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.3), rgba(220, 38, 38, 0.3));
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.logout-btn:hover {
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.8), rgba(220, 38, 38, 0.8));
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);
+}
+
 </style>

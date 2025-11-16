@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('archivo_audio');
             $table->double('duracion')->default(0); // en segundos
             $table->boolean('activo')->default(true);
-            $table->softDeletes();
             $table->timestamps();
         });
     }
