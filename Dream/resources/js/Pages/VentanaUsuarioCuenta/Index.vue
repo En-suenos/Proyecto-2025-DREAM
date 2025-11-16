@@ -26,102 +26,6 @@ const navItems = [
             <div class="stars2"></div>
             <div class="stars3"></div>
 
-<<<<<<< HEAD
-            <!-- Contenido principal -->
-            <div class="min-h-screen relative z-10 text-white p-6">
-                <div class="max-w-7xl mx-auto">
-
-                    <!-- Barra de navegación superior -->
-                    <nav class="nav-bar">
-                        <div class="nav-container">
-                            <div class="nav-item" v-for="item in navItems" :key="item.id">
-                                <a :href="item.href" class="nav-link">
-                                    <i :class="item.icon" class="nav-icon"></i>
-                                    <span class="nav-text">{{ item.text }}</span>
-                                    <div class="nav-dot"></div>
-                                </a>
-                            </div>
-                        </div>
-                    </nav>
-
-                    <!-- Botón de cierre de sesión -->
-                    <div class="flex justify-end mb-8">
-                        <Link
-                            :href="route('logout')"
-                            method="post"
-                            as="button"
-                            class="btn btn-secondary inline-flex items-center"
-                        >
-                            <i class="fas fa-sign-out-alt mr-2"></i>
-                            Cerrar sesión
-                        </Link>
-                    </div>
-
-                    <!-- Header Centrado -->
-                    <div class="text-center mb-12">
-                        <h1 class="text-5xl font-bold text-blue-400 mb-4 drop-shadow-lg">
-                            Bienvenido <span class="text-blue-300">Sueños</span>
-                        </h1>
-                        <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-                            Tu espacio personal para controlar tus sonidos y sueños
-                        </p>
-                    </div>
-
-                    <!-- Tarjeta principal de sueño -->
-                    <div class="glass-panel p-8 rounded-2xl max-w-2xl mx-auto mb-12 text-center hover-lift transition-all duration-300">
-                        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg mx-auto mb-6">
-                            <i class="fas fa-moon text-2xl text-white"></i>
-                        </div>
-
-                        <h2 class="text-2xl font-bold text-white mb-4">Control de Sueño</h2>
-
-                        <p class="text-gray-300 mb-6 leading-relaxed">
-                            😴 "Dormir no es perder el tiempo, es regalarle al cuerpo la energía y la claridad
-                            que necesita para seguir soñando despierto." 🌌
-                        </p>
-
-                        <!-- Botón principal -->
-                        <button class="btn btn-primary mx-auto">
-                            <i class="fas fa-play-circle mr-3"></i>
-                            Iniciar Sueño
-                        </button>
-                    </div>
-
-                    <!-- Acciones rápidas - CENTRADAS Y ALINEADAS -->
-                    <div class="flex justify-center">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
-                            <!-- Tarjeta Sonidos -->
-                            <Link href="/sonido" class="glass-panel p-6 rounded-2xl text-center hover-lift transition-all duration-300 group h-full">
-                                <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                                    <i class="fas fa-music text-white"></i>
-                                </div>
-                                <h3 class="text-lg font-bold text-white mb-2">Sonidos</h3>
-                                <p class="text-gray-300 text-sm">Explora tu biblioteca</p>
-                            </Link>
-
-                            <!-- Tarjeta Playlists -->
-                            <Link href="/playlists" class="glass-panel p-6 rounded-2xl text-center hover-lift transition-all duration-300 group h-full">
-                                <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-lg mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                                    <i class="fas fa-list text-white"></i>
-                                </div>
-                                <h3 class="text-lg font-bold text-white mb-2">Mis Playlists</h3>
-                                <p class="text-gray-300 text-sm">Gestiona tus listas de sonidos</p>
-                            </Link>
-                        </div>
-                    </div>
-
-                    <!-- Footer -->
-                    <footer class="mt-16 text-center">
-                        <div class="text-sm text-gray-400 opacity-80">
-                            © 2025 DreamApp - Donde los sueños cobran vida
-                        </div>
-                    </footer>
-
-                </div>
-            </div>
-        </div>
-    </LayoutLimpio>
-=======
       <!-- Botón de cierre de sesión -->
       <!-- <div class="bg-blue-600/80 text-white py-2 px-4 rounded-full shadow-lg hover:shadow-xl mb-4 relative z-10 transition-all duration-300 hover:scale-105">
         <Link :href="route('logout')" method="post" as="button" class="flex items-center">
@@ -230,8 +134,7 @@ const navItems = [
         </footer>
       </div>
     </div>
-  </LayoutLimplio>
->>>>>>> ramaTrabajo-de-main-v6
+    </LayoutLimpio>
 </template>
 
 <style scoped>

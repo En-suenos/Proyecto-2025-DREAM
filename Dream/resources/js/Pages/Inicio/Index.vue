@@ -1,6 +1,8 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 
+import fondoLuna1 from '@/img/fondoLuna1.jpg'
+
 defineProps({
     canLogin: {
         type: Boolean,
@@ -22,7 +24,9 @@ defineProps({
 <template>
     <Head title="Welcome" />
     
-    <div class="min-h-screen bg-gradient-to-tl from-indigo-950 via-purple-950 to-blue-950 flex items-center justify-center overflow-hidden relative">
+    <div class="w-full h-screen bg-cover bg-center flex items-center justify-center"
+            :style="{ backgroundImage: `url(${fondoLuna1})` }">
+        
         <!-- Elementos de fondo mejorados -->
         <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22%3E%3Ccircle cx=%2210%22 cy=%2210%22 r=%221%22 fill=%22rgba(255,255,255,0.2)%22/%3E%3C/svg%3E')] bg-repeat opacity-20 animate-twinkle"></div>
         

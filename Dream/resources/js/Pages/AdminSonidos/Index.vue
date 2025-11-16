@@ -3,6 +3,8 @@ import LayoutLimpio from '@/Layouts/LayoutLimpio.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3'; // Agregar useForm
 import { ref } from 'vue';
 
+import fondo2 from '@/img/fondo2.jpg'
+
 defineProps({
     archivos: {
         type: Array,
@@ -61,50 +63,48 @@ const deleteAudio = () => {
     <Head title="Sonidos - DreamApp" />
 
     <LayoutLimpio>
-        <div >
+        <div class="w-full min-h-screen bg-cover bg-center p-6"
+            :style="{ backgroundImage: `url(${fondo2})` }">
             <!-- Contenido principal -->
             <div class="min-h-screen relative z-10 text-white p-6">
                 <div class="max-w-7xl mx-auto">
 
                     <!-- Botón de volver -->
-                    <div class="flex justify-end mb-8">
+                    <div class="flex justify-end mb-8 gap-3">
                         <Link
-                            :href="route('admin.inicio')"
-                            class="btn btn-secondary inline-flex items-center"
+                            :href="route('admin.index')"
+                            class="inline-flex items-center space-x-2 bg-blue-500/80 backdrop-blur-sm hover:bg-blue-600/80 text-white font-semibold py-3 px-6 rounded-xl transition mb-4 border border-blue-400/50 shadow-lg"
                         >
-                            <i class="fas fa-arrow-left mr-3"></i>
+                            <i class="fas fa-home mr-2"></i>
                             Volver al Inicio
                         </Link>
                     
                         <Link
                             :href="route('adminSonidos.create')"
-                            class="btn btn-secondary inline-flex items-center"
+                            class="inline-flex items-center space-x-2 bg-blue-500/80 backdrop-blur-sm hover:bg-blue-600/80 text-white font-semibold py-3 px-6 rounded-xl transition mb-4 border border-blue-400/50 shadow-lg"
                         >
-                            
+                            <i class="fas fa-plus mr-2"></i>
                             Agregar sonido
                         </Link>
-
                     </div>
 
                     <!-- Header Centrado igual a playlists -->
                     <div class="text-center mb-12">
-                        <h1 class="text-5xl font-bold text-blue-400 mb-4 drop-shadow-lg">Sonidos Relajantes</h1>
+                        <h1 class="text-5xl font-bold text-blue-400 mb-4 drop-shadow-lg">Lista de Sonidos Relajantes</h1>
                         <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-                            Descubre nuestra colección de sonidos para mejorar tu descanso y meditación
+                            Colección de sonidos para mejorar el descanso y la meditación
                         </p>
                     </div>
 
                     <!-- Contador y botón desplegable -->
                     <div class="glass-panel p-6 rounded-2xl mb-8 flex justify-between items-center">
                         <div class="text-white">
-                            <span class="text-gray-400">Mostrando</span>
-                            <span class="text-blue-300 font-medium mx-2">{{ archivos.length }}</span>
-                            <span class="text-gray-400">sonidos disponibles</span>
+                            <span class="text-white-400">sonidos disponibles</span>
                         </div>
 
                         <button
                             @click="isExpanded = !isExpanded"
-                            class="btn btn-primary"
+                            class="btn btn-blue"
                         >
                             <span>{{ isExpanded ? 'Ocultar' : 'Mostrar' }} Audios</span>
                             <i
@@ -191,7 +191,7 @@ const deleteAudio = () => {
                             <p class="text-gray-300 mb-6">Haz clic en "Mostrar Audios" para ver los sonidos disponibles</p>
                             <button
                                 @click="isExpanded = true"
-                                class="btn btn-primary"
+                                class="btn btn-blue"
                             >
                                 <i class="fas fa-eye mr-2"></i>
                                 Mostrar Sonidos
@@ -207,6 +207,13 @@ const deleteAudio = () => {
                             </div>
                             <h3 class="text-xl font-bold text-white mb-2">No hay sonidos disponibles</h3>
                             <p class="text-gray-300 mb-6">Próximamente agregaremos más contenido</p>
+                            <Link
+                                :href="route('adminSonidos.create')"
+                                class="btn btn-blue"
+                            >
+                                <i class="fas fa-plus mr-2"></i>
+                                Agregar Primer Sonido
+                            </Link>
                         </div>
                     </div>
 
@@ -253,7 +260,7 @@ const deleteAudio = () => {
                     <div class="px-6 py-4 bg-gray-50 rounded-b-lg flex gap-3">
                         <button
                             @click="closeDeleteModal"
-                            class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors"
+                            class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                         >
                             Cancelar
                         </button>
@@ -383,6 +390,10 @@ const deleteAudio = () => {
 
 .btn-sm {
     @apply px-3 py-1.5 text-sm;
+}
+
+.btn-blue {
+    @apply bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105 border border-blue-500/30;
 }
 
 .btn-primary {

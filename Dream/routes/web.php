@@ -83,9 +83,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', function () {
             return Inertia::render('AdministradorAutenticacion/Dashboard');
         })->name('dashboard');
-        Route::get('/principal', function () {
-            return Inertia::render('AdminPrincipal/Index');
-        })->name('inicio');
+        Route::get('/principal', [AdministradorAuthController::class, 'index'])->name('index');
+        
     });
 });
 require __DIR__.'/auth.php';

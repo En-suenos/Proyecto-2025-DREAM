@@ -11,6 +11,10 @@ use Inertia\Inertia;
 
 class AdministradorAuthController extends Controller
 {
+    public function index(Request $request)
+    {
+        return Inertia::render('AdminPrincipal/Index');
+    }
     // Muestra el formulario de registro (Inertia)
     public function showRegister()
     {
@@ -95,11 +99,11 @@ class AdministradorAuthController extends Controller
         \Log::info('Auth login executed');
         \Log::info('Auth check after login:', ['check' => Auth::guard('administrador')->check()]);
         \Log::info('Current admin ID:', ['id' => Auth::guard('administrador')->id()]);
-        \Log::info('Redirect URL:', ['url' => route('admin.inicio')]);
+        \Log::info('Redirect URL:', ['url' => route('admin.index')]);
         \Log::info('=== FIN LOGIN ADMINISTRADOR ===');
 
         // Redirección con intended para verificar
-        return redirect()->route('admin.inicio');
+        return redirect()->route('admin.index');
     }
 
     // Logout
