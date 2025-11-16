@@ -9,6 +9,7 @@ use App\Http\Controllers\PlayList\PlaylistInertiaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Usuario\UsuarioReporteController;
 use App\Http\Controllers\Administrador\AdministradorAuthController;
+use App\Http\Controllers\Usuario\UsuarioInertiaController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -47,6 +48,7 @@ Route::resource('/registro', RegistroCuentaInertiaController::class);
 Route::resource('/sonido', SonidoInertiaController::class);
 Route::get('/usuarios/reporte/pdf', [UsuarioReporteController::class, 'index'])->name('usuarios.reporte.pdf');
 
+Route::resource('/lista/usuario', UsuarioInertiaController::class);
 // ====================================================================
 // RUTAS DE ADMINISTRADOR
 // ====================================================================
@@ -56,7 +58,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     
     // Rutas públicas (guest)
     Route::middleware('guest:administrador')->group(function () {
-        Route::get('/login', [AdministradorAuthController::class, 'showLogin'])->name('login');
+        Route::get('/login', [AdministradorAuthController::class, 'showLogin'])->name('login.admin');
         Route::post('/login', [AdministradorAuthController::class, 'login'])->name('login.store');
         Route::get('/register', [AdministradorAuthController::class, 'showRegister'])->name('register');
         Route::post('/register', [AdministradorAuthController::class, 'register'])->name('register.store');

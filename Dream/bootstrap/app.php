@@ -19,7 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Configurar redirección para guests
         $middleware->redirectGuestsTo(function (\Illuminate\Http\Request $request) {
             if ($request->is('admin/*') && !$request->is('admin/login') && !$request->is('admin/register')) {
-                return route('admin.login');
+                return route('admin.login.admin');
             }
             return route('login');
         });

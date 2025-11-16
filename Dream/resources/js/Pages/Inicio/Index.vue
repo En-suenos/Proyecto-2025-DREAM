@@ -121,7 +121,7 @@ defineProps({
                     <br>
                     <div class="mt-8">
                         <Link 
-                            :href="route('admin.login')" 
+                            :href="route('admin.login.admin')" 
                             class="inline-flex items-center gap-2 px-6 py-3 text-base font-medium text-yellow-100 bg-gradient-to-r from-yellow-600/70 to-orange-600/70 rounded-full hover:from-yellow-500/80 hover:to-orange-500/80 transition-all duration-300 shadow-lg hover:shadow-yellow-500/25 hover:scale-105"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
