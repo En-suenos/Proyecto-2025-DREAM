@@ -26,7 +26,8 @@
  */
 
 import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+// import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import LayoutLimpio from '@/Layouts/LayoutLimpio.vue';
 import { Head, Link } from '@inertiajs/vue3';
 
 const props = defineProps({
@@ -488,7 +489,7 @@ const toggleRepeat = () => {
 <template>
   <Head :title="`Playlist: ${props.playlist.nombre}`" />
 
-  <AuthenticatedLayout>
+  <LayoutLimpio>
     <!-- Fondo de cielo estrellado -->
     <div class="night-sky">
       <!-- Luna -->
@@ -645,7 +646,7 @@ const toggleRepeat = () => {
         </div>
       </div>
     </div>
-  </AuthenticatedLayout>
+  </LayoutLimpio>
 </template>
 
 <style scoped>

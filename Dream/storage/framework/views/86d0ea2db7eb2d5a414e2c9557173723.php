@@ -4,145 +4,190 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte de Usuarios - Dream App</title>
-
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 40px;
-            color: #222;
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            padding: 40px 20px;
         }
-
-        h1 {
-            text-align: center;
-            font-size: 26px;
-            margin-bottom: 5px;
-            letter-spacing: 0.5px;
+        
+        .report-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
         }
-
-        .subtitle {
+        
+        /* Encabezado */
+        .report-header {
             text-align: center;
-            font-size: 14px;
-            color: #555;
+            border-bottom: 3px solid #1a1a1a;
+            padding-bottom: 20px;
             margin-bottom: 30px;
         }
-
-        .meta {
+        
+        .company-name {
             font-size: 14px;
-            margin-bottom: 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666;
+            margin-bottom: 10px;
         }
-
+        
+        .report-title {
+            font-size: 26px;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+        
+        .report-date {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        /* Tabla */
+        .table-container {
+            margin: 30px 0;
+        }
+        
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            font-size: 13px;
         }
-
-        th, td {
-            padding: 10px 8px;
-            border: 1px solid #ccc;
-            font-size: 14px;
+        
+        thead {
+            background-color: #1a1a1a;
+            color: white;
         }
-
+        
         th {
-            background-color: #f1f1f1;
-            font-weight: bold;
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        tbody tr {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        td {
+            padding: 12px 10px;
+            color: #333;
+        }
+        
+        tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        /* Pie de página */
+        .report-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #1a1a1a;
+            font-size: 11px;
+            color: #666;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-left {
             text-align: left;
         }
-
-        tr:nth-child(even) {
-            background-color: #fafafa;
+        
+        .footer-right {
+            text-align: right;
         }
-
-        .footer {
-            margin-top: 40px;
-            text-align: center;
-            font-size: 12px;
-            color: #777;
-            border-top: 1px solid #ccc;
-            padding-top: 10px;
-        }
-
-        .avatar {
+        
+        .footer-company {
             font-weight: bold;
-            background: #ddd;
-            width: 30px;
-            height: 30px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin-right: 8px;
+            margin-bottom: 5px;
         }
-
-        .user-cell {
-            display: flex;
-            align-items: center;
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            
+            .report-container {
+                max-width: 100%;
+            }
+            
+            thead {
+                background-color: #1a1a1a !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
         }
     </style>
 </head>
-
 <body>
+    <div class="report-container">
+        <!-- Encabezado -->
+        <div class="report-header">
+            <div class="company-name">Dream App</div>
+            <h1 class="report-title">Informe de Usuarios Registrados</h1>
+            <div class="report-date">
+                Fecha de Generación: <?php echo e(date('d/m/Y')); ?> | Hora: <?php echo e(date('H:i')); ?>
 
-    <h1>Reporte de Usuarios de la Aplicación Dream</h1>
-    <p class="subtitle">Listado general de usuarios registrados en el sistema</p>
-
-    <!-- Datos del reporte -->
-    <div class="meta">
-        <b>Generado el:</b> <?php echo e(date('d/m/Y H:i')); ?> <br>
-        <b>ID de Reporte:</b> USR-<?php echo e(date('Ymd-His')); ?>
-
+            </div>
+        </div>
+        
+        <!-- Tabla de usuarios -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 8%;">N°</th>
+                        <th style="width: 10%;">ID</th>
+                        <th style="width: 30%;">Nombre</th>
+                        <th style="width: 35%;">Correo Electrónico</th>
+                        <th style="width: 17%;">Fecha de Registro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $usuario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <tr>
+                        <td><?php echo e($index + 1); ?></td>
+                        <td><?php echo e($usuario->id); ?></td>
+                        <td><?php echo e($usuario->name); ?></td>
+                        <td><?php echo e($usuario->email); ?></td>
+                        <td><?php echo e($usuario->created_at ? $usuario->created_at->format('d/m/Y') : 'N/A'); ?></td>
+                    </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Pie de página -->
+        <div class="report-footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-company">Dream App - Sistema de Gestión</div>
+                    <div>Total de usuarios: <?php echo e(count($usuarios)); ?></div>
+                </div>
+                <div class="footer-right">
+                    <div>Documento generado automáticamente</div>
+                    <div>Página 1 de 1</div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- Tabla de usuarios -->
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 5%;">#</th>
-                <th style="width: 25%;">Usuario</th>
-                <th style="width: 25%;">Email</th>
-                <th style="width: 20%;">Fecha de Registro</th>
-                <th style="width: 15%;">Estado</th>
-                <th style="width: 10%;">ID</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $usuario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <tr>
-                <td><?php echo e($index + 1); ?></td>
-
-                <td>
-                    <div class="user-cell">
-                        <div class="avatar">
-                            <?php echo e(strtoupper(substr($usuario->name, 0, 1))); ?>
-
-                        </div>
-                        <?php echo e($usuario->name); ?>
-
-                    </div>
-                </td>
-
-                <td><?php echo e($usuario->email); ?></td>
-
-                <td>
-                    <?php echo e($usuario->created_at ? $usuario->created_at->format('d/m/Y') : 'N/A'); ?>
-
-                </td>
-
-                <td>Activo</td>
-
-                <td>#<?php echo e($usuario->id); ?></td>
-            </tr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </tbody>
-    </table>
-
-    <!-- Pie de página -->
-    <div class="footer">
-        Reporte generado automáticamente por DreamApp — Sistema Administrativo<br>
-        Página 1 de 1
-    </div>
-
 </body>
-</html>
-<?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Proyecto-2025-DREAM\Dream\resources\views/usuario/pdf/index.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\laragon\www\Proyecto-carpeta_principal\Proyecto-2025-DREAM\Dream\resources\views/usuario/pdf/index.blade.php ENDPATH**/ ?>
