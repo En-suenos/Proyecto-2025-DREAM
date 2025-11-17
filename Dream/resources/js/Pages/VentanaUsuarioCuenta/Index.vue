@@ -15,8 +15,8 @@ const navItems = [
 <template>
     <Head title="Dashboard" />
 
-    <LayoutLimpio>
-        <!-- Fondo de cielo estrellado -->
+  <LayoutLimpio>
+ <!-- Fondo de cielo estrellado -->
         <div class="night-sky">
             <!-- Luna -->
             <div class="moon"></div>
@@ -134,7 +134,10 @@ const navItems = [
         </footer>
       </div>
     </div>
-    </LayoutLimpio>
+
+  </LayoutLimpio>
+       
+ 
 </template>
 
 <style scoped>
