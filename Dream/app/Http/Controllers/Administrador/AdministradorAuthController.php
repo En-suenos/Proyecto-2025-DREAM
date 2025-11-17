@@ -42,7 +42,7 @@ class AdministradorAuthController extends Controller
         Auth::guard('administrador')->login($admin);
         $request->session()->regenerate();
 
-        return redirect()->route('admin.inicio');
+        return redirect()->route('admin.index');
     }
 
     // Muestra el formulario de login (Inertia)
@@ -50,7 +50,7 @@ class AdministradorAuthController extends Controller
     {
         // Si ya está autenticado como admin, redirigir al panel
         if (Auth::guard('administrador')->check()) {
-            return redirect()->route('admin.inicio');
+            return redirect()->route('admin.index');
         }
         
         // Cerrar sesión de usuario normal si existe

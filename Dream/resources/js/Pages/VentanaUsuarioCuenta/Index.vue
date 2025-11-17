@@ -14,126 +14,100 @@ const navItems = [
 
 <template>
     <Head title="Dashboard" />
-
     <LayoutLimpio>
-        <!-- Fondo de cielo estrellado -->
-        <div class="night-sky">
-            <!-- Luna -->
-            <div class="moon"></div>
+    
+      <!-- Fondo de cielo estrellado -->
+      <div class="night-sky ">
+          <!-- Luna -->
+          <div class="moon"></div>
 
-            <!-- Estrellas -->
-            <div class="stars"></div>
-            <div class="stars2"></div>
-            <div class="stars3"></div>
-
-      <!-- Botón de cierre de sesión -->
-      <!-- <div class="bg-blue-600/80 text-white py-2 px-4 rounded-full shadow-lg hover:shadow-xl mb-4 relative z-10 transition-all duration-300 hover:scale-105">
-        <Link :href="route('logout')" method="post" as="button" class="flex items-center">
-          <i class="fas fa-sign-out-alt mr-2"></i>
-          Cerrar sesión
-        </Link>
-        
-      </div>
-      <div >
-          <a 
-          href="/usuarios/reporte/pdf" 
-          class="bg-blue-600/80 text-white py-2 px-4 rounded-full shadow-lg hover:shadow-xl mb-4 relative z-10 transition-all duration-300 hover:scale-105">
-          PDF
-      </a>
-      </div> -->
-      
-      <!-- Barra de navegación superior animada -->
-      <nav class="nav-bar">
-        <div class="nav-container">
-          <!-- Ítems del menú -->
-          <div class="nav-item" v-for="item in navItems" :key="item.id">
-            <a :href="item.href" class="nav-link">
-              <i :class="item.icon" class="nav-icon"></i>
-              <span class="nav-text">{{ item.text }}</span>
-              <div class="nav-dot"></div>
-            </a>
-        </div>
-        <div class="nav-actions">
-            <!-- <a 
-              href="/usuarios/reporte/pdf" 
-              class="nav-btn"
-            >
-              <i class="fas fa-file-pdf mr-2"></i> PDF
-            </a> -->
-        
-            <Link 
-              :href="route('logout')" 
-              method="post" 
-              as="button" 
-              class="nav-btn logout-btn"
-            >
-              <i class="fas fa-sign-out-alt mr-2"></i> Salir
-            </Link>
-        </div>
-      </div>
-      
-        <!-- Botones de acción (PDF y Cerrar sesión) -->
-        
-      </nav>
-
-
-      <!-- Encabezado -->
-      <div class="text-center mb-8 relative z-10 mt-16">
-        <h1 class="text-5xl font-extrabold text-white mb-2 drop-shadow-lg">
-          Bienvenido <span class="text-blue-300">Sueños</span>
-        </h1>
-        <p class="text-gray-200 text-lg">
-          Tu espacio personal para controlar tus sonidos y sueños.
-        </p>
-      </div>
-
-      <!-- Contenedor principal -->
-      <div
-        class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl w-full max-w-4xl flex flex-col overflow-hidden shadow-2xl relative z-10"
-      >
-        <!-- Contenido principal -->
-        <main class="flex-1 p-10 flex flex-col items-center justify-center">
-          <div class="text-center">
-            <div
-              class="avatar w-20 h-20 rounded-full bg-gradient-to-br from-blue-400/20 to-purple-500/20 border border-white/10 flex items-center justify-center text-white text-2xl mx-auto mb-4 shadow-lg"
-            >
-              <i class="fas fa-music text-blue-300"></i>
+          <!-- Estrellas -->
+          <div class="stars"></div>
+          <div class="stars2"></div>
+          <div class="stars3"></div>
+          <!-- Barra de navegación superior animada -->
+          <nav class="nav-bar">
+            <div class="nav-container">
+              <!-- Ítems del menú -->
+              <div class="nav-item" v-for="item in navItems" :key="item.id">
+                <a :href="item.href" class="nav-link">
+                  <i :class="item.icon" class="nav-icon"></i>
+                  <span class="nav-text">{{ item.text }}</span>
+                  <div class="nav-dot"></div>
+                </a>
             </div>
-            <h3 class="text-2xl font-bold text-white mb-2">Control de Sueño</h3>
-            <p class="text-gray-200 mb-6">
-              Explora tus playlists, configura tu perfil y disfruta de la música.
-            </p>
-
-            <!-- Tarjeta de sueño -->
-            <div
-              class="card-sueno bg-gradient-to-br from-blue-500/10 to-purple-600/10 backdrop-blur-sm border border-white/5 rounded-2xl p-8 mb-6 shadow-2xl max-w-md mx-auto transition-all duration-500 hover:translate-y-[-8px] hover:shadow-3xl"
-            >
-              <div class="card-body text-center">
-                <i class="fas fa-moon fa-2x text-yellow-200 mb-4 drop-shadow-lg"></i>
-                <p class="card-text text-white text-lg mb-6 leading-relaxed">
-                  😴 "Dormir no es perder el tiempo, es regalarle al cuerpo la energía y la claridad
-                  que necesita para seguir soñando despierto." 🌌
-                </p>
-
-                <!-- Botón principal -->
-                <button
-                  class="btn-sueno bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-10 rounded-full shadow-2xl transform transition-all duration-500 relative overflow-hidden group"
-                >
-                  <i class="fas fa-play-circle mr-3 group-hover:scale-110 transition-transform duration-300"></i> 
-                  Iniciar Sueño
-                  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                </button>
+            <div class="nav-actions">
+              <Link 
+                :href="route('logout')" 
+                method="post" 
+                as="button" 
+                class="nav-btn logout-btn"
+              >
+                <i class="fas fa-sign-out-alt mr-2"></i> Salir
+              </Link>
+              
               </div>
             </div>
-          </div>
-        </main>
+            
+          </nav>
 
-        <!-- Footer con copyright -->
-        <footer class="bg-gradient-to-b from-slate-800/50 to-slate-900/50 text-white p-4 text-center border-t border-white/5">
-          <div class="text-sm opacity-80">© 2025 DreamApp - Donde los sueños cobran vida</div>
-        </footer>
-      </div>
-    </div>
+             <!-- Encabezado -->
+          <div class="text-center mb-8 relative z-10 mt-16 ">
+            <h1 class="text-5xl font-extrabold text-white mb-2 drop-shadow-lg">
+              Bienvenido <span class="text-blue-300">Sueños</span>
+            </h1>
+            <p class="text-gray-200 text-lg">
+              Tu espacio personal para controlar tus sonidos y sueños.
+            </p>
+          </div>
+              
+          <!-- Contenedor principal -->
+          <div
+            class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl w-full max-w-4xl flex flex-col overflow-hidden shadow-2xl relative z-10 items-stretch mx-auto mb-16 glass-panel"
+            >
+            <!-- Contenido principal -->
+            <main class="flex-1 p-10 flex flex-col items-center justify-center">
+              <div class="text-center">
+                <div
+                  class="avatar w-20 h-20 rounded-full bg-gradient-to-br from-blue-400/20 to-purple-500/20 border border-white/10 flex items-center justify-center text-white text-2xl mx-auto mb-4 shadow-lg"
+                >
+                  <i class="fas fa-music text-blue-300"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">Control de Sueño</h3>
+                <p class="text-gray-200 mb-6">
+                  Explora tus playlists, configura tu perfil y disfruta de la música.
+                </p>
+    
+                <!-- Tarjeta de sueño -->
+                <div
+                  class="card-sueno bg-gradient-to-br from-blue-500/10 to-purple-600/10 backdrop-blur-sm border border-white/5 rounded-2xl p-8 mb-6 shadow-2xl max-w-md mx-auto transition-all duration-500 hover:translate-y-[-8px] hover:shadow-3xl"
+                >
+                  <div class="card-body text-center">
+                    <i class="fas fa-moon fa-2x text-yellow-200 mb-4 drop-shadow-lg"></i>
+                    <p class="card-text text-white text-lg mb-6 leading-relaxed">
+                      😴 "Dormir no es perder el tiempo, es regalarle al cuerpo la energía y la claridad
+                      que necesita para seguir soñando despierto." 🌌
+                    </p>
+    
+                    <!-- Botón principal -->
+                    <button
+                      class="btn-sueno bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-10 rounded-full shadow-2xl transform transition-all duration-500 relative overflow-hidden group"
+                    >
+                      <i class="fas fa-play-circle mr-3 group-hover:scale-110 transition-transform duration-300"></i> 
+                      Iniciar Sueño
+                      <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </main>
+            
+            <!-- Footer con copyright -->
+            <footer class="bg-gradient-to-b from-slate-800/50 to-slate-900/50 text-white p-4 text-center border-t border-white/5">
+              <div class="text-sm opacity-80">© 2025 DreamApp - Donde los sueños cobran vida</div>
+            </footer>
+          </div>
+        </div>
     </LayoutLimpio>
 </template>
 
