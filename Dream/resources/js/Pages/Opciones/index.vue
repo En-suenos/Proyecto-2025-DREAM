@@ -1,166 +1,228 @@
-<template>
-  <LayoutLimplio>
-    <div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6">
-      <!-- Barra de navegación -->
-      <nav class="nav-bar mb-8">
-        <div class="nav-container">
-          <div class="nav-item" v-for="item in navItems" :key="item.id">
-            <Link :href="route(item.route)" class="nav-link">
-              <i :class="item.icon" class="nav-icon"></i>
-              <span class="nav-text">{{ item.text }}</span>
-              <div class="nav-dot"></div>
-            </Link>
-          </div>
-          
-          <div class="nav-actions">
-            <Link :href="route('usuarios.reporte.pdf')" class="nav-btn">
-              <i class="fas fa-file-pdf mr-2"></i> PDF
-            </Link>
-            <Link :href="route('logout')" method="post" as="button" class="nav-btn logout-btn">
-              <i class="fas fa-sign-out-alt mr-2"></i> Salir
-            </Link>
-          </div>
-        </div>
-      </nav>
-
-      <!-- Contenido principal -->
-      <div class="max-w-4xl mx-auto mt-16">
-        <div class="text-center mb-12">
-          <h1 class="text-4xl font-bold text-white mb-4">Configuración</h1>
-          <p class="text-gray-300 text-lg">Personaliza tu experiencia en DreamApp</p>
-        </div>
-
-        <!-- Tarjetas de opciones con datos dinámicos -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Sonido -->
-          <div class="bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
-            <div class="flex items-center mb-4">
-              <i class="fas fa-volume-up text-blue-400 text-2xl mr-3"></i>
-              <h3 class="text-xl font-semibold text-white">Sonido</h3>
-            </div>
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="text-gray-300">Volumen: {{ configuraciones.sonido.volumen }}%</span>
-                <input type="range" v-model="configuraciones.sonido.volumen" min="0" max="100" class="w-24">
-              </div>
-              <div class="flex items-center justify-between">
-                <span class="text-gray-300">Efectos de sonido</span>
-                <input type="checkbox" v-model="configuraciones.sonido.efectos" class="toggle">
-              </div>
-            </div>
-          </div>
-
-          <!-- Apariencia -->
-          <div class="bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
-            <div class="flex items-center mb-4">
-              <i class="fas fa-palette text-purple-400 text-2xl mr-3"></i>
-              <h3 class="text-xl font-semibold text-white">Apariencia</h3>
-            </div>
-            <div class="space-y-3">
-              <div>
-                <label class="text-gray-300 block mb-2">Tema</label>
-                <select v-model="configuraciones.apariencia.tema" class="w-full bg-gray-700 text-white rounded px-3 py-2">
-                  <option value="oscuro">Oscuro</option>
-                  <option value="claro">Claro</option>
-                  <option value="auto">Automático</option>
-                </select>
-              </div>
-              <div class="flex items-center justify-between">
-                <span class="text-gray-300">Animaciones</span>
-                <input type="checkbox" v-model="configuraciones.apariencia.animaciones" class="toggle">
-              </div>
-            </div>
-          </div>
-
-          <!-- Privacidad -->
-          <div class="bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
-            <div class="flex items-center mb-4">
-              <i class="fas fa-shield-alt text-green-400 text-2xl mr-3"></i>
-              <h3 class="text-xl font-semibold text-white">Privacidad</h3>
-            </div>
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="text-gray-300">Compartir datos de uso</span>
-                <input type="checkbox" v-model="configuraciones.privacidad.datos_uso" class="toggle">
-              </div>
-              <div class="flex items-center justify-between">
-                <span class="text-gray-300">Estadísticas anónimas</span>
-                <input type="checkbox" v-model="configuraciones.privacidad.compartir_estadisticas" class="toggle">
-              </div>
-            </div>
-          </div>
-
-          <!-- Notificaciones -->
-          <div class="bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
-            <div class="flex items-center mb-4">
-              <i class="fas fa-bell text-yellow-400 text-2xl mr-3"></i>
-              <h3 class="text-xl font-semibold text-white">Notificaciones</h3>
-            </div>
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="text-gray-300">Notificaciones push</span>
-                <input type="checkbox" v-model="configuraciones.sonido.notificaciones" class="toggle">
-              </div>
-              <div class="flex items-center justify-between">
-                <span class="text-gray-300">Recordatorios de sueño</span>
-                <input type="checkbox" checked class="toggle">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Botones de acción -->
-        <div class="flex justify-center gap-4 mt-12">
-          <button @click="guardarConfiguracion" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full transition-colors">
-            <i class="fas fa-save mr-2"></i>Guardar Cambios
-          </button>
-          <Link :href="route('dashboard')" class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded-full transition-colors inline-flex items-center">
-            <i class="fas fa-arrow-left mr-2"></i>Volver al Inicio
-          </Link>
-        </div>
-      </div>
-    </div>
-  </LayoutLimplio>
-</template>
-
 <script setup>
-import LayoutLimplio from '@/Layouts/LayoutLimpio.vue';
-import { Link } from '@inertiajs/vue3';
+import LayoutLimpio from '@/Layouts/LayoutLimpio.vue';
+import { Head, useForm } from '@inertiajs/vue3';
+import { ref, watch } from 'vue';
 
-// Recibir las props del controlador
 const props = defineProps({
-  configuraciones: Object
+    opciones: {
+        type: Object,
+        default: () => ({
+            fondo: 'estrellado',
+            idioma: 'es',
+            notificaciones: true,
+        })
+    }
+});
+
+const form = useForm({
+    fondo: props.opciones.fondo,
+    idioma: props.opciones.idioma,
+    notificaciones: props.opciones.notificaciones,
+});
+
+const submit = () => {
+    form.post(route('obsiones.update'), {  // ⚠️ Nombre de ruta con "b"
+        preserveScroll: true,
+        onSuccess: () => {
+            // Aplica idioma en tiempo real
+            document.documentElement.setAttribute('lang', form.idioma);
+            // Opcional: dispara evento global para cambiar fondo
+            window.dispatchEvent(new CustomEvent('fondo-cambiado', { detail: form.fondo }));
+        }
+    });
+};
+
+// 🎨 Fondos disponibles
+const fondos = [
+    { id: 'estrellado', name: 'Cielo Estrellado', bg: 'from-gray-900 to-indigo-950' },
+    { id: 'luna', name: 'Luna Brillante', bg: 'from-slate-900 to-amber-900/10' },
+    { id: 'oscuro', name: 'Modo Oscuro', bg: 'bg-gray-900' },
+    { id: 'claro', name: 'Modo Claro', bg: 'bg-gray-100 text-gray-900' },
+];
+
+// 🌍 Idiomas
+const idiomas = [
+    { code: 'es', name: 'Español' },
+    { code: 'en', name: 'English' },
+];
+
+// 🌐 Traducciones básicas
+const traducciones = {
+    es: {
+        title: 'Opciones',
+        fondo: 'Fondo',
+        idioma: 'Idioma',
+        notif: 'Notificaciones',
+        activar: 'Activar notificaciones',
+        guardar: 'Guardar Cambios',
+        exito: '✅ ¡Opciones actualizadas!',
+    },
+    en: {
+        title: 'Settings',
+        fondo: 'Background',
+        idioma: 'Language',
+        notif: 'Notifications',
+        activar: 'Enable notifications',
+        guardar: 'Save Changes',
+        exito: '✅ Settings updated!',
+    }
+};
+
+const t = ref(traducciones[form.idioma]);
+
+watch(() => form.idioma, (nuevo) => {
+    t.value = traducciones[nuevo];
 });
 </script>
 
-<script>
-export default {
-  data() {
-    return {
-      navItems: [
-        { id: 1, route: 'profile.edit', icon: 'fas fa-user', text: 'Perfil' },
-        { id: 2, route: 'sonido.index', icon: 'fas fa-music', text: 'Sonidos' },
-        { id: 3, route: 'playlist.index', icon: 'fas fa-list', text: 'Playlist' },
-        { id: 4, route: 'dashboard', icon: 'fas fa-robot', text: 'Asistente' },
-        { id: 5, route: 'opciones.index', icon: 'fas fa-cog', text: 'Opciones' }
-      ]
-    }
-  },
-  methods: {
-    guardarConfiguracion() {
-      // Aquí puedes agregar la lógica para guardar en la base de datos
-      alert('Configuración guardada correctamente');
-    }
-  }
-}
-</script>
+<template>
+    <Head :title="t.title" />
+
+    <LayoutLimpio>
+        <div class="min-h-screen bg-gradient-to-b from-slate-900 to-indigo-950 text-white p-4 md:p-8">
+            <div class="max-w-3xl mx-auto">
+                <!-- Encabezado -->
+                <div class="text-center mb-10 mt-6">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center justify-center">
+                        <i class="fas fa-sliders-h mr-3 text-blue-400"></i>
+                        {{ t.title }}
+                    </h1>
+                    <p class="text-gray-300 max-w-2xl mx-auto">
+                        Personaliza tu experiencia: elige fondo, idioma y ajusta tus notificaciones.
+                    </p>
+                </div>
+
+                <!-- Formulario -->
+                <form @submit.prevent="submit" class="space-y-8">
+                    <!-- 🎨 Selección de fondo -->
+                    <div class="glass-panel p-6 rounded-2xl">
+                        <h2 class="text-xl font-bold mb-5 flex items-center">
+                            <i class="fas fa-paint-brush mr-2 text-purple-400"></i>
+                            {{ t.fondo }}
+                        </h2>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <label
+                                v-for="f in fondos"
+                                :key="f.id"
+                                class="group relative rounded-xl overflow-hidden cursor-pointer transition-transform hover:scale-105 border-2"
+                                :class="form.fondo === f.id 
+                                    ? 'border-blue-500 shadow-lg ring-2 ring-blue-500/30' 
+                                    : 'border-transparent hover:border-white/20'"
+                            >
+                                <input
+                                    type="radio"
+                                    :value="f.id"
+                                    v-model="form.fondo"
+                                    class="sr-only"
+                                />
+                                <div 
+                                    class="w-full h-24 flex items-center justify-center text-xs font-medium text-white/80 transition-colors"
+                                    :class="f.id === 'claro' 
+                                        ? 'bg-gray-100 text-gray-900' 
+                                        : `bg-gradient-to-b ${f.bg}`"
+                                >
+                                    {{ f.name }}
+                                </div>
+                                <div 
+                                    v-if="form.fondo === f.id"
+                                    class="absolute inset-0 flex items-center justify-center"
+                                >
+                                    <i class="fas fa-check-circle text-blue-400 text-xl"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 🌍 Idioma -->
+                    <div class="glass-panel p-6 rounded-2xl">
+                        <h2 class="text-xl font-bold mb-5 flex items-center">
+                            <i class="fas fa-language mr-2 text-green-400"></i>
+                            {{ t.idioma }}
+                        </h2>
+                        <div class="space-y-3">
+                            <label
+                                v-for="lang in idiomas"
+                                :key="lang.code"
+                                class="flex items-center p-4 rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer transition group"
+                            >
+                                <div class="relative w-5 h-5 mr-4">
+                                    <input
+                                        type="radio"
+                                        :value="lang.code"
+                                        v-model="form.idioma"
+                                        class="sr-only"
+                                    />
+                                    <div class="w-5 h-5 rounded-full border-2 border-gray-400 flex items-center justify-center">
+                                        <div 
+                                            v-if="form.idioma === lang.code"
+                                            class="w-3 h-3 rounded-full bg-blue-500 transition-all"
+                                        ></div>
+                                    </div>
+                                </div>
+                                <span class="text-lg">{{ lang.name }}</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 🔔 Notificaciones -->
+                    <div class="glass-panel p-6 rounded-2xl">
+                        <h2 class="text-xl font-bold mb-5 flex items-center">
+                            <i class="fas fa-bell mr-2 text-amber-400"></i>
+                            {{ t.notif }}
+                        </h2>
+                        <label class="flex items-center justify-between p-4 bg-white/5 rounded-xl cursor-pointer">
+                            <span>{{ t.activar }}</span>
+                            <div class="relative">
+                                <input
+                                    type="checkbox"
+                                    v-model="form.notificaciones"
+                                    class="sr-only"
+                                />
+                                <div
+                                    :class="[
+                                        'w-12 h-6 rounded-full transition-colors duration-300',
+                                        form.notificaciones ? 'bg-blue-500' : 'bg-gray-600'
+                                    ]"
+                                ></div>
+                                <div
+                                    :class="[
+                                        'absolute top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300',
+                                        form.notificaciones ? 'left-7' : 'left-1'
+                                    ]"
+                                ></div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- ✅ Botón guardar -->
+                    <div class="text-center pt-6">
+                        <button
+                            type="submit"
+                            :disabled="form.processing"
+                            class="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all disabled:opacity-75 disabled:cursor-not-allowed flex items-center mx-auto"
+                        >
+                            <i class="fas fa-save mr-2"></i>
+                            {{ t.guardar }}
+                        </button>
+
+                        <div 
+                            v-if="form.recentlySuccessful"
+                            class="mt-4 text-green-400 font-medium flex items-center justify-center animate-pulse"
+                        >
+                            <i class="fas fa-check-circle mr-2"></i> {{ t.exito }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </LayoutLimpio>
+</template>
 
 <style scoped>
-/* Tus estilos de nav-bar aquí */
-.toggle {
-  @apply relative inline-flex h-6 w-11 items-center rounded-full bg-gray-700;
-}
-.toggle:checked {
-  @apply bg-blue-600;
+.glass-panel {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
 }
 </style>

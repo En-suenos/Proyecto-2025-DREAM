@@ -13,6 +13,7 @@ use App\Http\Controllers\Usuario\UsuarioInertiaController;
 use App\Http\Controllers\AdminSonidos\AdminSonidoInertiaController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Opciones\OpcionesController; 
 use Inertia\Inertia;
 
 // Ruta principal
@@ -24,6 +25,8 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+
 
 // Rutas de usuario autenticado
 Route::middleware('auth')->group(function () {
@@ -59,6 +62,12 @@ Route::get('/audio/{filename}', function ($filename) {
     }
 
     return response()->file($path);
+    
+});
+
+Route::middleware(['auth'])->prefix('opciones')->group(function () {
+    Route::get('/', [OpcionesController::class, 'index'])->name('opciones.index');
+    Route::post('/', [OpcionesController::class, 'update'])->name('opciones.update');
 });
 
 Route::resource('/lista/usuario', UsuarioInertiaController::class);
