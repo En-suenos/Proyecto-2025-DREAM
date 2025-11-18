@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Opciones;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 
 class OpcionesController extends Controller
@@ -23,7 +24,9 @@ class OpcionesController extends Controller
             'notificaciones' => $user->opciones['notificaciones'] ?? true,
         ];
 
-        return view('obsiones.index', compact('opciones'));
+        return Inertia::render('Opciones/index',[
+            'opciones' => $opciones
+        ]);
     }
 
     public function update(Request $request)

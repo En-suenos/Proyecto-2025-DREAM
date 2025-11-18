@@ -68,6 +68,7 @@ Route::get('/audio/{filename}', function ($filename) {
 Route::middleware(['auth'])->prefix('opciones')->group(function () {
     Route::get('/', [OpcionesController::class, 'index'])->name('opciones.index');
     Route::post('/', [OpcionesController::class, 'update'])->name('opciones.update');
+    
 });
 
 Route::resource('/lista/usuario', UsuarioInertiaController::class);
@@ -96,4 +97,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         
     });
 });
+
+
 require __DIR__.'/auth.php';
