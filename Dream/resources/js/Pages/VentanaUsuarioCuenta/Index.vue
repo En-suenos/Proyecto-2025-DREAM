@@ -8,7 +8,7 @@ const navItems = [
     { id: 2, href: 'sonido', icon: 'fas fa-music', text: 'Sonidos' },
     { id: 3, href: 'playlists', icon: 'fas fa-list', text: 'Playlist' },
     { id: 4, href: '#', icon: 'fas fa-robot', text: 'Asistente' },
-    { id: 5, href: '#', icon: 'fas fa-cog', text: 'Opciones' }
+    { id: 5, href: route('opciones.index'), icon: 'fas fa-cog', text: 'Opciones' }
 ];
 </script>
 
@@ -20,6 +20,11 @@ const navItems = [
       <div class="night-sky ">
           <!-- Luna -->
           <div class="moon"></div>
+
+ <!-- Fondo de cielo estrellado -->
+        <div class="night-sky">
+            <!-- Luna -->
+            <div class="moon"></div>
 
           <!-- Estrellas -->
           <div class="stars"></div>
@@ -108,7 +113,17 @@ const navItems = [
             </footer>
           </div>
         </div>
-    </LayoutLimpio>
+    
+        <!-- Footer con copyright -->
+        <footer class="bg-gradient-to-b from-slate-800/50 to-slate-900/50 text-white p-4 text-center border-t border-white/5">
+          <div class="text-sm opacity-80">© 2025 DreamApp - Donde los sueños cobran vida</div>
+        </footer>
+      </div>
+   
+
+  </LayoutLimpio>
+       
+ 
 </template>
 
 <style scoped>

@@ -148,27 +148,30 @@
 
             </div>
         </div>
+
+        <div style="margin-bottom: 20px; font-size: 14px;">
+            <p><strong>Total de Usuarios Registrados:</strong> <?php echo e($totalUsuarios); ?></p>
+            <p><strong>Total de Sonidos Disponibles:</strong> <?php echo e($totalSonidos); ?></p>
+        </div>
         
         <!-- Tabla de usuarios -->
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 8%;">N°</th>
-                        <th style="width: 10%;">ID</th>
-                        <th style="width: 30%;">Nombre</th>
-                        <th style="width: 35%;">Correo Electrónico</th>
-                        <th style="width: 17%;">Fecha de Registro</th>
+                        <th style="width: 5%;">N°</th>
+                        <th style="width: 25%;">Nombre de Usuario</th>
+                        <th style="width: 30%;">Correo Electrónico</th>
+                        <th style="width: 17%;">Nombre de la playlist</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $usuario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $datos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
                     <tr>
                         <td><?php echo e($index + 1); ?></td>
-                        <td><?php echo e($usuario->id); ?></td>
-                        <td><?php echo e($usuario->name); ?></td>
-                        <td><?php echo e($usuario->email); ?></td>
-                        <td><?php echo e($usuario->created_at ? $usuario->created_at->format('d/m/Y') : 'N/A'); ?></td>
+                        <td><?php echo e($item->user_name); ?></td>
+                        <td><?php echo e($item->user_email); ?></td>
+                        <td><?php echo e($item->playlist_nombre); ?></td>
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
@@ -178,10 +181,6 @@
         <!-- Pie de página -->
         <div class="report-footer">
             <div class="footer-content">
-                <div class="footer-left">
-                    <div class="footer-company">Dream App - Sistema de Gestión</div>
-                    <div>Total de usuarios: <?php echo e(count($usuarios)); ?></div>
-                </div>
                 <div class="footer-right">
                     <div>Documento generado automáticamente</div>
                     <div>Página 1 de 1</div>

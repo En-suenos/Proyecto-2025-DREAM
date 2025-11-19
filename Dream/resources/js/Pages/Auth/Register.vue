@@ -1,5 +1,9 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
+import { ref } from 'vue';
+// import GuestLayout from '@/Layouts/GuestLayout.vue';
+
+import LayoutLimpio from '@/Layouts/LayoutLimpio.vue';
+
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -7,6 +11,12 @@ import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 import fondoLuna1 from '@/img/fondoLuna1.jpg'
+
+// Estados para controlar la visibilidad de contraseñas
+const showPassword = ref(false);
+const showPasswordConfirmation = ref(false);
+const isPasswordFocused = ref(false);
+const isPasswordConfirmationFocused = ref(false);
 
 const form = useForm({
     name: '',
@@ -20,10 +30,28 @@ const submit = () => {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
+
+// Función para mostrar contraseña mientras se mantiene presionado
+const startShowingPassword = (field) => {
+    if (field === 'password') {
+        showPassword.value = true;
+    } else {
+        showPasswordConfirmation.value = true;
+    }
+};
+
+// Función para ocultar contraseña cuando se suelta el botón
+const stopShowingPassword = (field) => {
+    if (field === 'password') {
+        showPassword.value = false;
+    } else {
+        showPasswordConfirmation.value = false;
+    }
+};
 </script>
 
 <template>
-    <GuestLayout>
+    <LayoutLimpio>
         <Head title="Register" />
 
         <div class="min-h-screen bg-cover bg-center bg-fixed flex items-center justify-center p-4"
@@ -69,15 +97,37 @@ const submit = () => {
                 <div class="mt-4 relative z-10">
                     <InputLabel for="password" value="Password" class="text-white" />
 
-                    <TextInput
-                        id="password"
-                        type="password"
-                        class="mt-1 block w-full bg-white/20 border-white/30 text-white placeholder-white/70"
-                        v-model="form.password"
-                        required
-                        autocomplete="new-password"
-                        placeholder="Enter your password"
-                    />
+                    <!-- Contenedor para campo de contraseña con ojitos -->
+                    <div class="relative">
+                        <TextInput
+                            id="password"
+                            :type="showPassword ? 'text' : 'password'"
+                            class="mt-1 block w-full bg-white/20 border-white/30 text-white placeholder-white/70 pr-10"
+                            v-model="form.password"
+                            required
+                            autocomplete="new-password"
+                            placeholder="Enter your password"
+                            @focus="isPasswordFocused = true"
+                            @blur="isPasswordFocused = false"
+                        />
+                        
+                        <!-- Botón de ojitos para contraseña -->
+                        <button 
+                            v-if="isPasswordFocused || form.password"
+                            type="button"
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white transition-colors duration-200 focus:outline-none"
+                            @mousedown="startShowingPassword('password')"
+                            @mouseup="stopShowingPassword('password')"
+                            @mouseleave="stopShowingPassword('password')"
+                            @touchstart="startShowingPassword('password')"
+                            @touchend="stopShowingPassword('password')"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </button>
+                    </div>
 
                     <InputError class="mt-2 text-white/90" :message="form.errors.password" />
                 </div>
@@ -89,15 +139,37 @@ const submit = () => {
                         class="text-white"
                     />
 
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        class="mt-1 block w-full bg-white/20 border-white/30 text-white placeholder-white/70"
-                        v-model="form.password_confirmation"
-                        required
-                        autocomplete="new-password"
-                        placeholder="Confirm your password"
-                    />
+                    <!-- Contenedor para campo de confirmación de contraseña con ojitos -->
+                    <div class="relative">
+                        <TextInput
+                            id="password_confirmation"
+                            :type="showPasswordConfirmation ? 'text' : 'password'"
+                            class="mt-1 block w-full bg-white/20 border-white/30 text-white placeholder-white/70 pr-10"
+                            v-model="form.password_confirmation"
+                            required
+                            autocomplete="new-password"
+                            placeholder="Confirm your password"
+                            @focus="isPasswordConfirmationFocused = true"
+                            @blur="isPasswordConfirmationFocused = false"
+                        />
+                        
+                        <!-- Botón de ojitos para confirmación de contraseña -->
+                        <button 
+                            v-if="isPasswordConfirmationFocused || form.password_confirmation"
+                            type="button"
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white transition-colors duration-200 focus:outline-none"
+                            @mousedown="startShowingPassword('confirmation')"
+                            @mouseup="stopShowingPassword('confirmation')"
+                            @mouseleave="stopShowingPassword('confirmation')"
+                            @touchstart="startShowingPassword('confirmation')"
+                            @touchend="stopShowingPassword('confirmation')"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </button>
+                    </div>
 
                     <InputError
                         class="mt-2 text-white/90"
@@ -123,7 +195,7 @@ const submit = () => {
                 </div>
             </form>
         </div>
-    </GuestLayout>
+    </LayoutLimpio>
 </template>
 
 <style scoped>
@@ -140,5 +212,17 @@ form {
 /* Mejora la apariencia de los inputs */
 ::placeholder {
     color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Asegura que el botón de ojitos tenga buen contraste */
+button:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Efecto visual cuando se mantiene presionado el botón */
+button:active {
+    transform: translateY(-50%) scale(0.95);
 }
 </style>
